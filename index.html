@@ -386,7 +386,7 @@ nav .bar{flex-direction:row;overflow:visible}.topbar,.topin{overflow:visible}
         <div class="trust"><span><svg class="ic"><use href="#i-check"/></svg> Free</span><span><svg class="ic"><use href="#i-lock"/></svg> Runs in your browser</span><span><svg class="ic"><use href="#i-shield"/></svg> Nothing stored</span></div>
       </div>
       <div class="mock" aria-label="Example result for a seed-stage team">
-        <div class="mock-h"><span class="av">S</span><div><b>Seed SaaS</b><small>6 engineers &middot; California</small></div><span class="pill live">Example</span></div>
+        <div class="mock-h"><span class="av">S</span><div><b>Maya&rsquo;s startup</b><small>6 engineers &middot; California</small></div><span class="pill live">Example</span></div>
         <div class="mock-big" id="mockCash">$44,520</div>
         <small class="mute">cash back against payroll tax, starting the quarter after you file</small>
         <div class="qrow" id="mockQ"></div>
@@ -671,24 +671,22 @@ nav .bar{flex-direction:row;overflow:visible}.topbar,.topin{overflow:visible}
 
 <!-- ESTIMATOR -->
 <section class="view" id="est">
-  <div class="vhead"><div><div class="kicker">Act &middot; Estimate</div><h2>What could your startup claim?</h2><p>Seven quick questions. Your estimate updates as you answer.</p></div>
+  <div class="vhead"><div><div class="kicker">Act &middot; Estimate</div><h2>What could your startup claim?</h2><p>Six quick questions about your company. Your estimate updates as you answer.</p></div>
     <div class="takeaway"><b>Privacy</b>Everything is calculated in your browser. Nothing is sent or stored.</div></div>
   <div id="wz">
     <div class="wzbar"><div><span class="sub" style="margin:0">Your estimated cash back</span><b id="wzCash">$0</b></div><div style="flex:1;min-width:160px"><div class="track"><i id="wzProg" style="background:var(--acc);width:0"></i></div><span class="sub" id="wzPos" style="font-size:13px;margin:6px 0 0;display:block"></span></div></div>
     <div class="card wzcard">
-      <div class="wstep" data-s="0"><div class="kicker">Let's start</div><h3 class="wq">Which company is most like yours?</h3><p class="sub">Pick the closest match. You can change every number next.</p>
-        <div class="pgrid" id="presets"><button class="lens pcard on" data-p="seed"><svg class="ic"><use href="#i-rocket"/></svg><b>Seed SaaS</b><span>6 engineers &middot; California</span></button><button class="lens pcard" data-p="bio"><svg class="ic"><use href="#i-zap"/></svg><b>Series A biotech</b><span>25 R&amp;D staff &middot; Massachusetts</span></button><button class="lens pcard" data-p="hw"><svg class="ic"><use href="#i-bank"/></svg><b>Hardware startup</b><span>12 engineers &middot; Michigan</span></button></div></div>
-      <div class="wstep" data-s="1"><div class="kicker">Location</div><h3 class="wq">Where is your company based?</h3><p class="sub">State credits range from nothing to cash refunds.</p><select id="st"></select></div>
+      <div class="wstep" data-s="1"><div class="kicker">Let&rsquo;s start</div><h3 class="wq">Where is your company based?</h3><p class="sub">State credits range from nothing to cash refunds.</p><select id="st"></select></div>
       <div class="wstep" data-s="2"><div class="kicker">Team</div><h3 class="wq">Who is building your product?</h3><p class="sub">Count W-2 engineers, data scientists and technical product people.</p>
-        <div class="row2"><div><label>Technical headcount</label><input id="eng" type="number" value="6" min="0"></div><div><label>Average salary ($)</label><input id="sal" type="number" value="150000" step="5000" min="0"></div></div></div>
+        <div class="row2"><div><label>Technical headcount</label><input id="eng" type="number" min="0" placeholder="e.g. 8"></div><div><label>Average salary ($)</label><input id="sal" type="number" step="5000" min="0" placeholder="e.g. 160000"></div></div></div>
       <div class="wstep" data-s="3"><div class="kicker">R&amp;D time</div><h3 class="wq">How much of their time goes to R&amp;D?</h3><p class="sub">Building new or better technology where the answer wasn't known. Not routine maintenance or support.</p>
         <label>Share of time on R&amp;D: <b id="pctV">70</b>%</label><input id="pct" type="range" value="70" min="0" max="100"></div>
       <div class="wstep" data-s="4"><div class="kicker">Other costs</div><h3 class="wq">What else do you spend on R&amp;D?</h3><p class="sub">Only US-based contractors count, at 65% of what you pay them.</p>
-        <div class="row2"><div><label>US contractors on R&amp;D ($/yr)</label><input id="con" type="number" value="80000" step="5000" min="0"></div><div><label>Cloud &amp; supplies ($/yr)</label><input id="sup" type="number" value="60000" step="5000" min="0"></div></div></div>
+        <div class="row2"><div><label>US contractors on R&amp;D ($/yr)</label><input id="con" type="number" step="5000" min="0" placeholder="0 if none"></div><div><label>Cloud &amp; supplies ($/yr)</label><input id="sup" type="number" step="5000" min="0" placeholder="e.g. 40000"></div></div></div>
       <div class="wstep" data-s="5"><div class="kicker">Revenue</div><h3 class="wq">Tell us about revenue.</h3><p class="sub">Under $5M, with first revenue in the last 5 years, unlocks the payroll-tax offset.</p>
-        <div class="row2"><div><label>Gross receipts this year ($)</label><input id="rev" type="number" value="400000" step="50000" min="0"></div><div><label>First year with revenue</label><input id="fy" type="number" value="2024" min="1990" max="2100"></div></div></div>
+        <div class="row2"><div><label>Gross receipts this year ($)</label><input id="rev" type="number" step="50000" min="0" placeholder="0 if pre-revenue"></div><div><label>First year with revenue</label><input id="fy" type="number" min="1990" max="2100" placeholder="blank if no revenue yet"></div></div></div>
       <div class="wstep" data-s="6"><div class="kicker">Last question</div><h3 class="wq">History and burn.</h3><p class="sub">Past R&amp;D spend changes your rate. Burn turns the result into runway.</p>
-        <div class="row2"><div><label>Prior 3-year avg R&amp;D spend ($, 0 if new)</label><input id="prior" type="number" value="0" step="10000" min="0"></div><div><label>Monthly burn ($)</label><input id="burn" type="number" value="120000" step="10000" min="0"></div></div></div>
+        <div class="row2"><div><label>Prior 3-year avg R&amp;D spend ($, 0 if new)</label><input id="prior" type="number" step="10000" min="0" placeholder="0 if new"></div><div><label>Monthly burn ($)</label><input id="burn" type="number" step="10000" min="0" placeholder="optional"></div></div></div>
       <div class="wznav"><button class="btn glassy" id="wzBack">&larr; Back</button><button class="btn big" id="wzNext">Next &rarr;</button></div>
     </div>
   </div>
@@ -849,7 +847,7 @@ $('share').oninput=model;$('claimants').oninput=model;model();
 
 // estimator
 const sorted=Object.keys(STATE_CREDITS).sort((a,b)=>STATE_CREDITS[a].name.localeCompare(STATE_CREDITS[b].name));
-$('st').innerHTML=sorted.map(k=>`<option value="${k}">${STATE_CREDITS[k].name}</option>`).join('');$('st').value='CA';
+$('st').innerHTML=sorted.map(k=>`<option value="${k}">${STATE_CREDITS[k].name}</option>`).join('');$('st').insertAdjacentHTML('afterbegin','<option value="">Choose your state</option>');$('st').value='';
 const PRESETS={
   seed:{st:"CA",eng:6,sal:150000,pct:70,con:80000,sup:60000,rev:400000,fy:2024,prior:0,burn:120000},
   bio:{st:"MA",eng:25,sal:160000,pct:80,con:600000,sup:900000,rev:50000,fy:2025,prior:2000000,burn:600000},
@@ -860,7 +858,7 @@ function estimate(x){
   const n=Math.max(0,x.eng),sal=Math.max(0,x.sal),pct=Math.min(100,Math.max(0,x.pct)),S=STATE_CREDITS[x.st]||{rate:0};
   const wages=n*sal,qre=wages*pct/100+Math.max(0,x.con)*0.65+Math.max(0,x.sup),prior=Math.max(0,x.prior);
   const gross=prior>0?Math.max(0,qre-prior*0.5)*0.14:qre*0.06,fed=x.red?gross*0.79:gross;
-  const smallOk=x.rev<5e6&&(x.fy>YEAR||YEAR-x.fy<5);
+  const smallOk=x.rev<5e6&&(!x.fy||x.fy>YEAR||YEAR-x.fy<5);
   const elected=smallOk&&wages>0?Math.min(fed,500000):0;
   // $250K against employer Social Security (6.2% to the wage base), the rest (up to $250K) against Medicare (1.45%)
   const ssTax=n*Math.min(sal,SS_BASE)*0.062,medTax=wages*0.0145,ssPart=Math.min(elected,250000),medPart=elected-ssPart;
@@ -909,7 +907,7 @@ function calc(){
 $('check').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(!b)return;const i=+b.dataset.t;tests.has(i)?tests.delete(i):tests.add(i);calc();});
 function applyPreset(k){const p=PRESETS[k];Object.entries(p).forEach(([id,v])=>$(id).value=v);$('red280').checked=false;
   document.querySelectorAll('#presets .lens').forEach(b=>b.classList.toggle('on',b.dataset.p===k));calc();}
-$('presets').addEventListener('click',e=>{const b=e.target.closest('[data-p]');if(b)applyPreset(b.dataset.p);});
+
 function demo(){applyPreset('seed');show('est');}
 document.querySelectorAll('#est input,#est select').forEach(e=>e.addEventListener('input',()=>{if(e.closest('.card')&&e.id!=='red280')document.querySelectorAll('#presets .lens').forEach(b=>b.classList.remove('on'));calc();}));calc();
 // hero example card uses the same model as the estimator
@@ -1219,9 +1217,10 @@ function wzGo(n){const back=n<wzI;wzI=Math.max(0,Math.min(WZ_N,n));
   $('wzBack').style.visibility=wzI?'visible':'hidden';$('wzNext').innerHTML=wzI===WZ_N-1?'See my estimate &rarr;':'Next &rarr;';
   $('wzPos').textContent=`Question ${wzI+1} of ${WZ_N}`;$('wzProg').style.width=((wzI+1)/(WZ_N+1)*100)+'%';
   const f=WZ[wzI].querySelector('input:not([type=range]),select');if(f&&wzI)setTimeout(()=>f.focus({preventScroll:true}),350);}
-$('wzNext').onclick=()=>wzGo(wzI+1);$('wzBack').onclick=()=>wzGo(wzI-1);$('wzEdit').onclick=()=>wzGo(1);
-$('wz').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.tagName!=='BUTTON'){e.preventDefault();wzGo(wzI+1);}});
-$('presets').addEventListener('click',e=>{if(e.target.closest('[data-p]'))setTimeout(()=>wzGo(1),280);});
+$('wzNext').onclick=()=>{const miss=[...WZ[wzI]?.querySelectorAll('#st,#eng,#sal')||[]].filter(f=>f.value==='');
+  if(miss.length){miss[0].focus();miss.forEach(f=>{f.style.borderColor='var(--red)';setTimeout(()=>f.style.borderColor='',1600);});$('wzPos').textContent='Answer this one to continue (0 is fine)';return;}wzGo(wzI+1);};$('wzBack').onclick=()=>wzGo(wzI-1);$('wzEdit').onclick=()=>wzGo(0);
+$('wz').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.tagName!=='BUTTON'){e.preventDefault();$('wzNext').click();}});
+
 wzGo(0);
 
 // deep link (e.g. #heat)
