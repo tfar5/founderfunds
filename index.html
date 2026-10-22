@@ -86,7 +86,7 @@ nav button.on{color:var(--ink);background:linear-gradient(180deg,var(--glass-hi)
 @media (prefers-color-scheme:dark){nav button.on{background:linear-gradient(180deg,rgba(82,224,176,.22),rgba(82,224,176,.08));border-color:rgba(82,224,176,.3)}}
 /* views */
 .view{display:none}.view.on{display:block;animation:rise .5s cubic-bezier(.2,.8,.2,1)}
-@keyframes rise{from{opacity:0;transform:translateY(12px);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 .vhead{display:grid;grid-template-columns:1fr auto;gap:22px;align-items:end;margin-bottom:24px}
 .kicker{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
 .vhead h2{font-family:var(--display);font-size:clamp(30px,4vw,46px);line-height:1.04;margin:8px 0 10px;letter-spacing:-.035em;font-weight:800}
@@ -194,63 +194,244 @@ details summary{cursor:pointer;font-weight:600}
 .note summary{cursor:pointer;font-weight:600;font-size:13px;color:var(--mute)}.note details[open] summary{margin-bottom:6px}
 .more summary{cursor:pointer;font-size:13px;margin-top:10px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.ticker{overflow-x:auto}}
+
+/* ===== Ramp-style light theme (overrides everything above) ===== */
+:root{--bg:#fff;--ink:#0b0b0b;--mute:#55554f;--faint:#8b8b84;--line:#e7e6e1;--acc:#0a7a5a;--acc2:#12a36f;--acc-soft:#e7f5ee;--gold:#b0640a;--gold-soft:#fcf1e2;--blue:#2f5fc4;--blue-soft:#edf2fc;--red:#c2412c;
+  --glass:#fff;--glass-hi:#fff;--glass-edge:#e7e6e1;--glass-tint:#fafaf7;--shadow:0 1px 2px rgba(0,0,0,.04);--deep:#0b0b0b;--on-deep:#fff;--on-deep-mute:#b9b9b2;--lime:#e4f222;--r:16px}
+html,body{background:#fff}
+body{line-height:1.65}
+.bgfx{display:none}
+.glass,.card,.kpi,.gapcard,.hcard,nav .bar{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:var(--shadow);border:1px solid var(--line)}
+.card::before,.kpi::before,.gapcard::before,.hcard::before{display:none}
+.card{padding:30px;margin-bottom:24px;border-radius:16px}
+.ic{width:18px;height:18px;vertical-align:-3px;flex:none}.ic.big{width:26px;height:26px;color:var(--ink);padding:9px;box-sizing:content-box;border-radius:12px;background:#f4f4ef;margin-bottom:14px;display:block}
+.card h3 .ic{margin-right:6px;color:var(--acc)}
+.btn{background:var(--lime);color:#0b0b0b;box-shadow:none;border-radius:10px;font-weight:600}
+.btn:hover{transform:none;box-shadow:none;filter:brightness(.96)}
+.btn.glassy{background:#fff;color:var(--ink);border:1px solid var(--line);backdrop-filter:none}
+.btn.blue{background:#0b0b0b;color:#fff}.btn.red{background:#fff;color:var(--red);border:1px solid #f0c9c1}
+.btn.big{padding:15px 24px;font-size:16px}
+.btn .ic{width:16px;height:16px}
+/* top bar */
+.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topin{display:flex;align-items:center;gap:16px;padding-top:10px;padding-bottom:10px;max-width:1320px}
+.logo{text-decoration:none;color:var(--ink);flex:none}
+.logo .mark{background:#0b0b0b;box-shadow:none;border-radius:9px;width:30px;height:30px}
+nav{position:static;margin:0;flex:1;min-width:0}
+nav .bar{border:0;box-shadow:none;background:none;border-radius:0;width:auto;max-width:100%;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+nav .grp{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+.grp+.grp{border-left:0;padding-left:0}
+nav .grp.sec button{font-size:12.5px;padding:3px 9px;color:var(--faint)}
+.grp>span{display:inline;font-size:10px;margin:0 6px 0 9px}
+nav button{border-radius:8px;font-size:14px;padding:6px 11px}
+nav button.on{background:#f1f1ec;border-color:transparent;box-shadow:none;color:var(--ink)}
+.status{padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:#fff;flex:none;font-size:12px}
+/* views and spacing */
+.view{padding:44px 0 72px}
+.vhead{margin-bottom:34px;gap:28px}
+.vhead h2,.h2{font-family:var(--display);font-weight:600;letter-spacing:-.035em;line-height:1.08}
+.h2{font-size:clamp(28px,3.6vw,42px);margin:8px 0 26px;max-width:820px}
+.kicker{color:var(--acc);letter-spacing:.12em}
+.takeaway{background:#fafaf7;color:var(--ink);border:1px solid var(--line)}.takeaway b{color:var(--faint)}
+.note{background:#fafaf7;border-color:var(--line)}
+.pill.live{color:#0a6a4f}
+/* hero */
+.hero{margin:0 -20px;padding:40px 20px 56px;background-image:radial-gradient(#dcdbd4 1px,transparent 1px);background-size:20px 20px;border-radius:0 0 28px 28px}
+.hero-grid{padding:20px 0 0;gap:56px}
+.eyebrow{background:#fff;border:1px solid var(--line);color:var(--ink);font-size:12px;letter-spacing:.06em}
+.eyebrow .ic{color:var(--acc)}
+h1{font-weight:600;letter-spacing:-.045em;font-size:clamp(40px,5.6vw,68px);line-height:1.02;margin:22px 0 22px}
+h1 em{background:none;color:var(--acc);-webkit-text-fill-color:currentColor;font-weight:600}
+.lede{font-size:20px;line-height:1.55;color:var(--mute);max-width:540px;margin-bottom:32px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.trust{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px;font-size:14px;color:var(--mute)}.trust .ic{width:15px;height:15px;color:var(--acc);margin-right:4px}
+.mock{background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px;box-shadow:0 30px 60px -30px rgba(0,0,0,.25)}
+.mock-h{display:flex;gap:12px;align-items:center;margin-bottom:18px}.mock-h b{display:block;line-height:1.2}.mock-h small{color:var(--faint)}.mock-h .pill{margin-left:auto}
+.av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#fff;background:linear-gradient(135deg,#12a36f,#0a5a43);flex:none}
+.mock-big{font-family:var(--display);font-size:54px;font-weight:600;letter-spacing:-.04em;line-height:1}
+.mute{color:var(--mute)}
+.mock-list{list-style:none;padding:0;margin:16px 0 0;font-size:14px}.mock-list li{display:flex;gap:8px;align-items:center;padding:8px 0;border-top:1px solid var(--line);color:var(--mute)}.mock-list li.ok{color:var(--ink)}.mock-list li.ok .ic{color:var(--acc)}
+/* ticker, Ramp-style strip */
+.ticker{display:flex;align-items:center;gap:0;border-radius:12px;margin:28px 0 0;background:#fff;-webkit-mask-image:none;mask-image:none}
+.tklbl{flex:none;display:flex;gap:8px;align-items:center;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:0 14px;border-right:1px solid var(--line)}
+.tkwin{overflow:hidden;flex:1;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+/* home blocks */
+.block{padding:72px 0 8px}
+.stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.stat{border:1px solid var(--line);border-radius:16px;padding:28px;position:relative}
+.stat b{display:block;font-family:var(--display);font-size:44px;font-weight:600;letter-spacing:-.04em;line-height:1.05;margin-bottom:8px}
+.stat span{color:var(--mute);font-size:15px}
+.stat em{position:absolute;top:24px;right:24px;font-style:normal;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);background:#f4f4ef;padding:3px 9px;border-radius:99px}.stat em.est{color:var(--gold);background:var(--gold-soft)}
+.why4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.why4>div{border:1px solid var(--line);border-radius:16px;padding:24px;background:#fff}.why4 b{display:block;margin-bottom:6px;font-size:16px}.why4 span{color:var(--mute);font-size:14.5px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.step{all:unset;cursor:pointer;border:1px solid var(--line);border-radius:16px;padding:24px;position:relative;display:flex;flex-direction:column;gap:6px;transition:border-color .2s,transform .2s}
+.step:hover{border-color:#0b0b0b;transform:translateY(-2px)}.step:focus-visible{outline:2px solid var(--acc)}
+.step b{font-size:19px;font-family:var(--display);letter-spacing:-.02em}.step span{color:var(--mute);font-size:14.5px}.step i{font-style:normal;font-weight:600;font-size:14px;margin-top:auto;padding-top:10px;display:flex;gap:6px;align-items:center}
+.sn{position:absolute;top:22px;right:22px;width:26px;height:26px;border-radius:50%;background:var(--lime);display:grid;place-items:center;font-weight:700;font-size:13px}
+.ctaband{margin-top:80px;background:#0b0b0b;color:#fff;border-radius:20px;padding:40px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}.ctaband p{margin:0;color:#b9b9b2}
+/* github */
+.ghform{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--ink);margin-top:16px;font-weight:500}.consent input{margin-top:4px;width:auto}
+.stats4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.stats4>div{border:1px solid var(--line);border-radius:16px;padding:20px}.stats4 b{display:block;font-family:var(--display);font-size:34px;font-weight:600;letter-spacing:-.03em}.stats4 span{color:var(--mute);font-size:14px}
+.ev{display:grid;grid-template-columns:96px 1fr auto;gap:14px;padding:12px 0;border-top:1px solid var(--line);align-items:start;font-size:14.5px}
+.ev time{color:var(--faint);font-variant-numeric:tabular-nums}.ev .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.ev .tags span{font-size:11px;font-weight:600;padding:2px 8px;border-radius:99px;background:var(--acc-soft);color:#0a6a4f}
+.person{display:flex;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}.person .av{width:32px;height:32px;font-size:13px}.person .t{flex:1}.person small{color:var(--faint);display:block}
+/* filing steps */
+.fstep{display:grid;grid-template-columns:56px 1fr auto;gap:18px;align-items:start;border:1px solid var(--line);border-radius:16px;padding:24px;margin-bottom:14px;background:#fff}
+.fstep .ic.big{margin:0}.fstep h3{margin:0 0 4px;font-family:var(--display);font-size:19px;letter-spacing:-.02em}.fstep p{margin:0;color:var(--mute);font-size:15px}
+.fstep .stat2{margin-top:10px;font-size:14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.fstep.done{background:#f7fbf8;border-color:#bfe3d2}.fstep .chk{display:flex;gap:8px;align-items:center;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap}
+.flag{display:inline-flex;gap:6px;align-items:center;font-size:13px;font-weight:600;padding:4px 10px;border-radius:99px;background:var(--gold-soft);color:var(--gold)}.flag.ok{background:var(--acc-soft);color:#0a6a4f}
+.finish .ic.big{margin-bottom:12px}
+.srct{width:100%;border-collapse:collapse;font-size:14px}.srct th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);padding:10px;border-bottom:1px solid var(--line)}.srct td{padding:14px 10px;border-bottom:1px solid var(--line);vertical-align:top}.srct td:first-child{white-space:nowrap}.srct .ic{color:var(--acc);margin-right:4px}
+code{font-size:12.5px;background:#f4f4ef;padding:2px 6px;border-radius:6px}
+dialog{border:1px solid var(--line);border-radius:18px;max-width:520px;width:calc(100% - 32px)}
+@media(max-width:1100px){.topin{flex-wrap:wrap}.topin nav{order:3;flex-basis:100%}.status{display:none}}
+@media(max-width:900px){.stats3,.why4,.steps,.stats4{grid-template-columns:1fr 1fr}.ctaband{padding:28px}}
+@media(max-width:560px){.stats3,.why4,.steps,.stats4{grid-template-columns:1fr}.fstep{grid-template-columns:1fr}.ev{grid-template-columns:1fr}.hero{padding-top:20px}}
 </style>
 </head>
 <body>
 <div class="bgfx" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-<header class="wrap">
-  <div class="top">
-    <div class="logo"><div class="mark">F</div>FounderFunds</div>
-    <div class="top-r"><span class="status glass"><span class="dot" id="liveDot"></span><span id="liveTxt">Using cached snapshots</span></span><button class="btn glassy sm" id="limits">Data &amp; limits</button></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-dollar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></symbol><symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol><symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol><symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></symbol><symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol><symbol id="i-github" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></symbol><symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16v-5M12 16V8M17 16V7"/></symbol><symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol><symbol id="i-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></symbol><symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3z"/><path d="M12 9v4M12 17h.01"/></symbol><symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol><symbol id="i-db" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></symbol><symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol><symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></symbol><symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol><symbol id="i-bank" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></symbol><symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol><symbol id="i-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></symbol><symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol></svg>
+<header class="topbar">
+  <div class="wrap topin">
+    <a class="logo" href="#over" onclick="show('over');return false"><span class="mark">F</span>FounderFunds</a>
+    <nav id="nav"><div class="bar">
+      <div class="grp"><button data-v="over" class="on">Home</button><button data-v="est">Estimate</button><button data-v="gh">GitHub evidence</button><button data-v="file">File &amp; claim</button><button data-v="audit">Audit trail</button><button data-v="src">Data sources</button></div>
+      <div class="grp sec"><span>Research</span><button data-v="gapv">Startup gap</button><button data-v="who">Who claims</button><button data-v="hurdles">Hurdles</button><button data-v="state">States</button><button data-v="heat">Heatmap</button><button data-v="uni">Universities</button><button data-v="feed">Grants</button></div>
+    </div></nav>
+    <span class="status" title="Public data connection"><span class="dot" id="liveDot"></span><span id="liveTxt">Using cached snapshots</span></span>
+    <button class="btn sm" onclick="show('est')">Estimate my credit</button>
   </div>
-  <div class="hero-grid">
-    <div>
-      <div class="eyebrow glass">Public data &middot; R&amp;D credits &middot; grants</div>
-      <h1>Your R&amp;D can pay you back. <em>See how much, and when.</em></h1>
-      <p class="lede">Public IRS, Census and federal-award data, turned into one answer: the R&amp;D-credit cash your startup could get, and when.</p>
-      <div class="cta"><button class="btn" onclick="demo()">Run the 2-minute demo &rarr;</button><button class="btn glassy" onclick="show('est')">Estimate my own</button></div>
-    </div>
-    <div class="gapcard">
-      <h3>The credit is shifting to software &middot; IRS 2015 &rarr; 2022</h3>
-      <div class="gaprow"><div class="lbl"><span>Companies claiming: 19,701 &rarr; 34,414</span><b id="hClaim">0</b></div><div class="track"><i id="hClaimBar" style="background:linear-gradient(90deg,#3767c4,#8fb3f5)"></i></div></div>
-      <div class="gaprow"><div class="lbl"><span>Credit claimed: $14.4B &rarr; $42.6B</span><b id="hCredit">0</b></div><div class="track"><i id="hCreditBar" style="background:linear-gradient(90deg,#c9711a,#f5b25a)"></i></div></div>
-      <div class="gaprow"><div class="lbl"><span>Information-sector claimants: 2,264 &rarr; 6,715</span><b id="hBig">0</b></div><div class="track"><i id="hBigBar" style="background:linear-gradient(90deg,#0a7a5a,#2fbf8f)"></i></div></div>
-      <small>Bar = 2015 as a share of 2022 &middot; IRS SOI Pub 16, Table 14 &middot; C-corps</small>
-    </div>
-  </div>
-  <div class="kpis">
-    <div class="kpi"><span class="tag">IRS 2022</span><b data-count="34414">0</b><small>C-corporations claimed the federal R&amp;D credit</small></div>
-    <div class="kpi g"><span class="tag">IRS 2022</span><b>$42.6B</b><small>claimed: <span id="mfgShare"></span> by manufacturers, 26% by information &amp; software</small></div>
-    <div class="kpi"><span class="tag">Estimate</span><b id="kSeed">$0</b><small>cash a 6-engineer seed team could get against payroll tax (see Estimate)</small></div>
-    <div class="kpi g"><span class="tag">IRC &sect;41(h)</span><b>Up to $500K</b><small>a year against payroll tax, for companies under $5M revenue and within 5 years of first revenue</small></div>
-  </div>
-  <div class="ticker" aria-label="Public data highlights"><div class="tk" id="tk"></div></div>
 </header>
-
-<nav id="nav"><div class="wrap"><div class="bar">
-  <div class="grp"><span>Understand</span><button data-v="over" class="on">Overview</button><button data-v="gapv">Startup gap</button><button data-v="who">Who claims</button><button data-v="hurdles">Hurdles</button></div>
-  <div class="grp"><span>Explore</span><button data-v="state">States</button><button data-v="heat">R&amp;D heatmap</button><button data-v="uni">Universities</button><button data-v="feed">Live funding</button></div>
-  <div class="grp"><span>Act</span><button data-v="est">Estimate</button><button data-v="audit">Audit trail</button></div>
-</div></div></nav>
 
 <main class="wrap">
 
-<!-- OVERVIEW -->
+<!-- HOME -->
 <section class="view on" id="over">
-  <div class="vhead"><div><div class="kicker">Overview</div><h2>Three questions every founder should answer</h2><p>Each path uses public data. Pick where to start.</p></div></div>
-  <div class="grid3">
-    <div class="card path" onclick="show('gapv')"><div class="n">Understand</div><h3>Why is money left on the table?</h3><p>IRS data shows who claims and who doesn't, and the ten hurdles that stop founders.</p><div class="go">See the startup gap &rarr;</div></div>
-    <div class="card path" onclick="show('heat')"><div class="n">Explore</div><h3>Where is R&amp;D money flowing?</h3><p>County heatmap, state credit rules, university research hubs and live federal funding.</p><div class="go">Open the heatmap &rarr;</div></div>
-    <div class="card path" onclick="show('est')"><div class="n">Act</div><h3>What am I owed, and can I prove it?</h3><p>Estimate your credit in 30 seconds, then build an audit-ready project log.</p><div class="go">Estimate my money &rarr;</div></div>
-  </div>
-  <div class="card">
-    <h3>Why founders don't claim</h3>
-    <p class="sub">Three reasons come up again and again in practitioner guidance.</p>
-    <div class="why">
-      <div><b>"That's for big companies"</b><span>Most dollars still go to large manufacturers. The startup payroll-tax route is far less known.</span></div>
-      <div><b>"The paperwork will kill us"</b><span>The four-part test, contemporaneous records and audit risk scare off small teams.</span></div>
-      <div><b>"Where would I even look?"</b><span>The IRS, 50 state revenue departments, SBIR agencies and universities each publish separately.</span></div>
+  <div class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow"><svg class="ic"><use href="#i-rocket"/></svg> For tech founders who just raised</div>
+        <h1>Every engineer you pay can earn you back <em id="perEng">~$7,400</em> a year.</h1>
+        <p class="lede">The federal R&amp;D credit turns engineering payroll into cash against payroll tax, even before you're profitable. Most early-stage startups never claim it.</p>
+        <div class="cta"><button class="btn big" onclick="show('est')">Estimate my credit <svg class="ic"><use href="#i-arrow"/></svg></button><button class="btn glassy big" onclick="show('gh')"><svg class="ic"><use href="#i-github"/></svg> Analyze my GitHub</button></div>
+        <div class="trust"><span><svg class="ic"><use href="#i-check"/></svg> Free</span><span><svg class="ic"><use href="#i-lock"/></svg> Runs in your browser</span><span><svg class="ic"><use href="#i-shield"/></svg> Nothing stored</span></div>
+      </div>
+      <div class="mock" aria-label="Example result for a seed-stage team">
+        <div class="mock-h"><span class="av">S</span><div><b>Seed SaaS</b><small>6 engineers &middot; California</small></div><span class="pill live">Example</span></div>
+        <div class="mock-big" id="mockCash">$44,520</div>
+        <small class="mute">cash back against payroll tax, starting the quarter after you file</small>
+        <div class="qrow" id="mockQ"></div>
+        <ul class="mock-list"><li class="ok"><svg class="ic"><use href="#i-check"/></svg> Qualifies as a small business</li><li class="ok"><svg class="ic"><use href="#i-check"/></svg> Projects documented from GitHub</li><li><svg class="ic"><use href="#i-file"/></svg> Form 6765 ready for your CPA</li></ul>
+      </div>
     </div>
+  </div>
+  <div class="ticker" aria-label="Public data highlights"><span class="tklbl"><span class="dot live"></span>Public data</span><div class="tkwin"><div class="tk" id="tk"></div></div></div>
+
+  <div class="block">
+    <div class="kicker">The problem</div>
+    <h2 class="h2">Startups do qualifying R&amp;D every sprint. Few turn it into cash.</h2>
+    <div class="stats3">
+      <div class="stat"><svg class="ic big"><use href="#i-dollar"/></svg><b>$42.6B</b><span>in R&amp;D credits claimed in 2022 by 34,414 companies, mostly large ones.</span><em>IRS 2022</em></div>
+      <div class="stat"><svg class="ic big"><use href="#i-users"/></svg><b>~2 in 3</b><span>R&amp;D-intensive businesses don't claim, by our model of IRS and Census data.</span><em class="est">Modeled</em></div>
+      <div class="stat"><svg class="ic big"><use href="#i-zap"/></svg><b>Up to $500K</b><span>a year usable against payroll tax, with no profit needed, for companies under $5M revenue.</span><em>IRC &sect;41(h)</em></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="kicker">Why now</div>
+    <h2 class="h2">The window to claim is shorter than founders think.</h2>
+    <div class="why4">
+      <div><svg class="ic big"><use href="#i-cal"/></svg><b>Payroll election has a deadline</b><span>It only counts on a return filed on time (with extensions). Miss it and this year's cash offset is gone.</span></div>
+      <div><svg class="ic big"><use href="#i-clock"/></svg><b>Only your first 5 revenue years</b><span>The payroll offset is limited to companies within 5 years of first revenue. The clock starts with your first dollar.</span></div>
+      <div><svg class="ic big"><use href="#i-file"/></svg><b>Records get stricter in 2026</b><span>Form 6765 Section G asks for project-by-project detail. Records written after the fact are the top audit weakness.</span></div>
+      <div><svg class="ic big"><use href="#i-alert"/></svg><b>Old years expire</b><span>You can amend for missed credits for about 3 years. 2023 returns start closing in 2027.</span></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="kicker">How it works</div>
+    <h2 class="h2">From payroll to cash in four steps.</h2>
+    <div class="steps">
+      <button class="step" onclick="show('est')"><span class="sn">1</span><svg class="ic big"><use href="#i-dollar"/></svg><b>Estimate</b><span>See your credit, the cash you get now, and when it arrives.</span><i>2 minutes <svg class="ic"><use href="#i-arrow"/></svg></i></button>
+      <button class="step" onclick="show('gh')"><span class="sn">2</span><svg class="ic big"><use href="#i-github"/></svg><b>Prove it</b><span>Turn commit history into dated evidence of experimentation.</span><i>Analyze GitHub <svg class="ic"><use href="#i-arrow"/></svg></i></button>
+      <button class="step" onclick="show('file')"><span class="sn">3</span><svg class="ic big"><use href="#i-file"/></svg><b>File</b><span>A step-by-step checklist for Form 6765 and the payroll election.</span><i>Filing guide <svg class="ic"><use href="#i-arrow"/></svg></i></button>
+      <button class="step" onclick="show('audit')"><span class="sn">4</span><svg class="ic big"><use href="#i-shield"/></svg><b>Stay audit-ready</b><span>Keep a project log in the shape the IRS asks for.</span><i>Audit trail <svg class="ic"><use href="#i-arrow"/></svg></i></button>
+    </div>
+  </div>
+
+  <div class="ctaband">
+    <div><h2 class="h2" style="color:#fff;margin:0 0 6px">Ready to get your money back?</h2><p>Leave with a CPA-ready claim packet, or get matched with a filing partner.</p></div>
+    <button class="btn big" onclick="show('file')">Start my claim <svg class="ic"><use href="#i-arrow"/></svg></button>
+  </div>
+</section>
+
+<!-- GITHUB EVIDENCE -->
+<section class="view" id="gh">
+  <div class="vhead"><div><div class="kicker">Prove it &middot; GitHub evidence</div><h2>Your commit history is your R&amp;D record.</h2><p>Most teams already have dated evidence of experimentation in Git. We scan commit messages for R&amp;D signals and turn them into linkable evidence for your claim.</p></div>
+    <div class="takeaway"><b>Consent</b>Only the repo name goes to GitHub's public API, and only after you tick the box. Nothing goes to FounderFunds.</div></div>
+  <div class="card">
+    <div class="ghform">
+      <div style="flex:1;min-width:220px"><label for="ghRepo">Public GitHub repo</label><input id="ghRepo" placeholder="owner/repo, e.g. karpathy/nanoGPT"></div>
+      <button class="btn" id="ghGo"><svg class="ic"><use href="#i-search"/></svg> Analyze</button>
+      <button class="btn glassy" id="ghSample"><svg class="ic"><use href="#i-github"/></svg> Try a sample repo</button>
+    </div>
+    <label class="consent"><input type="checkbox" id="ghConsent"> I agree to send this repo name to api.github.com to read its public commit history.</label>
+    <p class="sub" id="ghMsg" style="margin:10px 0 0;font-size:14px"></p>
+  </div>
+  <div id="ghOut" style="display:none">
+    <div class="stats4" id="ghStats"></div>
+    <div class="grid2">
+      <div class="card"><h3><svg class="ic"><use href="#i-zap"/></svg> Candidate projects</h3><p class="sub">Business components suggested by commit themes.</p><div id="ghThemes"></div></div>
+      <div class="card"><h3><svg class="ic"><use href="#i-users"/></svg> Contributors</h3><p class="sub">Share of each person's commits with an R&amp;D signal.</p><div id="ghPeople"></div></div>
+    </div>
+    <div class="card"><h3><svg class="ic"><use href="#i-file"/></svg> Evidence log</h3><p class="sub">Dated commits with R&amp;D signals. Each links to the commit on GitHub.</p><div id="ghLog"></div>
+      <div class="cta" style="margin-top:18px"><button class="btn" id="ghToAudit"><svg class="ic"><use href="#i-shield"/></svg> Add to audit trail</button><button class="btn glassy" id="ghToEst"><svg class="ic"><use href="#i-dollar"/></svg> Use this R&amp;D share in my estimate</button></div>
+      <div class="note">A keyword heuristic on commit messages, not a tax determination. Your CPA decides what qualifies. Private repos would need GitHub sign-in (next step).</div>
+    </div>
+  </div>
+</section>
+
+<!-- FILE & CLAIM -->
+<section class="view" id="file">
+  <div class="vhead"><div><div class="kicker">File &amp; claim</div><h2>From estimate to cash in seven steps.</h2><p>What a startup files, in order. Tick each step as you go.</p></div>
+    <div class="takeaway"><b>Progress</b><span id="fileProg">0 of 7 done</span><div class="track" style="margin-top:8px"><i id="fileBar" style="background:var(--acc);width:0"></i></div></div></div>
+  <div id="fileSteps"></div>
+  <div class="grid2" style="margin-top:28px">
+    <div class="card finish"><svg class="ic big"><use href="#i-download"/></svg><h3>File with your own CPA</h3><p class="sub">Download a claim packet: your estimate, the filing checklist and your project log.</p><button class="btn" id="packet"><svg class="ic"><use href="#i-download"/></svg> Download CPA packet</button></div>
+    <div class="card finish"><svg class="ic big"><use href="#i-users"/></svg><h3>Get matched with a filing partner</h3><p class="sub">We introduce you to a vetted R&amp;D credit provider. You choose exactly what to share.</p><button class="btn glassy" id="partner"><svg class="ic"><use href="#i-arrow"/></svg> Get matched</button></div>
+  </div>
+</section>
+
+<!-- DATA SOURCES -->
+<section class="view" id="src">
+  <div class="vhead"><div><div class="kicker">Data sources</div><h2>Every public API and dataset we use.</h2><p>What each source powers, how fresh it is, and what it can't tell you.</p></div>
+    <div class="takeaway"><b>Live status</b><span id="srcLive">Checking&hellip;</span></div></div>
+  <div class="card" style="overflow-x:auto"><table class="srct">
+    <thead><tr><th>Source</th><th>API or dataset</th><th>Powers</th><th>Freshness</th><th>Limits</th></tr></thead>
+    <tbody>
+      <tr><td><svg class="ic"><use href="#i-bank"/></svg> <b>IRS Statistics of Income</b></td><td><a href="https://www.irs.gov/statistics/soi-tax-stats-corporation-income-tax-returns-complete-report-publication-16" target="_blank" rel="noopener">Pub 16, Table 14</a> &middot; <a href="https://www.irs.gov/statistics/soi-tax-stats-corporation-research-credit" target="_blank" rel="noopener">Research credit tables</a></td><td>Who claims, growth, startup gap</td><td><span class="pill">Snapshot</span> TY2022, 2015, 2013</td><td>C-corps only; size breakdown last published for 2013</td></tr>
+      <tr><td><svg class="ic"><use href="#i-dollar"/></svg> <b>USAspending.gov API</b></td><td><code>POST /api/v2/search/spending_by_geography/</code></td><td>SBIR/STTR by state; NSF + NIH university awards by state and county</td><td><span class="pill live">Live</span> + snapshot, FY2024&ndash;25</td><td>SBIR is a keyword proxy, not SBIR.gov totals</td></tr>
+      <tr><td><svg class="ic"><use href="#i-search"/></svg> <b>Grants.gov Search2 API</b></td><td><code>POST api.grants.gov/v1/api/search2</code></td><td>Open federal grants by vertical</td><td><span class="pill">Snapshot</span> 2026-10-22, tries live</td><td>Browsers are often blocked by CORS</td></tr>
+      <tr><td><svg class="ic"><use href="#i-github"/></svg> <b>GitHub REST API</b></td><td><code>GET /repos/&#123;owner&#125;/&#123;repo&#125;/commits</code></td><td>Commit evidence for your claim</td><td><span class="pill live">Live</span> on request, with consent</td><td>Public repos; 60 requests an hour without sign-in</td></tr>
+      <tr><td><svg class="ic"><use href="#i-chart"/></svg> <b>Census County Business Patterns</b></td><td>CBP 2022, NAICS 5417, 5112, 5415, 3254, 334</td><td>Pool of R&amp;D-intensive businesses by state</td><td><span class="pill">Snapshot</span> 2022</td><td>Establishments, not firms; industry isn't eligibility</td></tr>
+      <tr><td><svg class="ic"><use href="#i-db"/></svg> <b>NSF NCSES</b></td><td><a href="https://ncses.nsf.gov/pubs/nsf25313" target="_blank" rel="noopener">HERD survey</a> &middot; <a href="https://ncses.nsf.gov/indicators/states" target="_blank" rel="noopener">State Indicators</a></td><td>University R&amp;D context</td><td><span class="pill">Snapshot</span> FY2023</td><td>Correlation, not causation</td></tr>
+      <tr><td><svg class="ic"><use href="#i-pin"/></svg> <b>US Atlas (TopoJSON)</b></td><td>us-atlas 3.0.1 via jsDelivr</td><td>County heatmap shapes</td><td>Static</td><td>&mdash;</td></tr>
+      <tr><td><svg class="ic"><use href="#i-file"/></svg> <b>IRS forms and law</b></td><td><a href="https://www.irs.gov/forms-pubs/about-form-6765" target="_blank" rel="noopener">Form 6765</a> &middot; <a href="https://www.irs.gov/forms-pubs/about-form-8974" target="_blank" rel="noopener">Form 8974</a> &middot; IRC &sect;41, &sect;174A</td><td>Estimator rules and the filing guide</td><td>2026 rules</td><td>Not tax advice</td></tr>
+      <tr><td><svg class="ic"><use href="#i-pin"/></svg> <b>State credit rules</b></td><td>KPMG, Aprio, CLA summaries; CA SB 711, TX SB 2206, MI 2024 law</td><td>21 states in the estimator and map</td><td>Hand-compiled Oct 2026</td><td>No public API; rules change yearly</td></tr>
+    </tbody></table></div>
+  <div class="card"><h3><svg class="ic"><use href="#i-lock"/></svg> What leaves your browser</h3>
+    <div class="why4" style="margin-top:12px">
+      <div><svg class="ic big"><use href="#i-dollar"/></svg><b>Estimator inputs</b><span>Never. Calculated on this page.</span></div>
+      <div><svg class="ic big"><use href="#i-shield"/></svg><b>Audit trail</b><span>Never. Saved in this browser until you export or delete it.</span></div>
+      <div><svg class="ic big"><use href="#i-github"/></svg><b>GitHub analyzer</b><span>Only the repo name, to api.github.com, after you tick consent.</span></div>
+      <div><svg class="ic big"><use href="#i-users"/></svg><b>Partner match</b><span>Only the fields you tick. In this demo, nothing is sent.</span></div>
+    </div>
+    <p style="margin:18px 0 0"><button class="btn glassy sm" id="limits">All data limits</button></p>
   </div>
 </section>
 
@@ -460,6 +641,15 @@ details summary{cursor:pointer;font-weight:600}
   <span>Sources: IRS SOI &middot; Census CBP &middot; USAspending.gov &middot; Grants.gov &middot; NSF NCSES &middot; KPMG / Aprio / CLA state summaries</span>
 </div></div></footer>
 
+<dialog id="pdlg">
+  <h3 style="margin-top:0;font-family:var(--display);font-size:26px;letter-spacing:-.03em">Get matched with a filing partner</h3>
+  <p class="sub">Choose what to share. Nothing is shared unless you tick it.</p>
+  <label class="consent"><input type="checkbox" id="pEst"> My estimate (credit amount, headcount, state)</label>
+  <label class="consent"><input type="checkbox" id="pProj"> My project log (titles and dates only)</label>
+  <label for="pMail" style="margin-top:12px">Work email</label><input id="pMail" type="email" placeholder="you@startup.com" autocomplete="off">
+  <p class="sub" id="pMsg" style="font-size:14px;margin-top:12px"></p>
+  <div class="cta"><button class="btn" id="pSend">Request intro</button><button class="btn glassy" onclick="$('pdlg').close()">Cancel</button></div>
+</dialog>
 <dialog id="dlg">
   <h3 style="margin-top:0;font-family:var(--display);font-size:26px;letter-spacing:-.03em">Data &amp; limits</h3>
   <ul>
@@ -482,7 +672,7 @@ details summary{cursor:pointer;font-weight:600}
 <script>
 const $=id=>document.getElementById(id),fmt=n=>"$"+Math.round(n).toLocaleString();
 const money=n=>n>=1e9?"$"+(n/1e9).toFixed(1)+"B":n>=1e6?"$"+Math.round(n/1e6)+"M":n>=1e3?"$"+Math.round(n/1e3)+"K":fmt(n);
-const DARK=matchMedia('(prefers-color-scheme: dark)').matches;
+const DARK=false;
 const esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const VERTS={ai:"AI & software",bio:"Biotech & health",climate:"Climate & energy",hardware:"Hardware",fintech:"Fintech",ag:"Ag & food"};
 const KW={ai:"artificial intelligence software",bio:"biotechnology biomedical",climate:"clean energy climate",hardware:"advanced manufacturing hardware",fintech:"financial technology",ag:"agriculture food technology"};
@@ -506,7 +696,7 @@ const CHALLENGES=[
 function show(v){
   document.querySelectorAll('.view').forEach(e=>e.classList.toggle('on',e.id===v));
   document.querySelectorAll('nav [data-v]').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
-  const navTop=$('nav').getBoundingClientRect().top+scrollY-12;if(scrollY>navTop||v!=='over')scrollTo({top:navTop,behavior:'smooth'});
+  scrollTo({top:0,behavior:'smooth'});if(v==='file')drawFile();if(v==='src')drawSrc();
   const ab=document.querySelector('nav [data-v="'+v+'"]'),bar=document.querySelector('nav .bar');if(ab&&bar)bar.scrollTo({left:ab.offsetLeft-bar.clientWidth/2+ab.offsetWidth/2,behavior:'smooth'});
   if(v==='feed')loadFeed();if(v==='who')drawWho();if(v==='heat')drawHeat();if(v==='gapv')drawGap();
   try{history.replaceState(null,"","#"+v)}catch(e){}
@@ -517,14 +707,13 @@ $('limits').onclick=()=>$('dlg').showModal();
 document.addEventListener('pointermove',e=>{const el=e.target.closest&&e.target.closest('.card,.kpi,.gapcard,.hcard');if(!el)return;const r=el.getBoundingClientRect();el.style.setProperty('--mx',(e.clientX-r.left)+'px');el.style.setProperty('--my',(e.clientY-r.top)+'px');},{passive:true});
 function countTo(el,t,f=x=>Math.round(x).toLocaleString(),ms=1200){let s=null;setTimeout(()=>{if(+el.dataset.v===t)el.textContent=f(t)},ms+150);const from=+el.dataset.v||0;el.dataset.v=t;const st=ts=>{s=s||ts;const p=Math.min(1,(ts-s)/ms),e=1-Math.pow(1-p,3);el.textContent=f(from+(t-from)*e);if(p<1)requestAnimationFrame(st)};requestAnimationFrame(st);}
 document.querySelectorAll('[data-count]').forEach(el=>countTo(el,+el.dataset.count));
-$('mfgShare').textContent=Math.round(17885813/TOTAL_CREDIT*100)+"%";
+
 function hb(rows,cls,fmtv,max){const mx=max||Math.max(...rows.map(r=>r[1]),1);return rows.map(r=>`<div class="hbar ${cls}"><span title="${esc(r[0])}">${esc(r[0])}</span><div class="t"><i style="width:${r[1]/mx*100}%"></i></div><b>${fmtv(r[1])}</b></div>`).join('');}
 
 // hero gap + startup gap view
 const CL=CACHE.size.claimants,CRD=CACHE.size.credit,T1=CL[0][1],T2=CRD[0][1],sumR=(a,i,j)=>a.slice(i,j+1).reduce((s,r)=>s+r[1],0);
 const GAP={claim:sumR(CL,1,7)/T1*100,credit:sumR(CRD,1,7)/T2*100,big:CRD[12][1]/T2*100};
-setTimeout(()=>{countTo($('hClaim'),75,x=>"+"+Math.round(x)+"%");countTo($('hCredit'),42608554/14356819,x=>x.toFixed(1)+"\u00d7");countTo($('hBig'),6715/2264,x=>x.toFixed(1)+"\u00d7");
-  $('hClaimBar').style.width=(19701/34414*100)+"%";$('hCreditBar').style.width=(14356819/42608554*100)+"%";$('hBigBar').style.width=(2264/6715*100)+"%";},250);
+
 function drawGap(){
   const bands=[["Under $1M",1,5],["$1M–$5M",6,7],["$5M–$50M",8,9],["$50M–$250M",10,11],["$250M+",12,12]];
   $('sizeBars').innerHTML=bands.map(b=>{const a=sumR(CL,b[1],b[2])/T1*100,c=sumR(CRD,b[1],b[2])/T2*100;
@@ -607,7 +796,10 @@ function applyPreset(k){const p=PRESETS[k];Object.entries(p).forEach(([id,v])=>$
 $('presets').addEventListener('click',e=>{if(e.target.dataset.p)applyPreset(e.target.dataset.p);});
 function demo(){applyPreset('seed');show('est');}
 document.querySelectorAll('#est input,#est select').forEach(e=>e.addEventListener('input',()=>{if(e.closest('.card')&&e.id!=='red280')document.querySelectorAll('#presets .lens').forEach(b=>b.classList.remove('on'));calc();}));calc();
-countTo($('kSeed'),estimate(PRESETS.seed).cash,x=>"~$"+Math.round(x/1000)+"K",1200);
+// hero example card uses the same model as the estimator
+(()=>{const r=estimate(PRESETS.seed);$('perEng').textContent="~$"+(Math.round(r.cash/PRESETS.seed.eng/100)*100).toLocaleString();
+  countTo($('mockCash'),r.cash,fmt,1200);
+  $('mockQ').innerHTML=Array.from({length:r.quarters},(_,k)=>`<div class="q" style="--d:${(0.4+k*0.12).toFixed(2)}s"><span>${qLabel(k)}</span><b>${money(Math.min(r.elected-k*(r.ssTax+r.medTax)/4,(r.ssTax+r.medTax)/4))}</b></div>`).join('');})();
 
 // state explorer
 let sel=null,lens='opp';
@@ -730,7 +922,7 @@ document.querySelectorAll('.note').forEach(n=>{if(!n.querySelector('details'))n.
 document.addEventListener('click',e=>{const c=e.target.closest('.hcard,.blind div');if(c&&!e.target.closest('a,button'))c.classList.toggle('open');});
 // fade cards in as they scroll into view (skipped when the viewer prefers reduced motion)
 if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
-  let pending=[...document.querySelectorAll('main .card,.kpi,.hcard,.why div,.blind div')];
+  let pending=[...document.querySelectorAll('main .card,.kpi,.hcard,.why div,.blind div,.stat,.why4>div,.step')];
   pending.forEach(el=>el.classList.add('reveal'));
   // layout check rather than IntersectionObserver, so content can never get stuck invisible
   const reveal=()=>{let n=0;pending=pending.filter(el=>{if(!el.offsetParent||el.getBoundingClientRect().top>innerHeight-30)return true;
@@ -738,6 +930,87 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
     if(!pending.length)clearInterval(t);};
   const t=setInterval(reveal,300);addEventListener('scroll',reveal,{passive:true});reveal();
 }
+window.GH_SAMPLE={"repo":"karpathy/nanoGPT","fetched":"2026-10-22","commits":[["2025-11-12","karpathy","Update README to mention nanochat and deprecation\n\nAdded a note about the deprecation of nanoGPT and the introduction of nanochat.","3adf61e154"],["2024-12-09","karpathy","Merge pull request #578 from devin-open-source/devin/1733728337-fix-warmup-lr\n\nfix: ensure non-zero learning rate during warmup at iteration 0","93a43d9a5c"],["2024-12-09","devin-ai-integration[bot]","fix: ensure non-zero learning rate during warmup at iteration 0\n\nThe warmup learning rate calculation has been modified to use (it + 1)/(warmup_iters + 1)\ninstead of it/warmup_iters. This ensures a non-zero learning rate","dc81cb368c"],["2024-06-03","karpathy","Merge pull request #463 from goswamig/test1\n\nFixing eval path in README","9755682b98"],["2024-06-03","karpathy","Merge branch 'master' into test1","3ab86ce851"],["2024-06-03","karpathy","Merge pull request #487 from jellehak/patch-1\n\nUpdate README.md","7c7e627108"],["2024-05-28","jellehak","Update README.md\n\nProper markdown code blocks","5cb16fe66a"],["2024-03-24","goswamig","Fixing eval path in README","1ab9ec1b83"],["2024-02-27","karpathy","Merge pull request #420 from vinjn/fix-371-enc-is-not-defined\n\nMove enc to gloabal namespace to fix #371","325be85d9b"],["2024-02-27","karpathy","Merge pull request #429 from adambala/fixes\n\nOpen \"shakespeare\" data in UTF-8 in \"prepare.py\"","a022d02ee2"],["2024-02-27","karpathy","Merge pull request #428 from kjslag/memmap-memory-leak\n\nfix np.memmap memory leak","f68ac2200d"],["2024-01-25","adambala","fix: prepare.py - added input file opening in UTF-8 encoding","f35dc82437"],["2024-01-25","adambala","feature: .gitignore - added venv folders","b7e194a756"],["2024-01-25","kjslag","fix np.memmap memory leak\n\nnn.memmap doesn't free memory that it accesses. Thus, the entire dataset gets stored in RAM as the dataset has been fully accessed. The simplest workaround on stackoverflow is to just recreate ","5156fef93c"],["2024-01-12","vinjn","Move enc to gloabal namespace","dccf362c2b"],["2023-06-22","karpathy","Merge pull request #309 from ho2103/master\n\nFix AssertionError on macOS - need to check CUDA availability for bf16","eba36e8464"],["2023-06-19","ho2103","Fix AssertionError on macOS - need to check CUDA availability for bf16","1eaceae193"],["2023-06-18","karpathy","Merge pull request #305 from okuvshynov/fix_osx_dataload\n\nnanogpt: fix multiprocessing in load_dataset on os x","4eb7a96b07"],["2023-06-18","okuvshynov","nanogpt: fix multiprocessing in load_dataset on os x\n\nThe issue seems to be that _fixup_main_from_path in multiprocessing\nmodule in python is unable to find entry point, thus, adding\n```\nif __name__ == '__main__'\n```","542ac51d1f"],["2023-06-17","karpathy","Merge pull request #301 from okuvshynov/master\n\n[easy] allow multithreading in load_dataset","41d7014f7d"],["2023-06-17","okuvshynov","nanogpt: allow multithreading in load dataset","bb7e96754a"],["2023-06-14","karpathy","use WORLD_SIZE instead of device_count, supports both the case where the number of gpus we train on is smaller than gpus available, and also multinode training may be a bugfix","7339b904ef"],["2023-06-14","karpathy","Merge pull request #274 from apivovarov/gelu\n\nUse nn.GELU - 1.27x faster training","f08abb45bd"],["2023-06-14","karpathy","Merge pull request #275 from apivovarov/rm_unsqueeze\n\nRemove pos unsqueeze(0)","18ee6b62b6"],["2023-06-14","karpathy","Merge pull request #270 from LaihoE/master\n\nfix np.sum overflows on windows","ed7887c888"],["2023-06-14","karpathy","Merge pull request #276 from apivovarov/gitign\n\nAdd more files to .gitignore","8020bb582b"],["2023-06-14","karpathy","Merge pull request #277 from apivovarov/is_bf16_supported\n\nUse bf16 only if supported","0f06d9b889"],["2023-06-14","karpathy","Merge pull request #286 from ctjlewis/master\n\ndocs: simplify dependencies installation","cf4835ed6f"],["2023-06-01","ctjlewis","docs: simplify dependencies installation\n\nAdds a `pip install ...` command that will install all necessary dependencies, while retaining original dependency notes. Added quick description of `tqdm` as well.","eeac8732b9"],["2023-05-17","apivovarov","Use bf16 only if supported","eb33b8bf1c"],["2023-05-17","apivovarov","Add more files to .gitignore","b120c421bf"],["2023-05-17","apivovarov","Remove pos unsqueeze(0)","39ae397a93"],["2023-05-17","apivovarov","Use nn.GELU","594068e7ae"],["2023-05-09","LaihoE","np.sum overflows on windows","6649b299eb"],["2023-05-06","karpathy","simplify configure_optimizers by a lot","7fe4a099ad"],["2023-04-18","karpathy","Merge pull request #247 from gnobre/macbook-run-instructions\n\nMacbook run instructions","196160b849"],["2023-04-18","karpathy","Merge pull request #225 from otaviogood/grad_accum\n\nFix for gradient_accumulation_steps training slow","21f9bff7e4"],["2023-04-18","karpathy","Merge branch 'master' into grad_accum","a6a708c7f1"],["2023-04-15","gnobre","Merge branch 'karpathy:master' into macbook-run-instructions","e30c8fda23"],["2023-04-15","gnobre","add macbook specific instructions to generate samples","4732c43af3"],["2023-04-13","karpathy","Merge pull request #10 from LaihoE/master\n\nbatch file write","d9f4735f5e"],["2023-04-13","karpathy","Merge pull request #146 from lutzroeder/master\n\nAdd .gitignore","b288f4cfb2"],["2023-04-13","karpathy","Merge pull request #74 from venusatuluri/fix_decode\n\nSmall fix to decode fn in shakespeare_char/prepare.py","079df20748"],["2023-04-13","karpathy","Merge pull request #240 from YassineYousfi/master\n\ndon't dropout in eval mode","01e48ec1ab"],["2023-04-13","karpathy","Merge pull request #54 from MicroPanda123/luv\n\nGive tqdm some love :)","7840a66859"],["2023-04-13","karpathy","Merge pull request #128 from abrahamsangha/fix-typo\n\nfix typo","8abe215fba"],["2023-04-13","karpathy","Merge pull request #142 from kovkev/patch-1\n\nFix the position of a comma","ad62003d7a"],["2023-04-13","karpathy","Merge pull request #220 from python273/patch-1\n\nFix GPT.crop_block_size when flash attention is available","ea24604b29"],["2023-04-13","karpathy","Merge pull request #224 from SnehalRaj/patch-1\n\nfix small typo","8aeea6d970"],["2023-04-13","karpathy","Merge pull request #236 from ymurenko/master\n\nfix \"cuda out of memory\" when resuming training","2457471c9c"],["2023-04-13","karpathy","fix minor bug where we have to scale the loss to account for gradient accumulation, which sums before backprop. note that this is not a major bug because AdamW is scale invariant. however, this did affect gradient clippi","553f949f46"],["2023-04-11","YassineYousfi","dont always dropout!","7399dfe39d"],["2023-04-05","ymurenko","fix \"cuda out of memory\" when resuming training","4ac2e8ce3a"],["2023-03-25","SnehalRaj","fix small typo","c58fc4605c"],["2023-03-25","otaviogood","Fix for gradient_accumulation_steps training slow","978d4fe538"],["2023-03-24","python273","Fix GPT.crop_block_size when flash attention is available","c3f254844d"],["2023-03-12","karpathy","Merge pull request #199 from ChristianOrr/patch-1\n\nbugfix in decode function","a82b33b525"],["2023-03-08","ChristianOrr","bugfix in decode function\n\nReturn was left out of the decoder, so it didn't work.","36c7db8c44"],["2023-03-07","karpathy","Merge pull request #195 from drisspg/enable_sdpa_with_nonzero_dropout\n\nEnable sdpa for nonzero dropout","0d8fbd11ae"],["2023-03-05","drisspg","enable sdpa for nonzero dropout","6170531b8a"],["2023-02-15","karpathy","Merge pull request #145 from otaviogood/gradAccumStability\n\nfix for training stability on single GPU","ae3a8d5fdd"],["2023-02-13","lutzroeder","Add .gitignore","10046a2ec0"],["2023-02-13","otaviogood","fix for training stability on single GPU","086ebe1822"],["2023-02-12","kovkev","Fix the position of a comma","c2531159c7"],["2023-02-10","karpathy","fix misinformation in readme","55c5069696"],["2023-02-07","karpathy","oops i should not be needing or multiplying by world_size to calculate mfu","e58f0cfa94"],["2023-02-07","Abraham Sangha","fix typos","27a5d6f123"],["2023-02-06","karpathy","small tweaks, make default WD be 0.1 as is often cited, and remove spurious init of LayerNorm, which is already initialized at 1,0","8b1e43209e"],["2023-02-06","karpathy","bugfix we have to call the raw_model's estimate_mfu ty @jprobichaud for original PR","ab21d6c15d"],["2023-02-05","karpathy","also add a sampling/inference section","f83dd034e1"],["2023-02-05","karpathy","revamp the readme file to be a bit better and more accessible, i hope","23a8e701d2"],["2023-02-05","karpathy","tune the hyperparams a bit, in configs","fce706cbe6"],["2023-02-05","karpathy","add the estimation of model flops utilization (MFU), a very commonly looked at metric that estimates the token throughput in units of A100 bfloat16 peak flops (312 TFLOPS). this gives us a sense of the hardware utilizati","ab0718a7dd"],["2023-02-05","karpathy","oops optimizer now demands to know device_type","580902617c"],["2023-02-04","karpathy","make more accurate the way in which we count parameters. previous count incorrectly included the positional encoding params, when typically only the number of weight parameters is reported for these models","34720df284"],["2023-02-04","karpathy","oops forgot to subtract embedding params, which don't enter the 6ND equation","3341b4cecc"],["2023-02-04","karpathy","fix silly error, i don't want to confuse a future GPT training on this notebook in the future","5a162bc773"],["2023-02-04","karpathy","add reference for 6ND to notebook too","0bb96d3fff"],["2023-02-04","karpathy","new notebook with a bunch of calculations related to flops and memory of Transformer","eae986c2d2"],["2023-02-04","karpathy","clean up TODOs a bit, they are stale","a74e8363a2"],["2023-02-04","karpathy","mildly dramatic refactor for handing all these usage cases across all possible supported and unsupported devices for all the possible switches and flags","25d95dbd65"],["2023-02-04","karpathy","very slight refactor, bit cleaner","e108ffb973"],["2023-02-04","karpathy","Merge pull request #120 from nynyg/remove_cpu_pin_mem\n\nPin memory only when training on GPU","dc149891b6"],["2023-02-04","nynyg","Pin memory only when training on GPU","b8286f343e"],["2023-02-04","karpathy","padding 50257 -> 50304 vocab_size, the nerest multiple of 64. the biggest deal smallest optimization i've made in recent past, about 25% faster. this is because the last layer is a major latency bottleneck consuming abou","77e7e04c26"],["2023-02-04","karpathy","slight tweak compressing LOC","b3c17c6c6a"],["2023-02-04","karpathy","Merge pull request #116 from ramtingh/master\n\nMinor change to allow using ddp with exclusive process mode","53d56b82f1"],["2023-02-04","ramtingh","Explicitly set ddp device","9da1627c7f"],["2023-02-04","karpathy","who needs a dataloader? overlap the prefetching of the next batch with GPU compute, ehiding the data loading latency entirely. this saves about 1ms lol","3fd4c0c5ef"],["2023-02-04","karpathy","Merge pull request #115 from akashmjn/akashmjn/fix-notebook-stats\n\nadd template .gitattributes that fixes language stats","46428d3142"],["2023-02-03","akashmjn","keep only what's needed","d9a73374ed"],["2023-02-03","karpathy","include launch command too. anyone should be able to do this now","3969860ff5"],["2023-02-03","karpathy","add gpt2 training config","f9348f3f18"],["2023-02-03","akashmjn","add template .gitattributes that fixes language stats","0e2c12b5ae"],["2023-02-03","karpathy","use the new fused AdamW from pytorch nightly, if available","e170e40872"],["2023-02-03","karpathy","Merge pull request #106 from YassineYousfi/master\n\nuse the ``enabled`` arg in GradScaler","7d44bdf6b5"],["2023-02-02","karpathy","if dropout > 0.0 disable Flash until pytorch fix. don't assert fail sigh","1e87509e47"],["2023-02-02","karpathy","change grad accum to default off because i think it just confuses everyone","d8b1a94519"],["2023-02-02","karpathy","small usability tweaks to bench","d01863ef01"],["2023-02-01","YassineYousfi","use the enabled arg in GradScaler","40f4d6ff70"]]};
+// ---------- GitHub evidence: keyword heuristic over commit messages ----------
+const RD_TAGS=[["Experimentation",/\b(experiment|try|tried|trying|attempt|prototype|explor|benchmark|compar|ablation|tune|tuning|sweep|hyperparam|test(ed|ing)? (a |an |new |different )|investigat|poc)\w*/i],
+  ["Performance",/\b(optimi[sz]|perf|latency|speed|faster|throughput|memory|leak|cache|concurren|parallel|gpu|cuda|kernel|flash|compile|quantiz|scal(e|ing|able))\w*/i],
+  ["Algorithm / model",/\b(algorithm|model|train|inference|accuracy|loss|learning rate|lr\b|warmup|optimizer|attention|transformer|embedding|architecture|protocol|encod|decod|token)\w*/i],
+  ["New capability",/\b(implement|add support|support for|introduc|new feature|initial version|enable)\w*/i]];
+const ROUTINE=/^(merge |bump |release |chore|docs?[:( ]|update readme|readme|typo|fix typo|lint|format|style:|ci[:( ]|\.gitignore|license|wip$)/i;
+const THEMES=[["Training & optimization",/train|optimi[sz]|learning rate|lr\b|warmup|loss|grad/i],["Performance & memory",/perf|speed|fast|memory|memmap|leak|flash|compile|gpu|cuda|kernel|cache|latency/i],
+  ["Model architecture",/model|attention|layer|transformer|gpt|weight|embedding|architecture/i],["Data pipeline",/data|dataset|prepare|token|encod|shard|loader/i],
+  ["Evaluation & benchmarking",/eval|bench|sample|metric|accuracy|test/i],["API & backend",/api|endpoint|server|db|database|query|auth/i],["Product & UI",/ui\b|css|page|component|layout|button|frontend/i]];
+let ghLast=null;
+function ghAnalyze(repo,commits,live){
+  const rows=commits.map(([date,who,msg,sha])=>{const first=String(msg||"").split("\n")[0];const routine=ROUTINE.test(first);
+    const tags=routine?[]:RD_TAGS.filter(t=>t[1].test(msg)).map(t=>t[0]);return {date,who:who||"unknown",first,sha,routine,tags,rd:tags.length>0};});
+  const work=rows.filter(r=>!r.routine),rd=work.filter(r=>r.rd),share=work.length?rd.length/work.length:0;
+  const people={};work.forEach(r=>{const p=people[r.who]||(people[r.who]={n:0,rd:0});p.n++;if(r.rd)p.rd++;});
+  const themes=THEMES.map(([name,re])=>[name,rd.filter(r=>re.test(r.first)).length]).filter(t=>t[1]>0).sort((a,b)=>b[1]-a[1]);
+  const dates=rows.map(r=>r.date).sort();
+  ghLast={repo,rows,rd,share,people,themes};
+  $('ghStats').innerHTML=[[rows.length,"commits scanned"],[Math.round(share*100)+"%","of work commits show an R&amp;D signal"],[Object.keys(people).length,"contributors"],[`${dates[0]||"–"}`,`earliest commit &rarr; ${dates[dates.length-1]||"–"}`]]
+    .map(s=>`<div><b>${s[0]}</b><span>${s[1]}</span></div>`).join('');
+  const mx=Math.max(1,...themes.map(t=>t[1]));
+  $('ghThemes').innerHTML=themes.length?hb(themes.slice(0,6),"",x=>x+(x===1?" commit":" commits"),mx):'<p class="sub">No clear R&amp;D themes in these commit messages.</p>';
+  $('ghPeople').innerHTML=Object.entries(people).sort((a,b)=>b[1].n-a[1].n).slice(0,6).map(([w,p])=>`<div class="person"><span class="av">${esc(w.slice(0,1).toUpperCase())}</span><div class="t"><b>${esc(w)}</b><small>${p.n} commits</small></div><span class="pill ${p.rd/p.n>=.5?'live':'est'}">${Math.round(p.rd/p.n*100)}% R&amp;D</span></div>`).join('');
+  $('ghLog').innerHTML=rd.slice(0,12).map(r=>`<div class="ev"><time>${esc(r.date)}</time><div>${esc(r.first)}<div class="tags">${r.tags.map(t=>`<span>${t}</span>`).join('')}</div></div><a href="https://github.com/${esc(repo)}/commit/${esc(r.sha)}" target="_blank" rel="noopener">View &#8599;</a></div>`).join('')||'<p class="sub">No R&amp;D-signal commits found.</p>';
+  $('ghMsg').innerHTML=`${live?'<span class="pill live">Live from GitHub</span>':'<span class="pill">Sample snapshot '+GH_SAMPLE.fetched+'</span>'} Analyzed <b>${esc(repo)}</b>.`;
+  $('ghOut').style.display='block';
+}
+async function ghFetch(repo){
+  if(!/^[\w.-]+\/[\w.-]+$/.test(repo)){$('ghMsg').textContent="Enter a repo as owner/name, for example karpathy/nanoGPT.";return;}
+  if(!$('ghConsent').checked){$('ghMsg').innerHTML="Tick the consent box first. We only send the repo name to GitHub.";return;}
+  $('ghMsg').textContent="Reading public commits from GitHub…";
+  try{const c=new AbortController();setTimeout(()=>c.abort(),8000);
+    const r=await fetch(`https://api.github.com/repos/${repo}/commits?per_page=100`,{signal:c.signal,headers:{Accept:"application/vnd.github+json"}});
+    if(r.status===404){$('ghMsg').textContent="Repo not found, or it's private. Try a public repo or the sample.";return;}
+    if(!r.ok){$('ghMsg').innerHTML="GitHub's hourly limit for anonymous requests is used up on this network. Showing the sample instead.";ghAnalyze(GH_SAMPLE.repo,GH_SAMPLE.commits,false);return;}
+    const j=await r.json();ghAnalyze(repo,j.map(x=>[x.commit.author.date.slice(0,10),(x.author&&x.author.login)||x.commit.author.name,x.commit.message,x.sha.slice(0,10)]),true);
+  }catch(e){$('ghMsg').textContent="Couldn't reach GitHub. Showing the sample instead.";ghAnalyze(GH_SAMPLE.repo,GH_SAMPLE.commits,false);}
+}
+$('ghGo').onclick=()=>ghFetch($('ghRepo').value.trim());
+$('ghRepo').addEventListener('keydown',e=>{if(e.key==='Enter')ghFetch($('ghRepo').value.trim());});
+$('ghSample').onclick=()=>{$('ghRepo').value=GH_SAMPLE.repo;ghAnalyze(GH_SAMPLE.repo,GH_SAMPLE.commits,false);};
+$('ghToEst').onclick=()=>{if(!ghLast)return;$('pct').value=Math.max(10,Math.min(90,Math.round(ghLast.share*100/5)*5));calc();show('est');};
+$('ghToAudit').onclick=()=>{if(!ghLast)return;const g=ghLast,top=g.themes[0]?g.themes[0][0]:"R&D work";
+  projects.push({aName:`${g.repo}: ${top}`,aPurpose:`Improve ${top.toLowerCase()} (${g.themes.slice(0,3).map(t=>t[0]).join(", ")})`,
+    aUnc:`Whether approaches in ${g.themes.slice(0,2).map(t=>t[0].toLowerCase()).join(" and ")} would meet targets; see experiments below`,
+    aExp:g.rd.filter(r=>r.tags.includes("Experimentation")||r.tags.includes("Performance")).slice(0,4).map(r=>r.first).join("; ")||g.rd.slice(0,3).map(r=>r.first).join("; "),
+    aPeople:Object.entries(g.people).slice(0,5).map(([w,p])=>`${w}, ${Math.round(p.rd/p.n*100)}% R&D commits`).join("; "),aCost:"",
+    aEv:g.rd.slice(0,8).map(r=>`${r.first.slice(0,60)} (${r.date}) https://github.com/${g.repo}/commit/${r.sha}`).join(", "),aFunded:false,date:new Date().toISOString().slice(0,10)});
+  saveP();listP();show('audit');};
+
+// ---------- File & claim walkthrough ----------
+const FK="ff_file_v1";let fileDone={};try{fileDone=JSON.parse(localStorage.getItem(FK)||"{}")}catch(e){}
+function drawFile(){
+  const r=estimate(readForm()),n=projects.length;
+  const S=[["check","Confirm you qualify","Under $5M in gross receipts this year, and no receipts before the last 5 years. That unlocks the payroll-tax offset.",
+      r.smallOk?`<span class="flag ok">${'&#10003;'} Qualifies, based on your estimate</span>`:`<span class="flag">Check eligibility: payroll offset may not apply</span>`,"est","Open estimate"],
+    ["dollar","Total your qualified research expenses","R&amp;D share of W-2 wages, 65% of US contractor costs, and supplies and cloud used for R&amp;D.",`<span class="flag ok">Your estimate: ${fmt(r.qre)} in QREs</span>`,"est","Review numbers"],
+    ["github","Document every project","For each project: what you built, what was uncertain, what you tested, who worked on it and the cost.",
+      n?`<span class="flag ok">${n} project${n>1?"s":""} logged</span>`:`<span class="flag">No projects logged yet</span>`,"gh","Pull from GitHub"],
+    ["file","Fill out Form 6765","Most startups use the simplified credit (Section B), elect the payroll offset in Section D (up to $500K), and add Section G detail if required.",
+      `<a href="https://www.irs.gov/forms-pubs/about-form-6765" target="_blank" rel="noopener">IRS Form 6765 &#8599;</a>`,null],
+    ["cal","File on time with your tax return",`Form 1120 is due April 15, ${YEAR+1}, or October 15 with an extension (Form 7004). The payroll election only counts on a timely return.`,
+      `<span class="flag">${'&#9888;'} Deadline: April 15, ${YEAR+1}</span>`,null],
+    ["bank","Claim it every quarter","Attach Form 8974 to each quarterly Form 941, starting the quarter after you file.",
+      r.elected?`<span class="flag ok">About ${r.quarters} quarter${r.quarters>1?"s":""} to use ${fmt(r.elected)}</span> <a href="https://www.irs.gov/forms-pubs/about-form-8974" target="_blank" rel="noopener">Form 8974 &#8599;</a>`:`<a href="https://www.irs.gov/forms-pubs/about-form-8974" target="_blank" rel="noopener">Form 8974 &#8599;</a>`,null],
+    ["shield","Keep your records","Keep the project log, payroll reports and evidence for at least 3 years after filing.",`<span class="flag ok">Audit trail ready to export</span>`,"audit","Open audit trail"]];
+  $('fileSteps').innerHTML=S.map((s,k)=>`<div class="fstep ${fileDone[k]?'done':''}"><svg class="ic big"><use href="#i-${s[0]}"/></svg><div><h3>${k+1}. ${s[1]}</h3><p>${s[2]}</p><div class="stat2">${s[3]}${s[4]?` <button class="btn glassy sm" onclick="show('${s[4]}')">${s[5]}</button>`:""}</div></div><label class="chk"><input type="checkbox" data-f="${k}" ${fileDone[k]?'checked':''}> Done</label></div>`).join('');
+  const d=Object.values(fileDone).filter(Boolean).length;$('fileProg').textContent=`${d} of ${S.length} done`;$('fileBar').style.width=(d/S.length*100)+"%";
+}
+$('fileSteps').addEventListener('change',e=>{const k=e.target.dataset.f;if(k==null)return;fileDone[k]=e.target.checked;try{localStorage.setItem(FK,JSON.stringify(fileDone))}catch(x){}drawFile();});
+$('packet').onclick=()=>{const x=readForm(),r=estimate(x);
+  const md=`# R&D credit claim packet\n\nPrepared ${new Date().toISOString().slice(0,10)} with FounderFunds. Estimates only, not tax advice.\n\n## Estimate\n- State: ${x.st}\n- Technical headcount: ${x.eng}, average salary ${fmt(x.sal)}, ${x.pct}% R&D time\n- Qualified research expenses: ${fmt(r.qre)}\n- Federal credit: ${fmt(r.fed)}${x.red?" (reduced, 280C)":" (full credit)"}\n- Qualified small business: ${r.smallOk?"yes":"check"}\n- Payroll-tax offset to elect: ${fmt(r.elected)} (about ${r.quarters} quarters)\n- State credit: ${fmt(r.st)} (${fmt(r.stCash)} refundable)\n\n## Filing checklist\n1. Confirm QSB status\n2. Total QREs\n3. Document each project (four-part test, Section G fields)\n4. Form 6765: Section B (ASC), Section D payroll election${r.elected?` of ${fmt(r.elected)}`:""}\n5. File Form 1120 on time (April 15, ${YEAR+1}, or extension)\n6. Form 8974 with each Form 941 from the next quarter\n7. Keep records 3+ years\n\n## Projects\n`+(projects.length?projects.map(p=>`### ${p.aName}\n- Purpose: ${p.aPurpose}\n- Uncertainty: ${p.aUnc}\n- Experiments: ${p.aExp}\n- People: ${p.aPeople}\n- Evidence: ${p.aEv}\n`).join("\n"):"No projects logged yet.\n");
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([md],{type:'text/markdown'}));a.download="rd-claim-packet.md";a.click();};
+$('partner').onclick=()=>{$('pMsg').textContent="";$('pdlg').showModal();};
+$('pSend').onclick=()=>{const parts=[$('pEst').checked&&"your estimate",$('pProj').checked&&"your project titles and dates"].filter(Boolean);
+  $('pMsg').innerHTML=`<b>Demo mode: nothing was sent.</b> In production we would share ${parts.length?parts.join(" and "):"only your email"} with one vetted partner, and nothing else.`;};
+
+// ---------- Data sources live status ----------
+function drawSrc(){$('srcLive').innerHTML=`USAspending: <b>${CACHE.sbir.fetched==="LIVE"?"live":"snapshot "+CACHE.sbir.fetched}</b><br>Grants.gov: snapshot ${CACHE.grants.fetched}<br>GitHub: on request`;}
+
 // deep link (e.g. #heat)
 const h=location.hash.slice(1);if(h&&$(h)&&$(h).classList.contains('view'))show(h);
 </script>

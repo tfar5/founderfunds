@@ -10,7 +10,11 @@
 The federal R&D credit is turning into a software credit. IRS data shows C-corps claiming it rose from 19,701 in 2015 to 34,414 in 2022, and claimed dollars roughly tripled to $42.6B. Information-sector claimants tripled. Startups with under $5M in revenue can even use up to $500K a year against payroll tax with no profit. Still, most seed founders skip it. They think it's for big companies, fear the paperwork, and don't know where to look.
 
 ## What it does
-FounderFunds turns scattered public data into a 30-second answer for a founder with engineers:
+FounderFunds helps tech founders who just raised turn engineering payroll into R&D-credit cash, with a claim that holds up:
+- **Home:** the need (about $7,400 back per engineer a year for a seed team), why it's urgent (payroll-election deadline, 5-year window, Section G in 2026, expiring years) and a four-step path.
+- **GitHub evidence:** with explicit consent, reads a public repo's commit history through the GitHub REST API, flags R&D signals, suggests projects and each person's R&D share, and adds dated, linked evidence to the audit trail.
+- **File & claim:** a 7-step walkthrough from eligibility to Form 6765, the payroll election and quarterly Form 8974. It ends with a CPA packet download or a partner intro where you tick exactly what to share.
+- **Data sources:** one tab listing every public API and dataset, what it powers, its freshness and limits, and what leaves your browser.
 - **Estimate:** pick a sample company or enter 8 numbers. It shows the cash you could get now (payroll-tax offset plus refundable state credits) separately from credits banked for future tax bills, and translates the cash into runway.
 - **Cash timeline:** shows when the money arrives (the quarter after you file, through Form 8974) and how many quarters it takes at your payroll.
 - **Audit trail:** a project log built around the IRS four-part test and the 2026 Form 6765 Section G fields, with a Markdown export for your CPA.
@@ -22,6 +26,7 @@ A static site on GitHub Pages in vanilla JavaScript. D3 and topojson load only w
 ## Public data and its limits
 - **IRS SOI** Publication 16 Table 14 (2015, 2022) and size-of-receipts tables (2013). C-corps only, and no size breakdown since 2013.
 - **Census County Business Patterns 2022.** Establishments are not firms, and industry is not eligibility.
+- **GitHub REST API.** Public commits only, on request, after consent; falls back to a sample snapshot if rate-limited.
 - **USAspending.gov API.** SBIR/STTR is a keyword proxy, not official SBIR.gov totals.
 - **Grants.gov Search API.** The browser is blocked by CORS, so we show a dated snapshot.
 - **NSF NCSES / HERD.** Correlations are not causation.
@@ -36,7 +41,7 @@ There is no backend. Calculator inputs never leave the browser. The audit log st
 The best public IRS breakdowns are years old, the rules changed in 2025–26 (the OBBBA tax law, Form 6765 Section G, SBIR reauthorization), and state credits vary widely in whether they pay out cash. The hardest part was being honest about which numbers are measured and which are modeled, and separating paper credits from real cash.
 
 ## What's next
-- An AI classifier that turns commits and tickets into four-part-test and Section G drafts, behind an explicit consent toggle.
+- GitHub sign-in for private repos, Linear and Jira tickets, and AI-drafted four-part-test and Section G text.
 - SBIR plus credit stacking.
 - A lookback finder for amended prior-year returns.
 - Official SBIR.gov data.

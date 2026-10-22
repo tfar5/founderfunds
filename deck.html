@@ -37,33 +37,34 @@ a{color:var(--blue)}
 
 <section class="slide on">
   <div class="k">super{set} National Renaissance Hackathon &middot; Public Data APIs track</div>
-  <h1>FounderFunds<br><em>Your R&amp;D can pay you back.</em></h1>
-  <p>Public data turned into a 30-second answer for founders: how much R&amp;D credit cash you could get, when it arrives, and the records that make it stick.</p>
+  <h1>FounderFunds<br><em>Every engineer you pay can earn you back ~$7,400 a year.</em></h1>
+  <p>Helps tech founders who just raised turn engineering payroll into R&amp;D-credit cash: estimate it, prove it from GitHub, and file it on time.</p>
   <p><a href="https://tfar5.github.io/founderfunds/">tfar5.github.io/founderfunds</a> &middot; <a href="https://github.com/tfar5/founderfunds">github.com/tfar5/founderfunds</a></p>
 </section>
 
 <section class="slide">
-  <div class="k">Problem &middot; for a seed to Series B founder with engineers</div>
-  <h2>The R&amp;D credit is becoming a <em>software credit</em>. Most founders still skip it.</h2>
+  <div class="k">Problem &middot; for tech founders who just raised</div>
+  <h2>Startups do qualifying R&amp;D every sprint. <em>Few turn it into cash.</em></h2>
   <div class="grid">
     <div class="c"><b>34,414</b><span>C-corps claimed the federal credit in 2022, up 75% from 2015</span></div>
     <div class="c g"><b>$42.6B</b><span>claimed in 2022, about 3&times; 2015</span></div>
     <div class="c bl"><b>3.0&times;</b><span>growth in Information-sector (software) claimants, 2015 &rarr; 2022</span></div>
     <div class="c"><b>Up to $500K</b><span>a year against payroll tax for companies under $5M revenue, even with no profit</span></div>
   </div>
-  <p style="margin-top:20px">Why founders don't claim: "that's for big companies", "the paperwork will kill us", "where would I even look?" The rules live across the IRS, 50 state revenue departments, SBIR agencies and universities.</p>
+  <p style="margin-top:20px"><b style="color:var(--ink)">Why now:</b> the payroll election only counts on a return filed on time; the offset is limited to your first 5 revenue years; Form 6765 Section G requires project detail from tax year 2026; and missed years expire after about 3 years.</p>
   <div class="src">Source: IRS SOI Publication 16, Table 14 (Form 6765), tax years 2015 and 2022. C-corporations only.</div>
 </section>
 
 <section class="slide">
   <div class="k">Solution</div>
-  <h2>One path: estimate &rarr; cash timeline &rarr; audit record</h2>
-  <div class="flow" style="margin-bottom:22px"><i>Pick a preset or enter 8 numbers</i><s>&rarr;</s><i>Cash now vs banked</i><s>&rarr;</s><i>Quarter-by-quarter timeline</i><s>&rarr;</s><i>Log projects, export for CPA</i></div>
+  <h2>Helps a newly funded founder get cash back, with a claim that holds up</h2>
+  <div class="flow" style="margin-bottom:22px"><i>1 &middot; Estimate</i><s>&rarr;</s><i>2 &middot; Prove it from GitHub</i><s>&rarr;</s><i>3 &middot; File (7-step guide)</i><s>&rarr;</s><i>4 &middot; CPA packet or partner match</i></div>
   <div class="grid">
     <div class="c"><h3>Estimate</h3><span>Federal credit, payroll-tax offset (split across Social Security and Medicare), state credits. Separates cash you can get now from credits banked for future tax bills, and shows it as runway.</span></div>
     <div class="c"><h3>Timeline</h3><span>When the cash really arrives: the quarter after you file, through Form 8974, and how many quarters it takes at your payroll.</span></div>
     <div class="c"><h3>Audit trail</h3><span>A project log built around the IRS four-part test and the 2026 Form 6765 Section G fields. Markdown export for your CPA.</span></div>
-    <div class="c"><h3>Explore</h3><span>Who claims (IRS), where federal R&amp;D money flows by county (USAspending), state credit rules, and live federal grants (Grants.gov).</span></div>
+    <div class="c"><h3>GitHub evidence</h3><span>Reads public commit history (with consent), flags R&amp;D signals, suggests projects and R&amp;D share per person, and adds dated, linked evidence to the audit trail.</span></div>
+    <div class="c"><h3>File &amp; claim</h3><span>Seven steps from eligibility to Form 6765, the payroll election deadline and quarterly Form 8974. Ends in a CPA packet or a consent-based partner intro: the lead-gen outcome.</span></div>
   </div>
 </section>
 
@@ -75,6 +76,7 @@ a{color:var(--blue)}
     <tr><td><b>IRS SOI</b> Form 6765 tables</td><td>Who claims, growth 2015&ndash;2022, size gap (2013)</td><td>C-corps only; size breakdown last published for 2013</td></tr>
     <tr><td><b>USAspending.gov API</b> (live)</td><td>SBIR/STTR and NSF/NIH awards by state and county</td><td>Keyword proxy, not official SBIR totals; cached fallback with a badge</td></tr>
     <tr><td><b>Grants.gov Search API</b></td><td>Open opportunities by vertical</td><td>Browser blocked by CORS, so we show a dated snapshot</td></tr>
+    <tr><td><b>GitHub REST API</b> (live, with consent)</td><td>Commit evidence for each project</td><td>Public repos; 60 requests an hour without sign-in; sample fallback</td></tr>
     <tr><td><b>Census County Business Patterns</b></td><td>Pool of R&amp;D-intensive businesses</td><td>Establishments, not firms; industry is not eligibility</td></tr>
     <tr><td><b>NSF HERD / NCSES</b></td><td>University research context</td><td>Correlation, not causation</td></tr>
     <tr><td><b>State credit table</b></td><td>21 states' rules (CA, TX, MI updated for 2025&ndash;26)</td><td>No public API; hand-compiled, verify yearly</td></tr>
@@ -110,7 +112,7 @@ a{color:var(--blue)}
   <div class="k">What's next</div>
   <h2>From estimate to <em>evidence</em></h2>
   <ul>
-    <li><b>Commit and ticket classifier:</b> paste commits or Linear tickets; an AI drafts the four-part test and Section G text, behind an explicit consent toggle.</li>
+    <li><b>Deeper evidence:</b> GitHub sign-in for private repos, Linear and Jira tickets, and AI-drafted four-part test and Section G text.</li>
     <li><b>Grant + credit stacking:</b> SBIR/STTR is reauthorized through 2031; model how awards reduce claimable spend.</li>
     <li><b>Lookback finder:</b> unclaimed credit from 2023&ndash;2025 through amended returns.</li>
     <li><b>Official SBIR.gov data</b> in place of the USAspending keyword proxy.</li>
