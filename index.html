@@ -4,211 +4,639 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>FounderFunds</title>
+<meta name="description" content="The R&D tax credits, grants and state incentives startups leave unclaimed, built on public data.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f7f6f2;--card:#fff;--ink:#1b1f23;--mute:#5d6670;--line:#e3e0d8;--acc:#0b6b4f;--acc2:#d97b1e;--blue:#2f5fa8;--warn:#fff4e0}
-@media (prefers-color-scheme:dark){:root{--bg:#14171a;--card:#1c2024;--ink:#eceff1;--mute:#9aa4ad;--line:#2c3238;--acc:#3fc79b;--acc2:#f0a050;--blue:#7aa6e8;--warn:#2a2418}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
-.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
-header{padding:28px 0 8px}h1{margin:0;font-size:28px}h1 span{color:var(--acc)}
-.sub{color:var(--mute);margin:4px 0 0}
-nav{display:flex;gap:6px;flex-wrap:wrap;margin:16px 0;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:5}
-nav button{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 14px;border-radius:999px;cursor:pointer;font:inherit}
-nav button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin-bottom:16px}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-.stat b{display:block;font-size:30px;color:var(--acc2)}.stat small{color:var(--mute)}
-.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}@media(max-width:760px){.grid2{grid-template-columns:1fr}}
-label{display:block;font-size:13px;color:var(--mute);margin-top:10px}
-input,select{width:100%;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
-.big{font-size:40px;font-weight:700;color:var(--acc)}
-.bar{display:flex;align-items:center;gap:8px;margin:8px 0;font-size:14px}.bar i{display:block;height:22px;border-radius:4px;min-width:2px;transition:width .4s}
-.bar span{width:150px;flex:none}
-.pill{display:inline-block;font-size:12px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--mute)}
-.pill.live{color:var(--acc);border-color:var(--acc)}
-.map{display:grid;grid-template-columns:repeat(11,1fr);gap:3px;max-width:640px}
-.tile{aspect-ratio:1;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;cursor:pointer;border:2px solid transparent;color:#102;}
-.tile.sel{border-color:var(--ink)}
-.check li{margin:4px 0}.ok{color:var(--acc)}.no{color:#c0392b}
-.warn{background:var(--warn);border:1px solid var(--acc2);border-radius:10px;padding:12px;font-size:14px}
-.opp{padding:10px 0;border-bottom:1px solid var(--line)}.opp:last-child{border:0}.opp a{color:var(--blue);font-weight:600;text-decoration:none}
-.opp small{color:var(--mute);display:block}
-.view{display:none}.view.on{display:block}
-footer{color:var(--mute);font-size:13px;padding:20px 0 40px}
-dialog{max-width:620px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink)}
+:root{
+  --bg:#eef1ee;--ink:#0c1a15;--mute:#52615a;--faint:#83918a;--line:rgba(12,26,21,.09);
+  --acc:#0a7a5a;--acc2:#2fbf8f;--acc-soft:rgba(10,122,90,.10);--gold:#d98318;--gold-soft:rgba(217,131,24,.12);--blue:#3767c4;--blue-soft:rgba(55,103,196,.11);--red:#c2412c;
+  --glass:rgba(255,255,255,.52);--glass-hi:rgba(255,255,255,.78);--glass-edge:rgba(255,255,255,.85);--glass-tint:rgba(255,255,255,.35);
+  --shadow:0 1px 1px rgba(12,26,21,.04),0 12px 40px -14px rgba(12,40,30,.22);--blur:blur(26px) saturate(180%);
+  --deep:rgba(8,48,36,.88);--on-deep:#eefaf4;--on-deep-mute:#a8cfc0;
+  --b1:#9ef0cf;--b2:#ffd29a;--b3:#b9c8ff;--b4:#8fe0f0;--r:26px;
+  --display:"Inter Tight","Inter",sans-serif;--sans:"Inter",-apple-system,"Segoe UI",sans-serif;--serif:"Instrument Serif",Georgia,serif}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#070c0b;--ink:#ecf4f0;--mute:#9db0a7;--faint:#6d7f77;--line:rgba(255,255,255,.08);
+  --acc:#52e0b0;--acc2:#8af0cc;--acc-soft:rgba(82,224,176,.12);--gold:#f5b25a;--gold-soft:rgba(245,178,90,.13);--blue:#93b6f5;--blue-soft:rgba(147,182,245,.12);--red:#f48a77;
+  --glass:rgba(22,32,29,.48);--glass-hi:rgba(40,54,49,.62);--glass-edge:rgba(255,255,255,.10);--glass-tint:rgba(255,255,255,.04);
+  --shadow:0 12px 40px -16px rgba(0,0,0,.7);--deep:rgba(10,58,43,.72);
+  --b1:#0f6b50;--b2:#6b4413;--b3:#27306e;--b4:#0d4d5c}}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;color:var(--ink);font:16px/1.6 var(--sans);-webkit-font-smoothing:antialiased;min-height:100vh;background:transparent}
+a{color:var(--blue)}
+/* liquid background */
+.bgfx{position:fixed;inset:0;z-index:-1;overflow:hidden;background:var(--bg)}
+.bgfx i{position:absolute;border-radius:50%;filter:blur(80px);opacity:.75;animation:drift 26s ease-in-out infinite alternate}
+.bgfx i:nth-child(1){width:52vw;height:52vw;left:-12vw;top:-16vw;background:var(--b1)}
+.bgfx i:nth-child(2){width:42vw;height:42vw;right:-10vw;top:6vh;background:var(--b2);animation-duration:32s;animation-delay:-8s}
+.bgfx i:nth-child(3){width:46vw;height:46vw;left:28vw;bottom:-22vw;background:var(--b3);animation-duration:38s;animation-delay:-14s}
+.bgfx i:nth-child(4){width:30vw;height:30vw;left:8vw;bottom:8vh;background:var(--b4);animation-duration:29s;animation-delay:-4s}
+.bgfx::after{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E")}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(6vw,4vh) scale(1.12)}100%{transform:translate(-4vw,8vh) scale(.94)}}
+/* glass primitive */
+.glass,.card,.kpi,.gapcard,.hcard,nav .bar{position:relative;background:linear-gradient(155deg,var(--glass-hi),var(--glass) 45%,var(--glass-tint));backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--glass-edge);box-shadow:var(--shadow),inset 0 1px 0 var(--glass-edge),inset 0 -1px 0 rgba(255,255,255,.08)}
+.card,.kpi,.gapcard,.hcard{overflow:hidden}
+.card::before,.kpi::before,.gapcard::before,.hcard::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(420px circle at var(--mx,50%) var(--my,-40%),rgba(255,255,255,.38),transparent 45%);opacity:0;transition:opacity .3s}
+.card:hover::before,.kpi:hover::before,.gapcard:hover::before,.hcard:hover::before{opacity:1}
+@media (prefers-color-scheme:dark){.card::before,.kpi::before,.gapcard::before,.hcard::before{background:radial-gradient(420px circle at var(--mx,50%) var(--my,-40%),rgba(140,255,215,.10),transparent 45%)}}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+/* top + hero */
+.top{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.02em}
+.logo .mark{width:32px;height:32px;border-radius:11px;background:linear-gradient(135deg,#2fbf8f,#0a7a5a 55%,#f2a94e);display:grid;place-items:center;color:#fff;font-weight:800;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 6px 16px -6px rgba(10,122,90,.6)}
+.top-r{display:flex;gap:10px;align-items:center}
+.status{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mute);padding:7px 12px;border-radius:999px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px var(--gold-soft)}.dot.live{background:var(--acc2);box-shadow:0 0 0 4px var(--acc-soft);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(47,191,143,.05)}}
+.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:44px;align-items:center;padding:34px 0 40px}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--acc);padding:6px 12px;border-radius:999px}
+h1{font-family:var(--display);font-size:clamp(40px,6vw,72px);line-height:.98;margin:18px 0 18px;letter-spacing:-.045em;font-weight:800}
+h1 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.02em;background:linear-gradient(100deg,var(--acc),var(--acc2) 45%,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.08em}
+.lede{font-size:19px;color:var(--mute);max-width:560px;margin:0 0 28px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:999px;border:0;font:inherit;font-weight:600;cursor:pointer;text-decoration:none;color:#fff;
+  background:linear-gradient(180deg,#22b585,#0a7a5a);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 -2px 6px rgba(0,0,0,.12),0 10px 24px -10px rgba(10,122,90,.7);transition:transform .15s,box-shadow .2s}
+.btn:hover{transform:translateY(-1px);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 14px 30px -10px rgba(10,122,90,.8)}
+.btn.glassy{color:var(--ink);background:linear-gradient(180deg,var(--glass-hi),var(--glass));backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--glass-edge);box-shadow:inset 0 1px 0 var(--glass-edge),var(--shadow)}
+.btn.sm{padding:8px 15px;font-size:14px}.btn.blue{background:linear-gradient(180deg,#5b8be0,#3767c4)}.btn.red{background:linear-gradient(180deg,#e0624c,#b8392a)}
+.gapcard{border-radius:30px;padding:26px}
+.gapcard h3{margin:0;font-size:12px;font-weight:700;color:var(--mute);text-transform:uppercase;letter-spacing:.12em}
+.gaprow{margin:20px 0}
+.gaprow .lbl{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;font-size:14px;margin-bottom:8px;color:var(--mute)}
+.gaprow .lbl b{font-family:var(--display);font-size:34px;color:var(--ink);line-height:1;letter-spacing:-.03em}
+.track{height:12px;border-radius:99px;background:var(--line);overflow:hidden;box-shadow:inset 0 1px 2px rgba(0,0,0,.08)}
+.track i{display:block;height:100%;width:0;border-radius:99px;transition:width 1.5s cubic-bezier(.2,.8,.2,1);box-shadow:inset 0 1px 0 rgba(255,255,255,.5)}
+.gapcard small{color:var(--faint);font-size:12px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.kpi{border-radius:22px;padding:18px 20px}
+.kpi b{display:block;font-family:var(--display);font-size:34px;line-height:1.1;color:var(--acc);letter-spacing:-.03em}.kpi.g b{color:var(--gold)}
+.kpi small{color:var(--mute);font-size:13px;line-height:1.45;display:block;margin-top:6px}
+.kpi .tag{float:right;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);padding:2px 8px;border-radius:99px;background:var(--line)}
+/* floating nav */
+nav{position:sticky;top:12px;z-index:20;margin:30px 0 34px}
+nav .bar{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:7px 10px;border-radius:999px;width:max-content;max-width:100%;margin:0 auto}
+.grp{display:flex;align-items:center;gap:2px;flex:none}
+.grp>span{font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin:0 4px 0 8px}
+.grp+.grp{border-left:1px solid var(--line);padding-left:6px}
+nav button{white-space:nowrap;border:1px solid transparent;background:none;color:var(--mute);padding:7px 11px;border-radius:999px;cursor:pointer;font:inherit;font-size:13.5px;font-weight:600;transition:all .2s}
+nav button:hover{color:var(--ink);background:var(--glass-tint)}
+nav button.on{color:var(--ink);background:linear-gradient(180deg,var(--glass-hi),rgba(255,255,255,.35));border-color:var(--glass-edge);box-shadow:inset 0 1px 0 var(--glass-edge),0 4px 14px -6px rgba(12,40,30,.35)}
+@media (prefers-color-scheme:dark){nav button.on{background:linear-gradient(180deg,rgba(82,224,176,.22),rgba(82,224,176,.08));border-color:rgba(82,224,176,.3)}}
+/* views */
+.view{display:none}.view.on{display:block;animation:rise .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes rise{from{opacity:0;transform:translateY(12px);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+.vhead{display:grid;grid-template-columns:1fr auto;gap:22px;align-items:end;margin-bottom:24px}
+.kicker{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+.vhead h2{font-family:var(--display);font-size:clamp(30px,4vw,46px);line-height:1.04;margin:8px 0 10px;letter-spacing:-.035em;font-weight:800}
+.vhead p{margin:0;color:var(--mute);max-width:720px;font-size:17px}
+.takeaway{max-width:330px;font-size:14px;line-height:1.5;padding:16px 18px;border-radius:20px;color:var(--on-deep);background:linear-gradient(160deg,var(--deep),rgba(6,36,27,.92));border:1px solid rgba(255,255,255,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),var(--shadow);backdrop-filter:var(--blur)}
+.takeaway b{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--on-deep-mute);margin-bottom:4px}
+.card{border-radius:var(--r);padding:26px;margin-bottom:18px}
+.card h3{font-family:var(--display);font-size:22px;margin:0 0 4px;letter-spacing:-.025em;font-weight:700}
+.sub{color:var(--mute);margin:0 0 14px;font-size:15px}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:18px}
+/* forms */
+label{display:block;font-size:12px;font-weight:600;color:var(--mute);margin:14px 0 6px}
+input,select{width:100%;padding:11px 14px;border:1px solid var(--glass-edge);border-radius:14px;background:var(--glass-tint);color:var(--ink);font:inherit;font-size:15px;box-shadow:inset 0 1px 3px rgba(0,0,0,.06);transition:border-color .15s,box-shadow .15s,background .15s}
+input:focus,select:focus{outline:0;border-color:var(--acc2);background:var(--glass-hi);box-shadow:0 0 0 4px var(--acc-soft)}
+input[type=range]{padding:0;accent-color:var(--acc);background:none;border:0;box-shadow:none}
+input[type=checkbox]{width:auto;accent-color:var(--acc)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+/* bars */
+.hbar{display:grid;grid-template-columns:minmax(120px,200px) 1fr minmax(64px,auto);gap:12px;align-items:center;margin:10px 0;font-size:14px}
+.hbar .t{background:var(--line);border-radius:99px;height:12px;overflow:hidden;box-shadow:inset 0 1px 2px rgba(0,0,0,.06)}
+.hbar .t i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));border-radius:99px;transition:width .9s cubic-bezier(.2,.8,.2,1);box-shadow:inset 0 1px 0 rgba(255,255,255,.45)}
+.hbar.gold .t i{background:linear-gradient(90deg,#c9711a,#f5b25a)}.hbar.blue .t i{background:linear-gradient(90deg,#3767c4,#8fb3f5)}
+.hbar b{font-variant-numeric:tabular-nums;text-align:right}.hbar span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px;border:1px solid var(--glass-edge);color:var(--mute);background:var(--glass-tint);backdrop-filter:var(--blur)}
+.pill.live{color:var(--acc);background:var(--acc-soft);border-color:rgba(47,191,143,.35)}
+.pill.est{color:var(--gold);background:var(--gold-soft);border-color:rgba(217,131,24,.35)}
+.note{border:1px solid rgba(217,131,24,.28);background:var(--gold-soft);border-radius:16px;padding:12px 16px;font-size:14px;margin:16px 0 0;color:var(--ink)}
+.legend2{display:flex;gap:16px;font-size:13px;color:var(--mute);margin:6px 0 10px}.legend2 i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+/* overview */
+.path{display:flex;flex-direction:column;gap:6px;cursor:pointer;transition:transform .2s}.path:hover{transform:translateY(-4px)}
+.path .n{font-size:12px;color:var(--gold);font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.path h3{font-size:24px}.path p{margin:0;color:var(--mute);font-size:15px}.path .go{margin-top:auto;padding-top:12px;color:var(--acc);font-weight:600;font-size:14px}
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.why div{padding:18px;border-radius:18px;background:var(--glass-tint);border:1px solid var(--glass-edge)}.why b{display:block;margin-bottom:4px}.why span{font-size:14px;color:var(--mute)}
+/* estimator */
+.result{background:linear-gradient(160deg,var(--deep),rgba(6,36,27,.92))!important;color:var(--on-deep);border-color:rgba(255,255,255,.16)!important}
+.result .sub{color:var(--on-deep-mute)}
+.big{font-family:var(--display);font-size:clamp(48px,6vw,72px);font-weight:800;line-height:1;letter-spacing:-.045em}
+.stack{display:flex;height:16px;border-radius:99px;overflow:hidden;margin:20px 0 14px;background:rgba(255,255,255,.1);box-shadow:inset 0 1px 2px rgba(0,0,0,.2)}.stack i{transition:width .8s cubic-bezier(.2,.8,.2,1);box-shadow:inset 0 1px 0 rgba(255,255,255,.4)}
+.lg{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;color:var(--on-deep-mute)}.lg b{color:var(--on-deep)}.lg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{font-size:13px;font-weight:500;padding:8px 13px;border-radius:999px;border:1px solid var(--glass-edge);background:var(--glass-tint)}.chip.ok{color:var(--acc);background:var(--acc-soft);border-color:rgba(47,191,143,.35)}.chip.no{color:var(--red);border-color:rgba(194,65,44,.35)}
+/* tiles */
+.map{display:grid;grid-template-columns:repeat(11,1fr);gap:5px}
+.tile{aspect-ratio:1;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;cursor:pointer;border:1px solid rgba(255,255,255,.35);transition:transform .15s,box-shadow .15s;box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+.tile:hover{transform:scale(1.14);box-shadow:0 8px 18px -6px rgba(0,0,0,.35);z-index:2}.tile.sel{outline:2px solid var(--ink);outline-offset:1px}
+.lensbar{display:inline-flex;gap:3px;flex-wrap:wrap;padding:4px;border-radius:999px;background:var(--line)}
+.lens{border:1px solid transparent;background:none;color:var(--mute);padding:7px 13px;border-radius:999px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+.lens:hover{color:var(--ink)}.lens.on{color:var(--ink);background:linear-gradient(180deg,var(--glass-hi),var(--glass));border-color:var(--glass-edge);box-shadow:inset 0 1px 0 var(--glass-edge),0 3px 10px -4px rgba(0,0,0,.25)}
+.scale{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--faint);margin-top:12px}.scale i{flex:1;height:8px;border-radius:99px}
+.statgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}.statgrid div{background:var(--glass-tint);border:1px solid var(--glass-edge);border-radius:16px;padding:12px 14px}.statgrid b{display:block;font-family:var(--display);font-size:24px;letter-spacing:-.03em}.statgrid small{color:var(--mute);font-size:12px}
+.empty{display:grid;place-items:center;text-align:center;color:var(--faint);min-height:280px;border:1.5px dashed var(--glass-edge);border-radius:20px;padding:20px}
+/* heatmap */
+.mapbox{position:relative;background:radial-gradient(800px 400px at 70% 0,rgba(82,224,176,.12),transparent 60%),#08110e;border-radius:22px;padding:16px;margin-top:14px;border:1px solid rgba(255,255,255,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.tip{position:absolute;pointer-events:none;background:rgba(20,30,27,.72);color:#eef6f1;backdrop-filter:var(--blur);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:8px 11px;font-size:13px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.tip b{display:block}
+/* hurdles */
+.hgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.hcard{display:grid;grid-template-columns:48px 1fr;gap:14px;padding:18px;border-radius:22px}
+.hcard .n{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(180deg,rgba(245,178,90,.3),rgba(217,131,24,.12));color:var(--gold);font-family:var(--display);font-size:20px;font-weight:800;border:1px solid rgba(217,131,24,.25)}
+.hcard b{display:block;margin-bottom:2px}.hcard p{margin:0;font-size:14px;color:var(--mute)}.hcard .fix{margin-top:8px;font-size:14px;color:var(--acc);font-weight:500}
+/* audit */
+.ring{position:relative;width:156px;height:156px;margin:8px auto 12px}.ring svg{transform:rotate(-90deg);filter:drop-shadow(0 4px 10px rgba(0,0,0,.12))}.ring circle{fill:none;stroke-width:12}.ring .bgc{stroke:var(--line)}.ring .fg{stroke:var(--red);stroke-linecap:round;transition:stroke-dashoffset .7s cubic-bezier(.2,.8,.2,1),stroke .3s}
+.ring div{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-size:40px;font-weight:800;letter-spacing:-.04em}
+.clist{list-style:none;padding:0;margin:0}.clist li{display:flex;gap:10px;align-items:center;padding:8px 0;font-size:14px;border-bottom:1px solid var(--line)}.clist li:last-child{border:0}
+.clist .ic{flex:none;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700;color:#fff;background:var(--line);transition:background .2s}.clist li.ok .ic{background:linear-gradient(180deg,#2fbf8f,#0a7a5a)}.clist li.no{color:var(--mute)}
+.proj{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}.proj:last-child{border:0}.proj small{display:block;color:var(--mute)}
+/* blind spots */
+.blind{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}.blind div{border:1px solid var(--glass-edge);border-radius:18px;padding:16px;background:var(--glass-tint);position:relative;overflow:hidden}
+.blind div::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--acc2),var(--acc))}.blind div:nth-child(even)::after{background:linear-gradient(180deg,#f5b25a,#c9711a)}
+.blind b{display:block;margin-bottom:4px}.blind span{font-size:14px;color:var(--mute)}
+/* feed */
+.opp{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);align-items:center}.opp:last-child{border:0}
+.opp .ag{flex:none;width:50px;height:50px;border-radius:15px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-size:11px;font-weight:700;text-align:center;line-height:1.1;padding:4px;border:1px solid rgba(55,103,196,.2)}
+.opp a{color:var(--ink);font-weight:600;text-decoration:none}.opp a:hover{color:var(--acc)}.opp small{display:block;color:var(--mute);margin-top:2px}
+.closes{margin-left:auto;flex:none;font-size:12px;font-weight:600;color:var(--gold);white-space:nowrap}
+/* footer + dialog */
+footer{margin-top:40px;padding:28px 0 48px;color:var(--mute);font-size:13px}
+footer .wrap>div{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:18px 22px;border-radius:22px}
+dialog{max-width:680px;width:calc(100% - 32px);border:1px solid var(--glass-edge);border-radius:28px;color:var(--ink);padding:30px;background:linear-gradient(155deg,var(--glass-hi),var(--glass));backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);box-shadow:var(--shadow)}
+dialog::backdrop{background:rgba(7,19,15,.35);backdrop-filter:blur(6px)}
+dialog li{margin:8px 0;font-size:14px}
+details summary{cursor:pointer;font-weight:600}
+@media(max-width:1320px){.grp>span{display:none}}
+@media(max-width:900px){.hero-grid,.grid2,.split,.hgrid{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}.grid3,.why{grid-template-columns:1fr}.vhead{grid-template-columns:1fr}.takeaway{max-width:none}nav .bar{border-radius:22px}}
+@media(max-width:520px){.kpis{grid-template-columns:1fr}.hbar{grid-template-columns:100px 1fr auto;font-size:13px}.status span:last-child{display:none}.row2{grid-template-columns:1fr}.bgfx i{filter:blur(60px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-<div class="wrap">
-<header>
-  <h1>Founder<span>Funds</span></h1>
-  <p class="sub">The R&amp;D tax credits, grants and state incentives startups leave unclaimed, in one place. Built on public data.</p>
-</header>
-<nav id="nav">
-  <button data-v="gap" class="on">1. The gap</button>
-  <button data-v="est">2. Estimate my money</button>
-  <button data-v="map">3. State map</button>
-  <button data-v="feed">4. Live funding</button>
-  <button id="limits" style="margin-left:auto">Data &amp; limits</button>
-</nav>
-
-<section class="view on" id="gap">
-  <div class="card">
-    <h2 style="margin-top:0">Most eligible startups never claim this money</h2>
-    <div class="stats">
-      <div class="stat"><b>$500K</b><small>per year of federal payroll-tax offset available to a qualifying startup, even with no profit</small></div>
-      <div class="stat"><b>5 yrs</b><small>window for the startup payroll offset after first revenue</small></div>
-      <div class="stat"><b>~20</b><small>states in this tool with a state credit, refund, or sale program, each with different rules</small></div>
-      <div class="stat"><b>0</b><small>single public place that puts federal credit, state credit, and live grants side by side</small></div>
+<div class="bgfx" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<header class="wrap">
+  <div class="top">
+    <div class="logo"><div class="mark">F</div>FounderFunds</div>
+    <div class="top-r"><span class="status glass"><span class="dot" id="liveDot"></span><span id="liveTxt">Using cached snapshots</span></span><button class="btn glassy sm" id="limits">Data &amp; limits</button></div>
+  </div>
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow glass">Public data &middot; R&amp;D credits &middot; grants</div>
+      <h1>Startups do the R&amp;D. <em>Big companies get the credit.</em></h1>
+      <p class="lede">The R&amp;D tax credit is open to startups, yet it flows overwhelmingly to large corporations. FounderFunds turns scattered IRS, Census, state and federal-award data into a 30-second answer: what you may be owed, and how to make the claim stick.</p>
+      <div class="cta"><button class="btn" onclick="show('est')">Estimate my money &rarr;</button><button class="btn glassy" onclick="show('gapv')">See the gap</button></div>
     </div>
-    <p style="color:var(--mute)">The barriers are time and confusion: a four-part IRS test, a different state rulebook, and grants scattered across agencies. Try it: enter your startup in 30 seconds.</p>
-    <button class="go" onclick="show('est')" style="padding:10px 18px;border-radius:8px;border:0;background:var(--acc);color:#fff;font:inherit;cursor:pointer">Estimate my money &rarr;</button>
+    <div class="gapcard">
+      <h3>The startup gap &middot; IRS 2013</h3>
+      <div class="gaprow"><div class="lbl"><span>Companies under $5M are this share of claimants</span><b id="hClaim">0%</b></div><div class="track"><i id="hClaimBar" style="background:linear-gradient(90deg,#3767c4,#8fb3f5)"></i></div></div>
+      <div class="gaprow"><div class="lbl"><span>&hellip;but get this share of the dollars</span><b id="hCredit">0%</b></div><div class="track"><i id="hCreditBar" style="background:linear-gradient(90deg,#c9711a,#f5b25a)"></i></div></div>
+      <div class="gaprow"><div class="lbl"><span>Companies with $250M+ get</span><b id="hBig">0%</b></div><div class="track"><i id="hBigBar" style="background:linear-gradient(90deg,#0a7a5a,#2fbf8f)"></i></div></div>
+      <small>Source: IRS Statistics of Income, Form 6765 by size of business receipts (C-corporations).</small>
+    </div>
+  </div>
+  <div class="kpis">
+    <div class="kpi"><span class="tag">IRS 2014</span><b data-count="17824">0</b><small>C-corporations claimed the federal R&amp;D credit</small></div>
+    <div class="kpi g"><span class="tag">IRS 2014</span><b>$12.6B</b><small>claimed, <span id="mfgShare"></span> of it by manufacturers</small></div>
+    <div class="kpi"><span class="tag">Model</span><b id="kUnclaimed">0</b><small>eligible firms likely not claiming (adjustable)</small></div>
+    <div class="kpi g"><span class="tag">Tax code</span><b>$500K</b><small>a year a startup can use against payroll tax, even with no profit</small></div>
+  </div>
+</header>
+
+<nav id="nav"><div class="wrap"><div class="bar">
+  <div class="grp"><span>Understand</span><button data-v="over" class="on">Overview</button><button data-v="gapv">Startup gap</button><button data-v="who">Who claims</button><button data-v="hurdles">Hurdles</button></div>
+  <div class="grp"><span>Explore</span><button data-v="state">States</button><button data-v="heat">R&amp;D heatmap</button><button data-v="uni">Universities</button><button data-v="feed">Live funding</button></div>
+  <div class="grp"><span>Act</span><button data-v="est">Estimate</button><button data-v="audit">Audit trail</button></div>
+</div></div></nav>
+
+<main class="wrap">
+
+<!-- OVERVIEW -->
+<section class="view on" id="over">
+  <div class="vhead"><div><div class="kicker">Overview</div><h2>Three questions every founder should answer</h2><p>Each path uses public data. Pick where to start.</p></div></div>
+  <div class="grid3">
+    <div class="card path" onclick="show('gapv')"><div class="n">Understand</div><h3>Why is money left on the table?</h3><p>IRS data shows who claims and who doesn't, and the ten hurdles that stop founders.</p><div class="go">See the startup gap &rarr;</div></div>
+    <div class="card path" onclick="show('heat')"><div class="n">Explore</div><h3>Where is R&amp;D money flowing?</h3><p>County heatmap, state credit rules, university research hubs and live federal funding.</p><div class="go">Open the heatmap &rarr;</div></div>
+    <div class="card path" onclick="show('est')"><div class="n">Act</div><h3>What am I owed, and can I prove it?</h3><p>Estimate your credit in 30 seconds, then build an audit-ready project log.</p><div class="go">Estimate my money &rarr;</div></div>
+  </div>
+  <div class="card">
+    <h3>Why founders don't claim</h3>
+    <p class="sub">Three reasons come up again and again in practitioner guidance.</p>
+    <div class="why">
+      <div><b>"That's for big companies"</b><span>Most dollars go to established manufacturers. The startup payroll-tax route is far less known.</span></div>
+      <div><b>"The paperwork will kill us"</b><span>The four-part test, contemporaneous records and audit risk scare off small teams.</span></div>
+      <div><b>"Where would I even look?"</b><span>The IRS, 50 state revenue departments, SBIR agencies and universities each publish separately.</span></div>
+    </div>
   </div>
 </section>
 
-<section class="view" id="est">
+<!-- STARTUP GAP -->
+<section class="view" id="gapv">
+  <div class="vhead"><div><div class="kicker">Understand &middot; Startup gap</div><h2>45% of claimants, 4.6% of the money</h2><p>IRS research-credit claims by company size, tax year 2013 (latest published breakdown).</p></div>
+    <div class="takeaway"><b>Takeaway</b>Small companies do claim, but the credit's dollars flow almost entirely to the largest corporations.</div></div>
+  <div class="card">
+    <h3>Share of claimants vs share of credit dollars</h3>
+    <div class="legend2"><span><i style="background:var(--blue)"></i>share of claimants</span><span><i style="background:var(--gold)"></i>share of credit $</span></div>
+    <div id="sizeBars"></div>
+    <div class="note">C-corporations only. Many startups are LLCs or S-corps and aren't counted, and the payroll-tax offset for startups arrived in 2016, after this data. This is still the most recent public breakdown by size.</div>
+  </div>
+  <div class="card">
+    <div class="split">
+      <div>
+        <h3>How many eligible companies actually claim?</h3>
+        <p class="sub">No public source measures this, so here's a transparent model. Move the assumptions.</p>
+        <label>Share of R&amp;D-intensive establishments likely eligible: <b id="shareV"></b>%</label><input id="share" type="range" min="10" max="100" value="50">
+        <label>Companies claiming nationally</label><input id="claimants" type="number" value="16624" step="1000">
+        <p class="sub" style="font-size:13px;margin-top:10px">Default is the IRS count of C-corp claimants (2013). Including S-corps and partnerships would raise it, so read the result as a lower bound.</p>
+        <div style="margin-top:12px"><span class="pill est">Modeled estimate</span></div>
+        <div class="big" id="rateOut" style="color:var(--acc);margin-top:14px">0%</div>
+        <div class="sub" style="margin-top:4px">estimated national claim rate</div>
+        <p id="rateMsg" class="sub" style="margin-top:10px"></p>
+      </div>
+      <div>
+        <h3>Estimated eligible firms by state</h3>
+        <p class="sub">Top 12 states. Darker segment = estimated not claiming, at the national rate.</p>
+        <div id="eligSt"></div>
+      </div>
+    </div>
+    <details style="margin-top:16px"><summary>How the model works, and what it would take to do better</summary>
+      <ol class="sub" style="margin-top:8px">
+        <li><b>Eligible pool:</b> Census County Business Patterns 2022 establishments in R&amp;D services (5417), software publishers (5112), computer systems design (5415), pharma (3254) and electronics (334), multiplied by your eligibility share.</li>
+        <li><b>Claimants:</b> IRS count of companies filing Form 6765.</li>
+        <li><b>State view:</b> each state's pool, and how many would be unclaimed if the national rate held there. No state claim counts are published.</li>
+        <li><b>To get a real number:</b> IRS SOI special tabulations by state and entity type, state revenue credit reports (Iowa, California and others publish claimant counts), Census business R&amp;D surveys (BRDIS/BERD), and Form 8974 payroll-offset counts.</li>
+      </ol>
+    </details>
+  </div>
+</section>
+
+<!-- WHO CLAIMS -->
+<section class="view" id="who">
+  <div class="vhead"><div><div class="kicker">Understand &middot; Who claims</div><h2>Manufacturing takes the lion's share</h2><p>IRS Statistics of Income, Form 6765, tax year 2014 (latest sector table). C-corporations only.</p></div>
+    <div class="takeaway"><b>Takeaway</b>Professional and technical services file nearly as many claims as manufacturers but get a fraction of the dollars.</div></div>
   <div class="grid2">
+    <div class="card"><h3>Credit dollars by sector</h3><div id="whoCredit" style="margin-top:12px"></div></div>
+    <div class="card"><h3>Number of claimants by sector</h3><div id="whoRet" style="margin-top:12px"></div></div>
+  </div>
+  <div class="card"><h3>Average credit per claimant</h3><p class="sub">Software and IT firms appear under Information and Professional services.</p><div id="whoAvg"></div>
+    <div class="note">Excludes S-corporations and partnerships, where many startups sit, and the data is 12 years old. It shows who the credit has historically served, not today's eligible population.</div></div>
+</section>
+
+<!-- HURDLES -->
+<section class="view" id="hurdles">
+  <div class="vhead"><div><div class="kicker">Understand &middot; Top 10 hurdles</div><h2>Founders don't fail on eligibility. They fail on paperwork.</h2><p>Synthesized from practitioner guidance (Leyton, Baker Tilly, TriNet, Boast, Built In) and IRS audit themes. Practitioner-reported, not survey-measured.</p></div>
+    <div class="takeaway"><b>Takeaway</b>Most hurdles disappear if you log projects as you go. That's what the Audit trail builder is for.</div></div>
+  <div class="hgrid" id="chal"></div>
+  <p style="margin-top:18px"><button class="btn" onclick="show('audit')">Start an audit trail &rarr;</button></p>
+</section>
+
+<!-- STATES -->
+<section class="view" id="state">
+  <div class="vhead"><div><div class="kicker">Explore &middot; States</div><h2>Every state plays by different rules</h2><p>Pick a lens, then click a state for its credit rules, funding ecosystem and national ranks.</p></div>
+    <div class="takeaway"><b>Takeaway</b>A generous state credit only matters if it's refundable or you have tax to offset. Check the fine print.</div></div>
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center">
+      <div class="lensbar" id="lenses"><button class="lens on" data-m="opp">Opportunity index</button><button class="lens" data-m="rate">Credit rate</button><button class="lens" data-m="sbir">SBIR/STTR $</button><button class="lens" data-m="uni">University $</button></div>
+      <span class="pill" id="badge"></span>
+    </div>
+    <div class="grid2" style="margin-top:18px;align-items:start">
+      <div><div class="map" id="tiles"></div><div class="scale">low<i id="tileScale"></i>high</div></div>
+      <div id="detail"><div class="empty">Click any state on the map<br>to see its rules and ranks.</div></div>
+    </div>
+    <div class="note"><b>Opportunity index</b> is a 0&ndash;100 score we built, not a measured claim rate: state credit generosity (40%), SBIR/STTR dollars (30%) and university research dollars (30%), each scaled to the leading state. Only the 21 states in our credit table are scored.</div>
+  </div>
+</section>
+
+<!-- HEATMAP -->
+<section class="view" id="heat">
+  <div class="vhead"><div><div class="kicker">Explore &middot; R&amp;D heatmap</div><h2>Where federal R&amp;D money clusters</h2><p>SBIR/STTR and university NSF/NIH awards by county, FY2024&ndash;25, from USAspending. Hover a county.</p></div>
+    <div class="takeaway"><b>Takeaway</b>R&amp;D money concentrates in a few metro clusters, and founders near them have partners, talent and grant track records nearby.</div></div>
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center">
+      <div class="lensbar" id="heatLenses"><button class="lens on" data-m="both">All federal R&amp;D</button><button class="lens" data-m="sbir">SBIR/STTR (startups)</button><button class="lens" data-m="uni">Universities</button></div>
+      <span class="pill">USAspending snapshot</span>
+    </div>
+    <div class="mapbox" id="heatBox"><div id="heatMap"><p class="sub" style="color:#a9c4b8;padding:40px;text-align:center">Loading map&hellip;</p></div><div class="tip" id="tip"></div></div>
+    <div class="scale">$0<i style="background:linear-gradient(90deg,#3a2a14,#8a5418,#e0952f,#ffe2a8)"></i>$1B+ (log scale)</div>
+  </div>
+  <div class="grid2">
+    <div class="card"><h3>Top 8 counties</h3><div id="topCounty" style="margin-top:12px"></div></div>
+    <div class="card"><h3>Does university R&amp;D drive tech?</h3><p class="sub">Correlation (r) across 50 states, from this app's data.</p><div id="corr"></div>
+      <div class="note">Big states have more of everything, so raw correlations are inflated by size. Per person, the link drops to moderate. That's real but weaker, and correlation can't show which causes which.</div></div>
+  </div>
+  <p class="sub" style="font-size:13px">Official maps: <a href="https://ncses.nsf.gov/indicators/states" target="_blank" rel="noopener">NSF State Indicators</a> &middot; <a href="https://ncses.nsf.gov/pubs/nsf25313" target="_blank" rel="noopener">NSF HERD survey</a></p>
+</section>
+
+<!-- UNIVERSITIES -->
+<section class="view" id="uni">
+  <div class="vhead"><div><div class="kicker">Explore &middot; Universities</div><h2>The university landscape, and other blind spots</h2><p>NSF and NIH awards to higher-education institutions, FY2024&ndash;25, from USAspending. NSF's HERD survey counts $108.8B of total academic R&amp;D (FY2023).</p></div>
+    <div class="takeaway"><b>Takeaway</b>Paying a university for basic research can earn its own credit. Almost no founders use it.</div></div>
+  <div class="grid2">
+    <div class="card"><h3>Top 10 institutions</h3><div id="topUni" style="margin-top:12px"></div></div>
+    <div class="card"><h3>Top 10 states</h3><div id="topUniSt" style="margin-top:12px"></div></div>
+  </div>
+  <div class="card">
+    <h3>Blind spots founders miss</h3><p class="sub">Rules that quietly shrink or delay the money.</p>
+    <div class="blind">
+      <div><b>University partnerships</b><span>Payments to qualified universities for basic research can earn a separate credit under the regular method.</span></div>
+      <div><b>Grant-funded work doesn't count</b><span>SBIR or customer-funded research can fall under the funded-research exclusion. Grants and credits don't always stack.</span></div>
+      <div><b>Payroll-offset timing</b><span>Elected on the income tax return, then used via Form 8974 with quarterly payroll filings. Wrong order delays the cash.</span></div>
+      <div><b>Section 174 and 280C</b><span>How R&amp;D costs are expensed or capitalized, and the reduced-credit election, change the real value. Rules changed recently.</span></div>
+      <div><b>State conformity gaps</b><span>A federal claim doesn't mean a state claim. Many state credits are non-refundable, capped or lottery-based.</span></div>
+      <div><b>Spinout data is thin</b><span>No consistent public data on university spinouts by state exists, so we don't score it. It's a real gap.</span></div>
+      <div><b>Passthrough entities</b><span>Many startups are LLCs or S-corps, which public IRS sector tables exclude, hiding true claim patterns.</span></div>
+      <div><b>Offshore R&amp;D</b><span>Research performed outside the US isn't qualified. Distributed teams can quietly shrink the base.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEED -->
+<section class="view" id="feed">
+  <div class="vhead"><div><div class="kicker">Explore &middot; Live funding</div><h2>Open federal opportunities, by vertical</h2><p>From the Grants.gov Search API. Federal grants are national: eligibility, not location, is what varies.</p></div></div>
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center">
+      <div class="lensbar" id="vLenses"></div><span class="pill" id="feedBadge">loading&hellip;</span>
+    </div>
+    <p id="feedN" class="sub" style="margin-top:14px"></p>
+    <div id="opps"></div>
+  </div>
+</section>
+
+<!-- ESTIMATOR -->
+<section class="view" id="est">
+  <div class="vhead"><div><div class="kicker">Act &middot; Estimate</div><h2>What could your startup claim?</h2><p>Defaults model a seed-stage software team. Change anything and the numbers update instantly.</p></div>
+    <div class="takeaway"><b>Privacy</b>Everything is calculated in your browser. Nothing is sent or stored.</div></div>
+  <div class="split">
     <div class="card">
-      <h3 style="margin-top:0">Your startup</h3>
+      <h3>Your startup</h3>
       <label>State</label><select id="st"></select>
-      <label>Vertical</label><select id="vert"></select>
-      <label>Engineers / technical staff (W-2 headcount)</label><input id="eng" type="number" value="6" min="0">
-      <label>Average salary ($)</label><input id="sal" type="number" value="150000" step="5000">
-      <label>% of their time on R&amp;D (building/testing new tech)</label><input id="pct" type="number" value="70" min="0" max="100">
-      <label>US contractors on R&amp;D ($/yr)</label><input id="con" type="number" value="80000" step="5000">
-      <label>Cloud, compute &amp; supplies used in R&amp;D ($/yr)</label><input id="sup" type="number" value="60000" step="5000">
-      <label>Gross receipts this year ($)</label><input id="rev" type="number" value="400000" step="50000">
-      <label>First year with revenue</label><input id="fy" type="number" value="2024">
-      <label>Prior-3-year average R&amp;D spend ($; 0 if you are new)</label><input id="prior" type="number" value="0" step="10000">
-      <p class="pill live" style="margin-top:12px">Nothing leaves your browser</p>
+      <div class="row2"><div><label>Technical headcount (W-2)</label><input id="eng" type="number" value="6" min="0"></div><div><label>Average salary ($)</label><input id="sal" type="number" value="150000" step="5000"></div></div>
+      <label>% of their time on R&amp;D: <b id="pctV">70</b>%</label><input id="pct" type="range" value="70" min="0" max="100">
+      <div class="row2"><div><label>US contractors on R&amp;D ($/yr)</label><input id="con" type="number" value="80000" step="5000"></div><div><label>Cloud &amp; supplies ($/yr)</label><input id="sup" type="number" value="60000" step="5000"></div></div>
+      <div class="row2"><div><label>Gross receipts this year ($)</label><input id="rev" type="number" value="400000" step="50000"></div><div><label>First year with revenue</label><input id="fy" type="number" value="2024"></div></div>
+      <label>Prior 3-year average R&amp;D spend ($, 0 if new)</label><input id="prior" type="number" value="0" step="10000">
+    </div>
+    <div>
+      <div class="card result">
+        <div class="sub" style="margin:0">Estimated annual value</div>
+        <div class="big" id="total">$0</div>
+        <div class="stack" id="stack"></div>
+        <div class="lg" id="lg"></div>
+        <p id="msg" class="sub" style="margin:16px 0 0;font-size:14px"></p>
+      </div>
+      <div class="card"><h3>IRS four-part test</h3><p class="sub">Every project must pass all four.</p><div class="chips" id="check"></div></div>
+      <div class="note" style="margin:0">Estimates only: federal ASC method, 21% reduction election, no base period for new companies. Not tax advice. Confirm with a CPA and Form 6765.</div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIT -->
+<section class="view" id="audit">
+  <div class="vhead"><div><div class="kicker">Act &middot; Audit trail</div><h2>Build the record before anyone asks for it</h2><p>Since 2022 the IRS requires refund claims to identify each business component, the research activities, who did them, what they sought to discover, and the expenses. Log each project as you go.</p></div>
+    <div class="takeaway"><b>Privacy</b>Saved only in this browser. Exported only when you click Export.</div></div>
+  <div class="split">
+    <div class="card">
+      <h3>Log a project</h3>
+      <label>Project / business component</label><input id="aName" placeholder="Real-time fraud scoring model v2">
+      <label>What new or improved function were you building?</label><input id="aPurpose" placeholder="Cut false positives by 30% at under 50 ms">
+      <label>Technical uncertainty: what didn't you know?</label><input id="aUnc" placeholder="Whether a graph model could hit latency targets">
+      <label>Alternatives you tested</label><input id="aExp" placeholder="Gradient boosting vs GNN vs rules; 3 benchmark rounds">
+      <label>People, roles and % time</label><input id="aPeople" placeholder="A. Lee, ML eng, 80%; R. Diaz, backend, 40%">
+      <label>Expenses: wages / supplies &amp; cloud / contractors</label><input id="aCost" placeholder="180000 / 24000 / 15000">
+      <label>Evidence links with dates</label><input id="aEv" placeholder="JIRA-412 (2026-03-02), PR #88 (2026-03-20)">
+      <label style="display:flex;gap:8px;align-items:center;font-size:14px;color:var(--ink)"><input type="checkbox" id="aFunded"> Paid for by a grant or customer contract</label>
+      <p style="margin:16px 0 0"><button class="btn" id="aSave">Add project</button></p>
     </div>
     <div>
       <div class="card">
-        <div style="color:var(--mute)">Estimated annual value you could claim</div>
-        <div class="big" id="total">$0</div>
-        <div id="bars"></div>
-        <p id="msg" style="color:var(--mute);font-size:14px"></p>
+        <h3 style="text-align:center">Audit readiness</h3>
+        <div class="ring"><svg width="156" height="156" viewBox="0 0 150 150"><circle class="bgc" cx="75" cy="75" r="62"/><circle class="fg" id="ringFg" cx="75" cy="75" r="62" stroke-dasharray="389.6" stroke-dashoffset="389.6"/></svg><div id="aScore">0%</div></div>
+        <ul class="clist" id="aCheck"></ul>
       </div>
-      <div class="card"><h3 style="margin-top:0">Do you pass the IRS four-part test?</h3><ul class="check" id="check" style="list-style:none;padding:0"></ul></div>
-    </div>
-  </div>
-  <div class="warn">Estimates only, using simplified rules (federal ASC method, 21% reduction election, no base period for new companies). Not tax advice. Confirm with a CPA and Form 6765.</div>
-</section>
-
-<section class="view" id="map">
-  <div class="card">
-    <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
-      <b>Color states by:</b>
-      <select id="metric" style="width:auto"><option value="rate">State R&amp;D credit rate</option><option value="sbir">SBIR/STTR $ awarded (FY24-25)</option></select>
-      <span class="pill" id="sbirBadge"></span>
-    </div>
-    <div class="grid2" style="margin-top:14px">
-      <div class="map" id="tiles"></div>
-      <div id="detail" class="card" style="margin:0"><i style="color:var(--mute)">Click a state</i></div>
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><h3 style="margin:0">Your projects</h3><span><button class="btn sm blue" id="aExport">Export for CPA</button> <button class="btn sm red" id="aClear">Clear</button></span></div>
+        <div id="aList" style="margin-top:8px"></div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="view" id="feed">
-  <div class="card">
-    <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
-      <b>Open federal opportunities for</b>
-      <select id="fv" style="width:auto"></select>
-      <span class="pill" id="feedBadge">loading...</span>
-    </div>
-    <p id="feedN" style="color:var(--mute);font-size:14px"></p>
-    <div id="opps"></div>
-    <p style="color:var(--mute);font-size:13px">Source: Grants.gov Search API. Federal grants are national: eligibility, not location, is what varies. Read each notice for SBIR/STTR and small-business rules.</p>
-  </div>
-</section>
+</main>
 
-<footer>Built for the super{set} hackathon, Public Data APIs track. Sources: Grants.gov, USAspending.gov, IRS Form 6765 guidance, KPMG/Aprio/CLA state credit summaries.</footer>
-</div>
+<footer><div class="wrap"><div class="glass">
+  <span><b style="color:var(--ink)">FounderFunds</b> &middot; Built for the super{set} hackathon, Public Data APIs track. Not tax advice.</span>
+  <span>Sources: IRS SOI &middot; Census CBP &middot; USAspending.gov &middot; Grants.gov &middot; NSF NCSES &middot; KPMG / Aprio / CLA state summaries</span>
+</div></div></footer>
 
 <dialog id="dlg">
-  <h3 style="margin-top:0">Data &amp; limits</h3>
+  <h3 style="margin-top:0;font-family:var(--display);font-size:26px;letter-spacing:-.03em">Data &amp; limits</h3>
   <ul>
-    <li><b>Grants.gov Search API</b>: live open and forecasted opportunities, keyword-matched to verticals (imperfect matching). Grants.gov does not allow direct browser calls (CORS), so the hosted demo shows a dated snapshot pulled from the live API; the badge says which you are seeing.</li>
-    <li><b>USAspending.gov API</b>: FY2024-25 award dollars whose records mention SBIR/STTR, by state of performance. A keyword proxy, not an official SBIR total.</li>
-    <li><b>State credit table</b>: hand-compiled headline rates (no public API exists). 20 states only; rules change annually. Verify before filing.</li>
-    <li><b>Fallback</b>: if an API is blocked or down, the app shows a dated cached snapshot and labels it.</li>
-    <li><b>Privacy</b>: calculator inputs never leave your browser. No accounts, cookies, or analytics.</li>
-    <li><b>Not tax advice.</b> The estimator simplifies eligibility, base periods, and state apportionment, and the 2025 federal changes to R&amp;D expensing should be confirmed with a CPA.</li>
+    <li><b>IRS SOI Form 6765:</b> sector table (2014) and claims by size of receipts (2013). C-corps only; the latest published.</li>
+    <li><b>Census County Business Patterns 2022:</b> establishments in five R&amp;D-intensive industries as the eligible pool. Establishments are not firms, and industry is not eligibility.</li>
+    <li><b>Claim-rate model and Opportunity index:</b> our own models with stated assumptions, not measured rates. No public data reports claimed-versus-eligible by state.</li>
+    <li><b>USAspending.gov API:</b> SBIR/STTR keyword proxy (live by state, with cached fallback) and NSF + NIH awards to universities (snapshot), state and county. Not official SBIR or HERD totals.</li>
+    <li><b>Grants.gov Search API:</b> browsers are blocked by CORS, so the site shows a dated snapshot pulled from the live API. The badge says which you see.</li>
+    <li><b>State credit table:</b> hand-compiled headline rates for 21 states; no public API exists. Rules change yearly.</li>
+    <li><b>Correlations:</b> computed across 50 states. Correlation is not causation.</li>
+    <li><b>Hurdles list:</b> practitioner-reported, not survey-measured.</li>
+    <li><b>Privacy:</b> calculator inputs never leave your browser. Audit-trail entries stay in this browser until you export them. No accounts, cookies or analytics.</li>
   </ul>
-  <form method="dialog"><button>Close</button></form>
+  <form method="dialog"><button class="btn">Close</button></form>
 </dialog>
 
 <script src="data.js"></script>
 <script src="states.js"></script>
 <script>
-const $=id=>document.getElementById(id), fmt=n=>"$"+Math.round(n).toLocaleString();
-const VERTS={ai:"AI & software",bio:"Biotech & health",climate:"Climate & energy",hardware:"Hardware & manufacturing",fintech:"Fintech",ag:"Agriculture & food"};
+const $=id=>document.getElementById(id),fmt=n=>"$"+Math.round(n).toLocaleString();
+const money=n=>n>=1e9?"$"+(n/1e9).toFixed(1)+"B":n>=1e6?"$"+Math.round(n/1e6)+"M":n>=1e3?"$"+Math.round(n/1e3)+"K":fmt(n);
+const DARK=matchMedia('(prefers-color-scheme: dark)').matches;
+const esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const VERTS={ai:"AI & software",bio:"Biotech & health",climate:"Climate & energy",hardware:"Hardware",fintech:"Fintech",ag:"Ag & food"};
 const KW={ai:"artificial intelligence software",bio:"biotechnology biomedical",climate:"clean energy climate",hardware:"advanced manufacturing hardware",fintech:"financial technology",ag:"agriculture food technology"};
-function show(v){document.querySelectorAll('.view').forEach(e=>e.classList.toggle('on',e.id===v));document.querySelectorAll('nav [data-v]').forEach(b=>b.classList.toggle('on',b.dataset.v===v));if(v==='feed')loadFeed();}
+// IRS SOI 2014 Table 1: [sector, returns, credit $ thousands]
+const SECTORS=[["Manufacturing",6568,7426882],["Information (incl. software)",1842,2092539],["Professional & technical",5698,1252591],["Wholesale & retail",1410,1027230],["Finance & insurance",338,256725],["Mgmt of companies",744,145273],["Utilities",69,75531],["Construction",334,36910],["Mining",78,83816],["Various services",343,56426],["Admin & support",144,38785],["Transportation",85,31247],["Agriculture",111,9549],["Real estate",59,34089]];
+const TOTAL_CREDIT=12567596;
+const CHALLENGES=[
+["Documentation created after the fact","Records reconstructed months later are the top audit weakness.","Keep a dated log of experiments, tickets and design decisions as you go."],
+["Time tracking isn't tied to projects","Payroll and timesheet tools weren't built to map hours to R&D activities.","Tag tickets or sprints to projects; have engineers confirm R&D % quarterly."],
+["The four-part test is hard to apply to software","Purpose, technological basis, uncertainty and experimentation must each be shown per project.","Write one paragraph per project answering all four, in your engineers' words."],
+["Funded-research exclusion","Work paid for by a customer or grant may not qualify.","Separate grant-funded and customer-funded work in your books from day one."],
+["Boilerplate studies","Generic, off-the-shelf reports are a known red flag.","Make sure any study cites your real projects, people and experiments."],
+["Payroll-offset mechanics","Elected on the income tax return, then used through Form 8974 with quarterly payroll filings.","Tell your payroll provider and CPA early; get the order of filings right."],
+["Contractor and vendor rules","Only part of contractor cost counts, work must be US-based, and you must bear the risk.","Check contracts for IP ownership and risk; track US vs offshore spend."],
+["Base-period math and the 280C election","ASC calculations and the reduced-credit election change the real value.","Run both scenarios; don't assume the headline rate."],
+["State rules differ","A great federal claim can become a small or stranded state credit.","Check refundability, caps and carryforward in the States view."],
+["Cost and fear vs a small credit","Founders assume a study costs more than it returns and fear audit risk.","Start with a rough estimate; for small claims, in-house records can be enough."]];
+
+// navigation
+function show(v){
+  document.querySelectorAll('.view').forEach(e=>e.classList.toggle('on',e.id===v));
+  document.querySelectorAll('nav [data-v]').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
+  const navTop=$('nav').getBoundingClientRect().top+scrollY-12;if(scrollY>navTop||v!=='over')scrollTo({top:navTop,behavior:'smooth'});
+  const ab=document.querySelector('nav [data-v="'+v+'"]'),bar=document.querySelector('nav .bar');if(ab&&bar)bar.scrollTo({left:ab.offsetLeft-bar.clientWidth/2+ab.offsetWidth/2,behavior:'smooth'});
+  if(v==='feed')loadFeed();if(v==='who')drawWho();if(v==='heat')drawHeat();if(v==='gapv')drawGap();
+  try{history.replaceState(null,"","#"+v)}catch(e){}
+}
 $('nav').addEventListener('click',e=>{if(e.target.dataset.v)show(e.target.dataset.v)});
 $('limits').onclick=()=>$('dlg').showModal();
-// selects
-const sorted=Object.keys(STATE_CREDITS).sort((a,b)=>STATE_CREDITS[a].name.localeCompare(STATE_CREDITS[b].name));
-$('st').innerHTML=sorted.map(k=>`<option value="${k}">${STATE_CREDITS[k].name}</option>`).join('');$('st').value='CA';
-$('vert').innerHTML=$('fv').innerHTML=Object.entries(VERTS).map(([k,v])=>`<option value="${k}">${v}</option>`).join('');
+// cursor-following specular highlight on glass panels
+document.addEventListener('pointermove',e=>{const el=e.target.closest&&e.target.closest('.card,.kpi,.gapcard,.hcard');if(!el)return;const r=el.getBoundingClientRect();el.style.setProperty('--mx',(e.clientX-r.left)+'px');el.style.setProperty('--my',(e.clientY-r.top)+'px');},{passive:true});
+function countTo(el,t,f=x=>Math.round(x).toLocaleString(),ms=1200){let s=null;const from=+el.dataset.v||0;el.dataset.v=t;const st=ts=>{s=s||ts;const p=Math.min(1,(ts-s)/ms),e=1-Math.pow(1-p,3);el.textContent=f(from+(t-from)*e);if(p<1)requestAnimationFrame(st)};requestAnimationFrame(st);}
+document.querySelectorAll('[data-count]').forEach(el=>countTo(el,+el.dataset.count));
+$('mfgShare').textContent=Math.round(7426882/TOTAL_CREDIT*100)+"%";
+function hb(rows,cls,fmtv,max){const mx=max||Math.max(...rows.map(r=>r[1]),1);return rows.map(r=>`<div class="hbar ${cls}"><span title="${esc(r[0])}">${esc(r[0])}</span><div class="t"><i style="width:${r[1]/mx*100}%"></i></div><b>${fmtv(r[1])}</b></div>`).join('');}
+
+// hero gap + startup gap view
+const CL=CACHE.size.claimants,CRD=CACHE.size.credit,T1=CL[0][1],T2=CRD[0][1],sumR=(a,i,j)=>a.slice(i,j+1).reduce((s,r)=>s+r[1],0);
+const GAP={claim:sumR(CL,1,7)/T1*100,credit:sumR(CRD,1,7)/T2*100,big:CRD[12][1]/T2*100};
+setTimeout(()=>{countTo($('hClaim'),GAP.claim,x=>Math.round(x)+"%");countTo($('hCredit'),GAP.credit,x=>x.toFixed(1)+"%");countTo($('hBig'),GAP.big,x=>Math.round(x)+"%");
+  $('hClaimBar').style.width=GAP.claim+"%";$('hCreditBar').style.width=Math.max(GAP.credit,1.2)+"%";$('hBigBar').style.width=GAP.big+"%";},250);
+function drawGap(){
+  const bands=[["Under $1M",1,5],["$1M–$5M",6,7],["$5M–$50M",8,9],["$50M–$250M",10,11],["$250M+",12,12]];
+  $('sizeBars').innerHTML=bands.map(b=>{const a=sumR(CL,b[1],b[2])/T1*100,c=sumR(CRD,b[1],b[2])/T2*100;
+    return `<div style="margin:14px 0"><div style="font-weight:600;font-size:14px;margin-bottom:4px">${b[0]}${b[2]<=7?' <span class="pill est" style="margin-left:6px">startup range</span>':''}</div><div class="hbar blue" style="margin:4px 0;grid-template-columns:110px 1fr 60px"><span class="sub" style="margin:0;font-size:13px">claimants</span><div class="t"><i style="width:0" data-w="${a}"></i></div><b>${a.toFixed(0)}%</b></div><div class="hbar gold" style="margin:4px 0;grid-template-columns:110px 1fr 60px"><span class="sub" style="margin:0;font-size:13px">credit $</span><div class="t"><i style="width:0" data-w="${c}"></i></div><b>${c.toFixed(1)}%</b></div></div>`;}).join('');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>document.querySelectorAll('#sizeBars i[data-w]').forEach(i=>i.style.width=i.dataset.w+"%")));
+}
+const ESTAB=Object.fromEntries(Object.entries(CACHE.cbp).map(([s,v])=>[s,[Object.values(v).reduce((a,x)=>a+x[0],0),Object.values(v).reduce((a,x)=>a+x[1],0)]]));
+function model(){
+  const sh=+$('share').value/100,c=+$('claimants').value||0;$('shareV').textContent=$('share').value;
+  const tot=Object.values(ESTAB).reduce((a,x)=>a+x[0],0),elig=tot*sh,rate=Math.min(1,c/elig),un=Math.max(0,elig-c);
+  $('rateOut').textContent=(rate*100).toFixed(0)+"%";countTo($('kUnclaimed'),un,x=>"~"+Math.round(x/1000)+"K",600);
+  $('rateMsg').innerHTML=`${Math.round(elig).toLocaleString()} likely eligible establishments vs ${c.toLocaleString()} claimants: roughly <b>${Math.round(un).toLocaleString()} not claiming</b>. ${Math.round(Object.values(ESTAB).reduce((a,x)=>a+x[1],0)/tot*100)}% of the pool has fewer than 20 employees.`;
+  const rows=Object.entries(ESTAB).filter(e=>STATE_NAMES[e[0]]).sort((a,b)=>b[1][0]-a[1][0]).slice(0,12),mx=rows[0][1][0]*sh;
+  $('eligSt').innerHTML=rows.map(([s,v])=>{const e=v[0]*sh,u=e*(1-rate);return `<div class="hbar" style="grid-template-columns:110px 1fr 120px"><span>${STATE_NAMES[s]}</span><div class="t" style="display:flex"><i style="width:${(e-u)/mx*100}%;background:var(--acc2);border-radius:99px 0 0 99px"></i><i style="width:${u/mx*100}%;background:var(--acc);border-radius:0 99px 99px 0"></i></div><b style="font-size:13px">${Math.round(e).toLocaleString()} <span style="color:var(--faint);font-weight:500">/ ${Math.round(u).toLocaleString()}</span></b></div>`;}).join('')+'<p class="sub" style="font-size:12px;margin:8px 0 0">eligible / estimated not claiming</p>';
+}
+$('share').oninput=model;$('claimants').oninput=model;model();
 
 // estimator
+const sorted=Object.keys(STATE_CREDITS).sort((a,b)=>STATE_CREDITS[a].name.localeCompare(STATE_CREDITS[b].name));
+$('st').innerHTML=sorted.map(k=>`<option value="${k}">${STATE_CREDITS[k].name}</option>`).join('');$('st').value='CA';
 function calc(){
-  const v=id=>+$(id).value||0, S=STATE_CREDITS[$('st').value];
-  const wages=v('eng')*v('sal'), qre=wages*v('pct')/100+v('con')*0.65+v('sup');
-  const prior=v('prior');
-  let fed=prior>0?Math.max(0,qre-prior*0.5)*0.14:qre*0.06;
-  fed*=0.79;
-  const rev=v('rev'), yr=v('fy'), thisYr=new Date().getFullYear();
-  const smallOk=rev<5e6&&(thisYr-yr)<5;
-  const cap=Math.min(500000,wages*0.0765);
-  const payroll=smallOk?Math.min(fed,cap):0;
-  let st=0;
-  if(S.rate){st=S.tierCap?Math.min(qre,S.tierCap)*S.rate/100+Math.max(0,qre-S.tierCap)*S.rate2/100:qre*S.rate/100;if(S.cap)st=Math.min(st,S.cap);}
-  const parts=[["Federal credit",fed,'var(--acc)'],["  of which usable vs payroll tax now",payroll,'var(--blue)'],["State credit ("+S.name+")",st,'var(--acc2)']];
-  const total=fed+st;
-  $('total').textContent=fmt(total);
-  const max=Math.max(1,...parts.map(p=>p[1]));
-  $('bars').innerHTML=parts.map(p=>`<div class="bar"><span>${p[0].trim()}</span><i style="width:${p[1]/max*55}%;background:${p[2]}"></i><b>${fmt(p[1])}</b></div>`).join('');
-  $('msg').innerHTML=(smallOk?"You look like a <b>qualified small business</b>: up to "+fmt(payroll)+" can offset payroll taxes even without profit.":"Payroll-tax offset needs under $5M receipts and first revenue within 5 years; without it the federal credit carries forward against income tax.")+"<br>"+S.refund+". "+S.note+"<br><b>QREs estimated:</b> "+fmt(qre);
-  const tests=[["Permitted purpose: new or improved product, process or software",true],["Technological in nature: relies on engineering/computer science",true],["Uncertainty: you were unsure of capability, method or design",v('pct')>0],["Process of experimentation: you tested alternatives",v('pct')>=25]];
-  $('check').innerHTML=tests.map(t=>`<li class="${t[1]?'ok':'no'}">${t[1]?'&#10003;':'&#10007;'} ${t[0]}</li>`).join('');
+  const v=id=>+$(id).value||0,S=STATE_CREDITS[$('st').value];$('pctV').textContent=$('pct').value;
+  const wages=v('eng')*v('sal'),qre=wages*v('pct')/100+v('con')*0.65+v('sup'),prior=v('prior');
+  const fed=(prior>0?Math.max(0,qre-prior*0.5)*0.14:qre*0.06)*0.79;
+  const smallOk=v('rev')<5e6&&(new Date().getFullYear()-v('fy'))<5;
+  const payroll=smallOk?Math.min(fed,500000,wages*0.0765):0;
+  let st=0;if(S.rate){st=S.tierCap?Math.min(qre,S.tierCap)*S.rate/100+Math.max(0,qre-S.tierCap)*S.rate2/100:qre*S.rate/100;if(S.cap)st=Math.min(st,S.cap);}
+  const total=fed+st;countTo($('total'),total,fmt,500);
+  const parts=[["Usable vs payroll tax now",payroll,"#8fb3f5"],["Federal credit (carry forward)",fed-payroll,"#52e0b0"],["State credit",st,"#f5b25a"]];
+  $('stack').innerHTML=parts.map(p=>`<i style="width:${total?p[1]/total*100:0}%;background:${p[2]}"></i>`).join('');
+  $('lg').innerHTML=parts.map(p=>`<span><i style="background:${p[2]}"></i>${p[0]}: <b>${fmt(p[1])}</b></span>`).join('');
+  $('msg').innerHTML=(smallOk?`Looks like a <b style="color:#fff">qualified small business</b>: up to ${fmt(payroll)} can offset payroll taxes this year, even without profit.`:"The payroll offset needs under $5M receipts and first revenue within 5 years; otherwise the credit carries forward against income tax.")+`<br><br><b style="color:#fff">${S.name}:</b> ${S.refund}. ${S.note}<br>Estimated qualified research expenses: <b style="color:#fff">${fmt(qre)}</b>`;
+  const tests=[["Permitted purpose",true],["Technological in nature",true],["Technical uncertainty",v('pct')>0],["Process of experimentation",v('pct')>=25]];
+  $('check').innerHTML=tests.map(t=>`<span class="chip ${t[1]?'ok':'no'}">${t[1]?'&#10003;':'&#10007;'} ${t[0]}</span>`).join('');
 }
 document.querySelectorAll('#est input,#est select').forEach(e=>e.addEventListener('input',calc));calc();
 
-// map
-let sel=null;
+// state explorer
+let sel=null,lens='opp';
+const U=()=>CACHE.uni.states,SB=()=>CACHE.sbir.states,RGB=DARK?"82,224,176":"10,122,90";
+$('tileScale').style.background=`linear-gradient(90deg,rgba(${RGB},.12),rgba(${RGB},1))`;
+function oppIndex(){const keys=Object.keys(STATE_CREDITS),rm=Math.max(...keys.map(k=>STATE_CREDITS[k].rate)),sm=Math.max(...keys.map(k=>SB()[k]||0)),um=Math.max(...keys.map(k=>U()[k]||0)),o={};
+  keys.forEach(k=>{o[k]=Math.round(40*STATE_CREDITS[k].rate/rm+30*Math.sqrt((SB()[k]||0)/sm)+30*Math.sqrt((U()[k]||0)/um));});return o;}
+function val(k,m){return m==='opp'?oppIndex()[k]:m==='rate'?(STATE_CREDITS[k]?STATE_CREDITS[k].rate:null):m==='sbir'?(SB()[k]||0):(U()[k]||0);}
 function drawMap(){
-  const m=$('metric').value, sb=CACHE.sbir.states;
-  const val=k=>m==='rate'?(STATE_CREDITS[k]?STATE_CREDITS[k].rate:null):(sb[k]||0);
-  const vals=Object.keys(TILES).map(val).filter(x=>x!=null),mx=Math.max(...vals,1);
-  $('sbirBadge').textContent="USAspending snapshot "+CACHE.sbir.fetched;
-  let h='';const cells={};
-  for(const k in TILES){const [c,r]=TILES[k],x=val(k);
-    const a=x==null?0:Math.max(.12,x/mx),bg=x==null?'var(--line)':`rgba(11,107,79,${.15+a*.8})`;
-    h+=`<div class="tile ${sel===k?'sel':''}" style="grid-column:${c+1};grid-row:${r+1};background:${bg};${a>.6?'color:#fff':''}" onclick="pick('${k}')" title="${STATE_NAMES[k]}">${k}</div>`;}
+  const ks=Object.keys(TILES),vs=ks.map(k=>val(k,lens)).filter(x=>x!=null),mx=Math.max(...vs,1);let h='';
+  ks.forEach(k=>{const [c,r]=TILES[k],x=val(k,lens),a=x==null?0:.1+.9*Math.sqrt(x/mx),bg=x==null?'var(--line)':`rgba(${RGB},${a})`;
+    h+=`<div class="tile ${sel===k?'sel':''}" style="grid-column:${c+1};grid-row:${r+1};background:${bg};color:${a>.55?(DARK?'#07130f':'#fff'):'var(--ink)'}" onclick="pick('${k}')" title="${STATE_NAMES[k]}">${k}</div>`;});
   $('tiles').innerHTML=h;
+  const live=CACHE.sbir.fetched==="LIVE";
+  $('badge').textContent=lens==='opp'?"Modeled estimate":lens==='rate'?"Curated table":lens==='sbir'?(live?"Live from USAspending":"Snapshot "+CACHE.sbir.fetched):"USAspending snapshot";
+  $('badge').className="pill "+(lens==='opp'?"est":lens==='sbir'&&live?"live":"");
 }
-function pick(k){sel=k;drawMap();const S=STATE_CREDITS[k],sb=CACHE.sbir.states[k]||0;
-  $('detail').innerHTML=`<h3 style="margin-top:0">${STATE_NAMES[k]}</h3>`+(S?`<p><b>${S.rate?S.rate+"% credit":"No standard state R&D credit"}</b><br>${S.refund}</p><p>${S.note}</p>`:`<p>Not yet in our curated table. Check the state revenue department.</p>`)+`<p>SBIR/STTR-related awards, FY24-25: <b>${fmt(sb)}</b></p><button onclick="$('st').value='${k}';if(STATE_CREDITS['${k}']){calc();show('est')}" style="padding:8px 14px;border-radius:8px;border:0;background:var(--acc);color:#fff;font:inherit;cursor:pointer">Use this state in estimator</button>`;}
-$('metric').onchange=drawMap;drawMap();
-// live USAspending refresh (CORS-enabled); falls back silently to the cached snapshot
+const rankOf=(k,src)=>Object.keys(src).filter(x=>STATE_NAMES[x]&&x!=='DC').sort((p,q)=>src[q]-src[p]).indexOf(k)+1;
+function pick(k){sel=k;drawMap();const S=STATE_CREDITS[k],o=S?oppIndex()[k]:null,e=ESTAB[k];
+  $('detail').innerHTML=`<div class="kicker">${S&&S.rate?S.rate+"% state credit":"State profile"}</div><h3 style="font-size:30px;margin:4px 0 0">${STATE_NAMES[k]}</h3>
+  <div class="statgrid">
+    <div><b>${money(SB()[k]||0)}</b><small>SBIR/STTR $ &middot; #${rankOf(k,SB())} nationally</small></div>
+    <div><b>${money(U()[k]||0)}</b><small>University NSF+NIH $ &middot; #${rankOf(k,U())}</small></div>
+    <div><b>${e?e[0].toLocaleString():"–"}</b><small>R&amp;D-intensive establishments (Census)</small></div>
+    <div><b style="color:var(--gold)">${o!=null?o+"/100":"–"}</b><small>Opportunity index (modeled)</small></div>
+  </div>`+
+  (S?`<p style="margin:0 0 6px"><b>${S.refund}</b></p><p class="sub">${S.note}</p><button class="btn sm" onclick="$('st').value='${k}';calc();show('est')">Use ${S.name} in the estimator &rarr;</button>`:`<p class="sub">Not yet in our curated credit table. Check the state revenue department.</p>`);}
+$('lenses').addEventListener('click',e=>{if(!e.target.dataset.m)return;lens=e.target.dataset.m;document.querySelectorAll('#lenses .lens').forEach(b=>b.classList.toggle('on',b===e.target));drawMap();});
+drawMap();
 fetch("https://api.usaspending.gov/api/v2/search/spending_by_geography/",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({scope:"place_of_performance",geo_layer:"state",filters:{keywords:["SBIR","STTR"],award_type_codes:["02","03","04","05","A","B","C","D"],time_period:[{start_date:"2023-10-01",end_date:"2025-09-30"}]}})})
- .then(r=>r.json()).then(j=>{const s={};j.results.forEach(x=>s[x.shape_code]=Math.round(x.aggregated_amount));CACHE.sbir.states=s;CACHE.sbir.fetched="LIVE";drawMap();$('sbirBadge').className="pill live";$('sbirBadge').textContent="Live from USAspending";}).catch(()=>{});
+ .then(r=>r.json()).then(j=>{const s={};j.results.forEach(x=>s[x.shape_code]=Math.round(x.aggregated_amount));CACHE.sbir.states=s;CACHE.sbir.fetched="LIVE";
+   $('liveDot').classList.add('live');$('liveTxt').textContent="Live: USAspending connected";drawMap();if(sel)pick(sel);}).catch(()=>{});
 
-// feed: live Grants.gov with cached fallback
-async function loadFeed(){
-  const v=$('fv').value;$('feedBadge').textContent="loading...";$('feedBadge').className="pill";
-  let d,live=false;
-  try{
-    const c=new AbortController();setTimeout(()=>c.abort(),8000);
-    const r=await fetch("https://api.grants.gov/v1/api/search2",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({keyword:KW[v],oppStatuses:"forecasted|posted",rows:12}),signal:c.signal});
-    const j=await r.json();d={hitCount:j.data.hitCount,hits:j.data.oppHits};live=true;
-  }catch(e){d=CACHE.grants.verticals[v];}
-  $('feedBadge').textContent=live?"Live from Grants.gov":"Cached snapshot "+CACHE.grants.fetched;$('feedBadge').className="pill"+(live?" live":"");
-  $('feedN').textContent=d.hitCount+" open or forecasted opportunities match. Showing the first "+d.hits.length+".";
-  $('opps').innerHTML=d.hits.map(o=>`<div class="opp"><a target="_blank" rel="noopener" href="https://www.grants.gov/search-results-detail/${o.id}">${o.title}</a><small>${o.agency||o.agencyCode} &middot; ${o.number} &middot; closes ${o.closeDate||"rolling/TBD"}</small></div>`).join('');
+// who claims
+function drawWho(){
+  const top=[...SECTORS].sort((a,b)=>b[2]-a[2]).slice(0,8);
+  $('whoCredit').innerHTML=hb(top.map(s=>[s[0],s[2]]),"",x=>money(x*1000));
+  $('whoRet').innerHTML=hb([...SECTORS].sort((a,b)=>b[1]-a[1]).slice(0,8).map(s=>[s[0],s[1]]),"blue",x=>x.toLocaleString());
+  $('whoAvg').innerHTML=hb(top.map(s=>[s[0],s[2]*1000/s[1]]).sort((a,b)=>b[1]-a[1]),"gold",money);
 }
-$('fv').onchange=loadFeed;
+// hurdles
+$('chal').innerHTML=CHALLENGES.map((c,i)=>`<div class="hcard"><div class="n">${i+1}</div><div><b>${c[0]}</b><p>${c[1]}</p><div class="fix">&rarr; ${c[2]}</div></div></div>`).join('');
+// universities
+const cleanU=n=>n.replace(/^(The |Regents Of The |Trustees Of The )/i,'').replace(/, The$/i,'').replace('Leland Stanford Junior University','Stanford University').replace(/^Yale Univ$/,'Yale University');
+$('topUni').innerHTML=hb(CACHE.uni.top.map(t=>[cleanU(t[0]),t[1]]),"",money);
+$('topUniSt').innerHTML=hb(Object.entries(U()).filter(e=>STATE_NAMES[e[0]]).sort((a,b)=>b[1]-a[1]).slice(0,10).map(e=>[STATE_NAMES[e[0]],e[1]]),"blue",money);
+
+// live funding feed
+let vert='ai';
+$('vLenses').innerHTML=Object.entries(VERTS).map(([k,v])=>`<button class="lens ${k===vert?'on':''}" data-m="${k}">${v}</button>`).join('');
+$('vLenses').addEventListener('click',e=>{if(!e.target.dataset.m)return;vert=e.target.dataset.m;document.querySelectorAll('#vLenses .lens').forEach(b=>b.classList.toggle('on',b===e.target));loadFeed();});
+async function loadFeed(){
+  $('feedBadge').textContent="loading…";$('feedBadge').className="pill";let d,live=false;
+  try{const c=new AbortController();setTimeout(()=>c.abort(),6000);
+    const r=await fetch("https://api.grants.gov/v1/api/search2",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({keyword:KW[vert],oppStatuses:"forecasted|posted",rows:12}),signal:c.signal});
+    const j=await r.json();d={hitCount:j.data.hitCount,hits:j.data.oppHits};live=true;}catch(e){d=CACHE.grants.verticals[vert];}
+  $('feedBadge').textContent=live?"Live from Grants.gov":"Grants.gov snapshot "+CACHE.grants.fetched;$('feedBadge').className="pill"+(live?" live":"");
+  $('feedN').innerHTML=`<b style="color:var(--ink)">${d.hitCount.toLocaleString()}</b> open or forecasted opportunities match. Showing the first ${d.hits.length}.`;
+  $('opps').innerHTML=d.hits.map(o=>`<div class="opp"><div class="ag">${esc(o.agencyCode||"").split('-')[0]}</div><div><a target="_blank" rel="noopener" href="https://www.grants.gov/search-results-detail/${esc(o.id)}">${esc(o.title)}</a><small>${esc(o.agency||o.agencyCode)} &middot; ${esc(o.number)}</small></div><div class="closes">${o.closeDate?"Closes "+esc(o.closeDate):"Rolling / TBD"}</div></div>`).join('');
+}
+
+// heatmap (d3 + us-atlas, loaded on first open)
+let heatReady=false,heatSvg=null,heatM='both';
+const hv=c=>c?(heatM==='sbir'?c[1]:heatM==='uni'?c[2]:c[1]+c[2]):0;
+function loadScript(u){return new Promise((res,rej)=>{const s=document.createElement('script');s.src=u;s.onload=res;s.onerror=rej;document.head.appendChild(s);});}
+async function drawHeat(){
+  try{
+    if(!heatReady){await loadScript("https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js");await loadScript("https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js");
+      const us=await (await fetch("https://cdn.jsdelivr.net/npm/us-atlas@3.0.1/counties-albers-10m.json")).json(),path=d3.geoPath(),tip=$('tip'),box=$('heatBox');
+      const svg=d3.create("svg").attr("viewBox","0 0 975 610").style("width","100%").style("height","auto").style("display","block");
+      svg.append("g").selectAll("path").data(topojson.feature(us,us.objects.counties).features).join("path").attr("class","cty").attr("d",path).style("stroke","rgba(0,0,0,.25)").style("stroke-width",".3")
+        .on("mousemove",(e,d)=>{const c=CACHE.county[d.id],b=box.getBoundingClientRect();tip.innerHTML=c?`<b>${esc(c[0])}</b>SBIR/STTR ${money(c[1])} &middot; Universities ${money(c[2])}`:`<b>${esc(d.properties.name)}</b>No awards in window`;
+          tip.style.opacity=1;tip.style.left=Math.min(e.clientX-b.left+14,b.width-260)+"px";tip.style.top=(e.clientY-b.top+14)+"px";})
+        .on("mouseleave",()=>tip.style.opacity=0);
+      svg.append("path").datum(topojson.mesh(us,us.objects.states,(a,b)=>a!==b)).style("fill","none").style("stroke","rgba(255,255,255,.35)").style("stroke-width",".7").attr("d",path);
+      $('heatMap').innerHTML="";$('heatMap').appendChild(svg.node());heatSvg=svg;heatReady=true;}
+    const col=d3.scaleSequentialLog([1e5,1e9],d3.interpolateRgbBasis(["#3a2a14","#8a5418","#e0952f","#ffe2a8"])).clamp(true);
+    heatSvg.selectAll("path.cty").transition().duration(500).style("fill",d=>{const x=hv(CACHE.county[d.id]);return x>0?col(Math.max(x,1e5)):"#16221d";});
+  }catch(e){$('heatMap').innerHTML='<p class="sub" style="color:#a9c4b8;padding:40px;text-align:center">The map library could not load (offline?). Top counties are listed below.</p>';}
+  $('topCounty').innerHTML=hb(Object.values(CACHE.county).map(c=>[c[0],hv(c)]).sort((a,b)=>b[1]-a[1]).slice(0,8),"gold",money);
+}
+$('heatLenses').addEventListener('click',e=>{if(!e.target.dataset.m)return;heatM=e.target.dataset.m;document.querySelectorAll('#heatLenses .lens').forEach(b=>b.classList.toggle('on',b===e.target));drawHeat();});
+const CR=CACHE.corr;
+$('corr').innerHTML=[["Univ $ vs R&D-intensive firms","uni_est",""],["Univ $ vs SBIR/STTR $","uni_sbir",""],["Population vs univ $ (size effect)","pop_uni","blue"],["Univ $ vs R&D firms, per person","uni_est_pc","gold"],["Univ $ vs SBIR $, per person","uni_sbir_pc","gold"]]
+  .map(([l,k,c])=>`<div class="hbar ${c}" style="grid-template-columns:minmax(140px,220px) 1fr 70px"><span>${l}</span><div class="t"><i style="width:${CR[k][0]*100}%"></i></div><b>r = ${CR[k][0].toFixed(2)}</b></div>`).join('');
+
+// audit trail builder (localStorage only; wrapped for private mode)
+const AK="ff_audit_v1";let projects=[];try{projects=JSON.parse(localStorage.getItem(AK)||"[]")}catch(e){}
+const AF=['aName','aPurpose','aUnc','aExp','aPeople','aCost','aEv'];
+function scoreP(p){const ev=(p.aEv||"").split(",").filter(x=>x.trim()).length,dated=/\d{4}-\d{2}-\d{2}/.test(p.aEv||"");
+  const items=[["Business component identified",!!p.aName],["Permitted purpose described",(p.aPurpose||"").length>10],["Technical uncertainty stated",(p.aUnc||"").length>10],["Alternatives tested (experimentation)",(p.aExp||"").length>10],["People, roles and % time",/%/.test(p.aPeople||"")],["Expenses broken out",/\d/.test(p.aCost||"")],["2+ evidence links",ev>=2],["Evidence is dated (contemporaneous)",dated],["Not grant or customer funded",!p.aFunded]];
+  return [Math.round(items.filter(i=>i[1]).length/items.length*100),items];}
+function cur(){const p={};AF.forEach(f=>p[f]=$(f).value);p.aFunded=$('aFunded').checked;return p;}
+function liveScore(){const [s,it]=scoreP(cur()),c=s>=80?'var(--acc)':s>=50?'var(--gold)':'var(--red)';
+  $('aScore').textContent=s+"%";$('aScore').style.color=c;$('ringFg').style.stroke=c;$('ringFg').style.strokeDashoffset=389.6*(1-s/100);
+  $('aCheck').innerHTML=it.map(i=>`<li class="${i[1]?'ok':'no'}"><span class="ic">${i[1]?'&#10003;':''}</span>${i[0]}</li>`).join('');}
+function saveP(){try{localStorage.setItem(AK,JSON.stringify(projects))}catch(e){}}
+function listP(){$('aList').innerHTML=projects.length?projects.map(p=>{const s=scoreP(p)[0];return `<div class="proj"><div><b>${esc(p.aName)}</b><small>${esc(p.aUnc)}</small></div><span class="pill ${s>=80?'live':'est'}">${s}% ready</span></div>`;}).join(''):'<p class="sub" style="margin:10px 0 0">No projects yet. Log one to start your audit trail.</p>';}
+AF.forEach(f=>$(f).addEventListener('input',liveScore));$('aFunded').onchange=liveScore;
+$('aSave').onclick=()=>{const p=cur();if(!p.aName)return $('aName').focus();p.date=new Date().toISOString().slice(0,10);projects.push(p);saveP();listP();AF.forEach(f=>$(f).value='');$('aFunded').checked=false;liveScore();};
+$('aClear').onclick=()=>{if(confirm("Clear all projects saved in this browser?")){projects=[];saveP();listP();}};
+$('aExport').onclick=()=>{if(!projects.length)return;const md="# R&D credit project log\n\n"+projects.map(p=>`## ${p.aName}\n- Logged: ${p.date}\n- Purpose: ${p.aPurpose}\n- Uncertainty: ${p.aUnc}\n- Experiments: ${p.aExp}\n- People: ${p.aPeople}\n- Expenses (wages / supplies / contractors): ${p.aCost}\n- Evidence: ${p.aEv}\n- Funded by grant/customer: ${p.aFunded?'Yes':'No'}\n- Readiness: ${scoreP(p)[0]}%\n`).join("\n");
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([md],{type:'text/markdown'}));a.download="rd-project-log.md";a.click();};
+liveScore();listP();
+
+// deep link (e.g. #heat)
+const h=location.hash.slice(1);if(h&&$(h)&&$(h).classList.contains('view'))show(h);
 </script>
 </body>
 </html>
