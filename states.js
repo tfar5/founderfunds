@@ -2,12 +2,12 @@
 // Compiled Oct 2026 from KPMG / Aprio / CLA state R&D credit summaries. Verify with the state revenue dept before filing.
 // rate = % of QREs for a startup with no base-period history; cap = $ limit on credit (if known)
 window.STATE_CREDITS = {
-  CA: {name:"California", rate:3, refund:"Non-refundable; carries forward indefinitely", note:"2025+ conforms to federal ASC at 3%; legacy 15% regular method also exists."},
-  TX: {name:"Texas", rate:4.36, refund:"Franchise-tax credit (no income tax)", note:"Startups with no base: 4.36% flat (5.45% with a university). Applies against franchise tax."},
+  CA: {name:"California", rate:1.3, ascRate:3, refund:"Non-refundable; carries forward indefinitely", note:"From 2025 California offers an ASC: 1.3% of QREs with no R&D in the prior 3 years, otherwise 3% above half the 3-year average (SB 711). The 15% regular method still exists."},
+  TX: {name:"Texas", rate:4.361, ascRate:8.722, refund:"Franchise-tax credit, capped at 50% of franchise tax owed; 20-report carryforward", note:"From 2026 (SB 2206): 4.361% with no prior R&D, otherwise 8.722% above half the 3-year average (higher with a university). Most startups owe little franchise tax, so expect to bank it."},
   MA: {name:"Massachusetts", rate:10, refund:"Refundable only for certified life-sciences cos.", note:"Life Sciences Tax Incentive Program can refund up to 90% of unused credit."},
   AZ: {name:"Arizona", rate:24, tierCap:2500000, rate2:15, refund:"Refundable program for <150 employees (lottery, $100K cap)", note:"24% on first $2.5M of QREs, 15% above. Refundable slots are limited and randomly selected."},
-  MN: {name:"Minnesota", rate:10, tierCap:2000000, rate2:2.5, refund:"Partially refundable (19.2% in 2025, 25% from 2026)", note:"10% on first $2M of QREs, 2.5% above. Refund must be elected on a timely return."},
-  MI: {name:"Michigan", rate:15, cap:250000, refund:"New refundable credit for <250 employees (tax years 2025+)", note:"Capped at $250K/yr per taxpayer; applications start Jan 2026."},
+  MN: {name:"Minnesota", rate:10, cash:0.25, tierCap:2000000, rate2:2.5, refund:"Partially refundable (19.2% in 2025, 25% from 2026)", note:"10% on first $2M of QREs, 2.5% above. Refund must be elected on a timely return."},
+  MI: {name:"Michigan", rate:15, baseRate:3, cash:1, cap:250000, refund:"New refundable credit for <250 employees (tax years 2025+)", note:"Under 250 employees: 3% of QREs up to your base, 15% above it, capped at $250K/yr and refundable (statewide $100M cap)."},
   CT: {name:"Connecticut", rate:6, refund:"Cash exchange: 33% standard, 90% for small biotech", note:"Incremental credit 1-6%; unused credits can be exchanged for cash."},
   NJ: {name:"New Jersey", rate:10, refund:"Non-refundable; NOL/credit sale program for tech & biotech startups", note:"Technology Business Tax Certificate Transfer Program lets startups sell NOLs/credits for cash."},
   PA: {name:"Pennsylvania", rate:10, refund:"Transferable (sell credits)", note:"Small businesses can sell credits; annual statewide cap applies."},

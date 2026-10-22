@@ -186,23 +186,23 @@ details summary{cursor:pointer;font-weight:600}
   <div class="hero-grid">
     <div>
       <div class="eyebrow glass">Public data &middot; R&amp;D credits &middot; grants</div>
-      <h1>Startups do the R&amp;D. <em>Big companies get the credit.</em></h1>
-      <p class="lede">The R&amp;D tax credit is open to startups, yet it flows overwhelmingly to large corporations. FounderFunds turns scattered IRS, Census, state and federal-award data into a 30-second answer: what you may be owed, and how to make the claim stick.</p>
-      <div class="cta"><button class="btn" onclick="show('est')">Estimate my money &rarr;</button><button class="btn glassy" onclick="show('gapv')">See the gap</button></div>
+      <h1>Your R&amp;D can pay you back. <em>See how much, and when.</em></h1>
+      <p class="lede">The federal R&amp;D credit is turning into a software credit: companies in the IRS Information sector tripled their claims from 2015 to 2022. Startups with under $5M in revenue can use it against payroll tax even with no profit. FounderFunds turns IRS, Census, state and federal-award data into a 30-second estimate of the cash you could get, when it arrives, and the records that make it stick.</p>
+      <div class="cta"><button class="btn" onclick="demo()">Run the 2-minute demo &rarr;</button><button class="btn glassy" onclick="show('est')">Estimate my own</button></div>
     </div>
     <div class="gapcard">
-      <h3>The startup gap &middot; IRS 2013</h3>
-      <div class="gaprow"><div class="lbl"><span>Companies under $5M are this share of claimants</span><b id="hClaim">0%</b></div><div class="track"><i id="hClaimBar" style="background:linear-gradient(90deg,#3767c4,#8fb3f5)"></i></div></div>
-      <div class="gaprow"><div class="lbl"><span>&hellip;but get this share of the dollars</span><b id="hCredit">0%</b></div><div class="track"><i id="hCreditBar" style="background:linear-gradient(90deg,#c9711a,#f5b25a)"></i></div></div>
-      <div class="gaprow"><div class="lbl"><span>Companies with $250M+ get</span><b id="hBig">0%</b></div><div class="track"><i id="hBigBar" style="background:linear-gradient(90deg,#0a7a5a,#2fbf8f)"></i></div></div>
-      <small>Source: IRS Statistics of Income, Form 6765 by size of business receipts (C-corporations).</small>
+      <h3>The credit is shifting to software &middot; IRS 2015 &rarr; 2022</h3>
+      <div class="gaprow"><div class="lbl"><span>Companies claiming: 19,701 &rarr; 34,414</span><b id="hClaim">0</b></div><div class="track"><i id="hClaimBar" style="background:linear-gradient(90deg,#3767c4,#8fb3f5)"></i></div></div>
+      <div class="gaprow"><div class="lbl"><span>Credit claimed: $14.4B &rarr; $42.6B</span><b id="hCredit">0</b></div><div class="track"><i id="hCreditBar" style="background:linear-gradient(90deg,#c9711a,#f5b25a)"></i></div></div>
+      <div class="gaprow"><div class="lbl"><span>Information-sector claimants: 2,264 &rarr; 6,715</span><b id="hBig">0</b></div><div class="track"><i id="hBigBar" style="background:linear-gradient(90deg,#0a7a5a,#2fbf8f)"></i></div></div>
+      <small>Bars show the 2015 level as a share of 2022. Source: IRS SOI Publication 16, Table 14 (Form 6765), tax years 2015 and 2022. C-corporations only.</small>
     </div>
   </div>
   <div class="kpis">
-    <div class="kpi"><span class="tag">IRS 2014</span><b data-count="17824">0</b><small>C-corporations claimed the federal R&amp;D credit</small></div>
-    <div class="kpi g"><span class="tag">IRS 2014</span><b>$12.6B</b><small>claimed, <span id="mfgShare"></span> of it by manufacturers</small></div>
-    <div class="kpi"><span class="tag">Model</span><b id="kUnclaimed">0</b><small>eligible firms likely not claiming (adjustable)</small></div>
-    <div class="kpi g"><span class="tag">Tax code</span><b>$500K</b><small>a year a startup can use against payroll tax, even with no profit</small></div>
+    <div class="kpi"><span class="tag">IRS 2022</span><b data-count="34414">0</b><small>C-corporations claimed the federal R&amp;D credit</small></div>
+    <div class="kpi g"><span class="tag">IRS 2022</span><b>$42.6B</b><small>claimed: <span id="mfgShare"></span> by manufacturers, 26% by information &amp; software</small></div>
+    <div class="kpi"><span class="tag">Estimate</span><b id="kSeed">$0</b><small>cash a 6-engineer seed team could get against payroll tax (see Estimate)</small></div>
+    <div class="kpi g"><span class="tag">IRC &sect;41(h)</span><b>Up to $500K</b><small>a year against payroll tax, for companies under $5M revenue and within 5 years of first revenue</small></div>
   </div>
 </header>
 
@@ -226,7 +226,7 @@ details summary{cursor:pointer;font-weight:600}
     <h3>Why founders don't claim</h3>
     <p class="sub">Three reasons come up again and again in practitioner guidance.</p>
     <div class="why">
-      <div><b>"That's for big companies"</b><span>Most dollars go to established manufacturers. The startup payroll-tax route is far less known.</span></div>
+      <div><b>"That's for big companies"</b><span>Most dollars still go to large manufacturers. The startup payroll-tax route is far less known.</span></div>
       <div><b>"The paperwork will kill us"</b><span>The four-part test, contemporaneous records and audit risk scare off small teams.</span></div>
       <div><b>"Where would I even look?"</b><span>The IRS, 50 state revenue departments, SBIR agencies and universities each publish separately.</span></div>
     </div>
@@ -235,13 +235,13 @@ details summary{cursor:pointer;font-weight:600}
 
 <!-- STARTUP GAP -->
 <section class="view" id="gapv">
-  <div class="vhead"><div><div class="kicker">Understand &middot; Startup gap</div><h2>45% of claimants, 4.6% of the money</h2><p>IRS research-credit claims by company size, tax year 2013 (latest published breakdown).</p></div>
-    <div class="takeaway"><b>Takeaway</b>Small companies do claim, but the credit's dollars flow almost entirely to the largest corporations.</div></div>
+  <div class="vhead"><div><div class="kicker">Understand &middot; Startup gap</div><h2>45% of claimants, 4.6% of the money</h2><p>IRS research-credit claims by company size, tax year 2013. The IRS has not published a size breakdown since, so this is context, not today's picture.</p></div>
+    <div class="takeaway"><b>Takeaway</b>The credit is a percentage of R&amp;D spend, so dollars follow big budgets. The real gap is small companies that qualify and never file.</div></div>
   <div class="card">
     <h3>Share of claimants vs share of credit dollars</h3>
     <div class="legend2"><span><i style="background:var(--blue)"></i>share of claimants</span><span><i style="background:var(--gold)"></i>share of credit $</span></div>
     <div id="sizeBars"></div>
-    <div class="note">C-corporations only. Many startups are LLCs or S-corps and aren't counted, and the payroll-tax offset for startups arrived in 2016, after this data. This is still the most recent public breakdown by size.</div>
+    <div class="note">C-corporations only. Many startups are LLCs or S-corps and aren't counted, and the payroll-tax offset for startups arrived in 2016, after this data. The "Under $25K" receipts band also includes large pre-revenue companies and holding companies. This is still the most recent public breakdown by size.</div>
   </div>
   <div class="card">
     <div class="split">
@@ -249,8 +249,8 @@ details summary{cursor:pointer;font-weight:600}
         <h3>How many eligible companies actually claim?</h3>
         <p class="sub">No public source measures this, so here's a transparent model. Move the assumptions.</p>
         <label>Share of R&amp;D-intensive establishments likely eligible: <b id="shareV"></b>%</label><input id="share" type="range" min="10" max="100" value="50">
-        <label>Companies claiming nationally</label><input id="claimants" type="number" value="16624" step="1000">
-        <p class="sub" style="font-size:13px;margin-top:10px">Default is the IRS count of C-corp claimants (2013). Including S-corps and partnerships would raise it, so read the result as a lower bound.</p>
+        <label>Companies claiming nationally</label><input id="claimants" type="number" value="34414" step="1000" min="0">
+        <p class="sub" style="font-size:13px;margin-top:10px">Default is the IRS count of C-corp claimants (tax year 2022). Including S-corps and partnerships would raise it, so treat the claim rate as a lower bound. Census counts establishments, not firms, so the "not claiming" figure is a rough range, not a measurement.</p>
         <div style="margin-top:12px"><span class="pill est">Modeled estimate</span></div>
         <div class="big" id="rateOut" style="color:var(--acc);margin-top:14px">0%</div>
         <div class="sub" style="margin-top:4px">estimated national claim rate</div>
@@ -275,14 +275,15 @@ details summary{cursor:pointer;font-weight:600}
 
 <!-- WHO CLAIMS -->
 <section class="view" id="who">
-  <div class="vhead"><div><div class="kicker">Understand &middot; Who claims</div><h2>Manufacturing takes the lion's share</h2><p>IRS Statistics of Income, Form 6765, tax year 2014 (latest sector table). C-corporations only.</p></div>
-    <div class="takeaway"><b>Takeaway</b>Professional and technical services file nearly as many claims as manufacturers but get a fraction of the dollars.</div></div>
+  <div class="vhead"><div><div class="kicker">Understand &middot; Who claims</div><h2>Manufacturing still leads. Software is catching up.</h2><p>IRS Statistics of Income, Publication 16 Table 14 (Form 6765), tax year 2022, the latest published. C-corporations only.</p></div>
+    <div class="takeaway"><b>Takeaway</b>Professional and technical services file the most claims (35%) but average about $400K each, against $2.3M for manufacturers.</div></div>
+  <div class="card"><h3>Claimants by sector, 2015 vs 2022</h3><p class="sub">Information (incl. software) claimants tripled; total claimants rose 75% and credit dollars roughly tripled.</p><div id="whoGrow" style="margin-top:12px"></div></div>
   <div class="grid2">
     <div class="card"><h3>Credit dollars by sector</h3><div id="whoCredit" style="margin-top:12px"></div></div>
     <div class="card"><h3>Number of claimants by sector</h3><div id="whoRet" style="margin-top:12px"></div></div>
   </div>
   <div class="card"><h3>Average credit per claimant</h3><p class="sub">Software and IT firms appear under Information and Professional services.</p><div id="whoAvg"></div>
-    <div class="note">Excludes S-corporations and partnerships, where many startups sit, and the data is 12 years old. It shows who the credit has historically served, not today's eligible population.</div></div>
+    <div class="note">Excludes S-corporations and partnerships, where many startups sit (they claim through passthrough credits). It shows who claims, not today's eligible population.</div></div>
 </section>
 
 <!-- HURDLES -->
@@ -314,6 +315,7 @@ details summary{cursor:pointer;font-weight:600}
 <section class="view" id="heat">
   <div class="vhead"><div><div class="kicker">Explore &middot; R&amp;D heatmap</div><h2>Where federal R&amp;D money clusters</h2><p>SBIR/STTR and university NSF/NIH awards by county, FY2024&ndash;25, from USAspending. Hover a county.</p></div>
     <div class="takeaway"><b>Takeaway</b>R&amp;D money concentrates in a few metro clusters, and founders near them have partners, talent and grant track records nearby.</div></div>
+  <div class="note" style="margin:0 0 16px">SBIR/STTR here is a keyword search of USAspending, not official SBIR.gov totals. Counties with military labs (for example Greene County, Ohio, home of Wright-Patterson AFB) rank high because work is performed there. SBIR/STTR lapsed from Oct 1, 2025 and was reauthorized on April 13, 2026 through Sept 30, 2031.</div>
   <div class="card">
     <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center">
       <div class="lensbar" id="heatLenses"><button class="lens on" data-m="both">All federal R&amp;D</button><button class="lens" data-m="sbir">SBIR/STTR (startups)</button><button class="lens" data-m="uni">Universities</button></div>
@@ -344,8 +346,8 @@ details summary{cursor:pointer;font-weight:600}
       <div><b>University partnerships</b><span>Payments to qualified universities for basic research can earn a separate credit under the regular method.</span></div>
       <div><b>Grant-funded work doesn't count</b><span>SBIR or customer-funded research can fall under the funded-research exclusion. Grants and credits don't always stack.</span></div>
       <div><b>Payroll-offset timing</b><span>Elected on the income tax return, then used via Form 8974 with quarterly payroll filings. Wrong order delays the cash.</span></div>
-      <div><b>Section 174 and 280C</b><span>How R&amp;D costs are expensed or capitalized, and the reduced-credit election, change the real value. Rules changed recently.</span></div>
-      <div><b>State conformity gaps</b><span>A federal claim doesn't mean a state claim. Many state credits are non-refundable, capped or lottery-based.</span></div>
+      <div><b>Section 174A and 280C</b><span>The 2025 tax law (OBBBA) restored immediate expensing of US R&amp;D costs from 2025. The small-business window to apply it back to 2022&ndash;24 closed July 6, 2026. You now choose between the full credit with a smaller deduction, or the reduced credit.</span></div>
+      <div><b>State conformity gaps</b><span>A federal claim doesn't mean a state claim. Many state credits are non-refundable, capped or lottery-based. California gives startups with no R&amp;D history 1.3%, and Texas caps its credit at half the franchise tax owed.</span></div>
       <div><b>Spinout data is thin</b><span>No consistent public data on university spinouts by state exists, so we don't score it. It's a real gap.</span></div>
       <div><b>Passthrough entities</b><span>Many startups are LLCs or S-corps, which public IRS sector tables exclude, hiding true claim patterns.</span></div>
       <div><b>Offshore R&amp;D</b><span>Research performed outside the US isn't qualified. Distributed teams can quietly shrink the base.</span></div>
@@ -355,7 +357,7 @@ details summary{cursor:pointer;font-weight:600}
 
 <!-- FEED -->
 <section class="view" id="feed">
-  <div class="vhead"><div><div class="kicker">Explore &middot; Live funding</div><h2>Open federal opportunities, by vertical</h2><p>From the Grants.gov Search API. Federal grants are national: eligibility, not location, is what varies.</p></div></div>
+  <div class="vhead"><div><div class="kicker">Explore &middot; Live funding</div><h2>Open federal opportunities, by vertical</h2><p>From the Grants.gov Search API. Federal grants are national: eligibility, not location, is what varies. SBIR/STTR is reauthorized through 2031 and adds a "strategic breakthrough" Phase II award of up to $30M. Remember: grant-funded work can't also count toward the R&amp;D credit.</p></div></div>
   <div class="card">
     <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center">
       <div class="lensbar" id="vLenses"></div><span class="pill" id="feedBadge">loading&hellip;</span>
@@ -367,36 +369,41 @@ details summary{cursor:pointer;font-weight:600}
 
 <!-- ESTIMATOR -->
 <section class="view" id="est">
-  <div class="vhead"><div><div class="kicker">Act &middot; Estimate</div><h2>What could your startup claim?</h2><p>Defaults model a seed-stage software team. Change anything and the numbers update instantly.</p></div>
+  <div class="vhead"><div><div class="kicker">Act &middot; Estimate</div><h2>What could your startup claim?</h2><p>Pick a sample company or enter your own numbers. Results update instantly.</p></div>
     <div class="takeaway"><b>Privacy</b>Everything is calculated in your browser. Nothing is sent or stored.</div></div>
+  <div class="lensbar" id="presets" style="margin-bottom:16px"><button class="lens on" data-p="seed">Seed SaaS &middot; 6 eng &middot; CA</button><button class="lens" data-p="bio">Series A biotech &middot; 25 staff &middot; MA</button><button class="lens" data-p="hw">Hardware &middot; 12 eng &middot; MI</button></div>
   <div class="split">
     <div class="card">
       <h3>Your startup</h3>
       <label>State</label><select id="st"></select>
-      <div class="row2"><div><label>Technical headcount (W-2)</label><input id="eng" type="number" value="6" min="0"></div><div><label>Average salary ($)</label><input id="sal" type="number" value="150000" step="5000"></div></div>
+      <div class="row2"><div><label>Technical headcount (W-2)</label><input id="eng" type="number" value="6" min="0"></div><div><label>Average salary ($)</label><input id="sal" type="number" value="150000" step="5000" min="0"></div></div>
       <label>% of their time on R&amp;D: <b id="pctV">70</b>%</label><input id="pct" type="range" value="70" min="0" max="100">
-      <div class="row2"><div><label>US contractors on R&amp;D ($/yr)</label><input id="con" type="number" value="80000" step="5000"></div><div><label>Cloud &amp; supplies ($/yr)</label><input id="sup" type="number" value="60000" step="5000"></div></div>
-      <div class="row2"><div><label>Gross receipts this year ($)</label><input id="rev" type="number" value="400000" step="50000"></div><div><label>First year with revenue</label><input id="fy" type="number" value="2024"></div></div>
-      <label>Prior 3-year average R&amp;D spend ($, 0 if new)</label><input id="prior" type="number" value="0" step="10000">
+      <div class="row2"><div><label>US contractors on R&amp;D ($/yr)</label><input id="con" type="number" value="80000" step="5000" min="0"></div><div><label>Cloud &amp; supplies ($/yr)</label><input id="sup" type="number" value="60000" step="5000" min="0"></div></div>
+      <div class="row2"><div><label>Gross receipts this year ($)</label><input id="rev" type="number" value="400000" step="50000" min="0"></div><div><label>First year with revenue</label><input id="fy" type="number" value="2024" min="1990" max="2100"></div></div>
+      <div class="row2"><div><label>Prior 3-year avg R&amp;D spend ($, 0 if new)</label><input id="prior" type="number" value="0" step="10000" min="0"></div><div><label>Monthly burn ($)</label><input id="burn" type="number" value="120000" step="10000" min="0"></div></div>
+      <label style="display:flex;gap:8px;align-items:center;font-size:14px;color:var(--ink)"><input type="checkbox" id="red280"> Take the reduced credit (Section 280C election)</label>
+      <p class="sub" style="font-size:13px;margin:6px 0 0">Since 2025 you can take the full credit and shrink your R&amp;D deduction instead. For a startup with losses, the full credit is usually worth more. Ask your CPA.</p>
     </div>
     <div>
       <div class="card result">
-        <div class="sub" style="margin:0">Estimated annual value</div>
+        <div class="sub" style="margin:0">Cash you could get from the payroll offset and refundable state credits</div>
         <div class="big" id="total">$0</div>
+        <div class="sub" id="runway" style="margin:2px 0 0;font-size:15px"></div>
         <div class="stack" id="stack"></div>
         <div class="lg" id="lg"></div>
         <p id="msg" class="sub" style="margin:16px 0 0;font-size:14px"></p>
       </div>
-      <div class="card"><h3>IRS four-part test</h3><p class="sub">Every project must pass all four.</p><div class="chips" id="check"></div></div>
-      <div class="note" style="margin:0">Estimates only: federal ASC method, 21% reduction election, no base period for new companies. Not tax advice. Confirm with a CPA and Form 6765.</div>
+      <div class="card"><h3>When the cash arrives</h3><div id="timeline" class="sub" style="margin-top:8px"></div></div>
+      <div class="card"><h3>IRS four-part test</h3><p class="sub">Every project must pass all four. Click each one you can show for your main project.</p><div class="chips" id="check"></div><p class="sub" id="checkMsg" style="margin:10px 0 0;font-size:14px"></p></div>
+      <div class="note" style="margin:0">Estimates only: federal alternative simplified credit (6% with no prior R&amp;D spend, otherwise 14% above half the 3-year average). Payroll offset uses technical payroll only, so it is a lower bound. State figures are headline rates. Not tax advice. Confirm with a CPA and Form 6765.</div>
     </div>
   </div>
 </section>
 
 <!-- AUDIT -->
 <section class="view" id="audit">
-  <div class="vhead"><div><div class="kicker">Act &middot; Audit trail</div><h2>Build the record before anyone asks for it</h2><p>Since 2022 the IRS requires refund claims to identify each business component, the research activities, who did them, what they sought to discover, and the expenses. Log each project as you go.</p></div>
-    <div class="takeaway"><b>Privacy</b>Saved only in this browser. Exported only when you click Export.</div></div>
+  <div class="vhead"><div><div class="kicker">Act &middot; Audit trail</div><h2>Build the record before anyone asks for it</h2><p>Since 2022 the IRS requires refund claims to identify each business component, the research activities, who did them, what they sought to discover, and the expenses. From tax year 2026, Form 6765 Section G asks for this project by project. Small businesses taking the payroll offset, and original returns with QREs of $1.5M or less and receipts of $50M or less, may skip Section G, but these records are still your audit defense. Log each project as you go.</p></div>
+    <div class="takeaway"><b>Privacy</b>Saved only in this browser, never uploaded. Exported only when you click Export. Delete it all any time.</div></div>
   <div class="split">
     <div class="card">
       <h3>Log a project</h3>
@@ -412,12 +419,13 @@ details summary{cursor:pointer;font-weight:600}
     </div>
     <div>
       <div class="card">
-        <h3 style="text-align:center">Audit readiness</h3>
+        <h3 style="text-align:center">Record completeness</h3>
+        <p class="sub" style="text-align:center;font-size:13px;margin:0">Checks that each field is filled in, not whether the IRS will accept it.</p>
         <div class="ring"><svg width="156" height="156" viewBox="0 0 150 150"><circle class="bgc" cx="75" cy="75" r="62"/><circle class="fg" id="ringFg" cx="75" cy="75" r="62" stroke-dasharray="389.6" stroke-dashoffset="389.6"/></svg><div id="aScore">0%</div></div>
         <ul class="clist" id="aCheck"></ul>
       </div>
       <div class="card">
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><h3 style="margin:0">Your projects</h3><span><button class="btn sm blue" id="aExport">Export for CPA</button> <button class="btn sm red" id="aClear">Clear</button></span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><h3 style="margin:0">Your projects</h3><span><button class="btn sm blue" id="aExport">Export for CPA</button> <button class="btn sm red" id="aClear">Delete my data</button></span></div>
         <div id="aList" style="margin-top:8px"></div>
       </div>
     </div>
@@ -427,14 +435,15 @@ details summary{cursor:pointer;font-weight:600}
 </main>
 
 <footer><div class="wrap"><div class="glass">
-  <span><b style="color:var(--ink)">FounderFunds</b> &middot; Built for the super{set} hackathon, Public Data APIs track. Not tax advice.</span>
+  <span><b style="color:var(--ink)">FounderFunds</b> &middot; Built for the super{set} hackathon, Public Data APIs track. <a href="deck.html">Slide deck</a>. Not tax advice.</span>
   <span>Sources: IRS SOI &middot; Census CBP &middot; USAspending.gov &middot; Grants.gov &middot; NSF NCSES &middot; KPMG / Aprio / CLA state summaries</span>
 </div></div></footer>
 
 <dialog id="dlg">
   <h3 style="margin-top:0;font-family:var(--display);font-size:26px;letter-spacing:-.03em">Data &amp; limits</h3>
   <ul>
-    <li><b>IRS SOI Form 6765:</b> sector table (2014) and claims by size of receipts (2013). C-corps only; the latest published.</li>
+    <li><b>IRS SOI Form 6765:</b> sector totals from Publication 16 Table 14, tax years 2015 and 2022 (latest), and claims by size of receipts (2013, the latest size breakdown). C-corps only.</li>
+    <li><b>Estimator rules:</b> federal ASC at 6% (no prior R&amp;D) or 14% above half the 3-year average, full credit unless you tick the 280C election; payroll offset capped at $250K against Social Security (6.2% up to the 2026 wage base of $184,500) plus $250K against Medicare (1.45%); usable from the first quarter after the income tax return is filed. California ASC is 1.3% with no prior R&amp;D (3% otherwise); Texas is 4.361% (8.722% with history) and capped at half the franchise tax owed.</li>
     <li><b>Census County Business Patterns 2022:</b> establishments in five R&amp;D-intensive industries as the eligible pool. Establishments are not firms, and industry is not eligibility.</li>
     <li><b>Claim-rate model and Opportunity index:</b> our own models with stated assumptions, not measured rates. No public data reports claimed-versus-eligible by state.</li>
     <li><b>USAspending.gov API:</b> SBIR/STTR keyword proxy (live by state, with cached fallback) and NSF + NIH awards to universities (snapshot), state and county. Not official SBIR or HERD totals.</li>
@@ -442,7 +451,7 @@ details summary{cursor:pointer;font-weight:600}
     <li><b>State credit table:</b> hand-compiled headline rates for 21 states; no public API exists. Rules change yearly.</li>
     <li><b>Correlations:</b> computed across 50 states. Correlation is not causation.</li>
     <li><b>Hurdles list:</b> practitioner-reported, not survey-measured.</li>
-    <li><b>Privacy:</b> calculator inputs never leave your browser. Audit-trail entries stay in this browser until you export them. No accounts, cookies or analytics.</li>
+    <li><b>Privacy:</b> calculator inputs never leave your browser. Audit-trail entries stay in this browser until you export them, and "Delete my data" erases them. The only network calls are public-data reads (USAspending, Grants.gov, map files) and they carry none of your inputs. No accounts, cookies or analytics.</li>
   </ul>
   <form method="dialog"><button class="btn">Close</button></form>
 </dialog>
@@ -457,8 +466,9 @@ const esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&g
 const VERTS={ai:"AI & software",bio:"Biotech & health",climate:"Climate & energy",hardware:"Hardware",fintech:"Fintech",ag:"Ag & food"};
 const KW={ai:"artificial intelligence software",bio:"biotechnology biomedical",climate:"clean energy climate",hardware:"advanced manufacturing hardware",fintech:"financial technology",ag:"agriculture food technology"};
 // IRS SOI 2014 Table 1: [sector, returns, credit $ thousands]
-const SECTORS=[["Manufacturing",6568,7426882],["Information (incl. software)",1842,2092539],["Professional & technical",5698,1252591],["Wholesale & retail",1410,1027230],["Finance & insurance",338,256725],["Mgmt of companies",744,145273],["Utilities",69,75531],["Construction",334,36910],["Mining",78,83816],["Various services",343,56426],["Admin & support",144,38785],["Transportation",85,31247],["Agriculture",111,9549],["Real estate",59,34089]];
-const TOTAL_CREDIT=12567596;
+// IRS SOI Pub 16 Table 14, tax year 2022: [sector, returns, credit $ thousands, returns in 2015]
+const SECTORS=[["Manufacturing",7627,17885813,6739],["Information (incl. software)",6715,10902231,2264],["Professional & technical",11881,4764517,6235],["Wholesale & retail",2291,4451377,1351],["Finance & insurance",1673,1742097,477],["Mgmt of companies",858,774893,695],["Various services",1777,476447,844],["Mining",88,345300,74],["Utilities",111,332995,81],["Admin & support",383,296534,143],["Transportation",185,261888,106],["Construction",352,176769,387],["Real estate",222,122402,101],["Agriculture",251,75291,203]];
+const TOTAL_CREDIT=42608554;
 const CHALLENGES=[
 ["Documentation created after the fact","Records reconstructed months later are the top audit weakness.","Keep a dated log of experiments, tickets and design decisions as you go."],
 ["Time tracking isn't tied to projects","Payroll and timesheet tools weren't built to map hours to R&D activities.","Tag tickets or sprints to projects; have engineers confirm R&D % quarterly."],
@@ -484,16 +494,16 @@ $('nav').addEventListener('click',e=>{if(e.target.dataset.v)show(e.target.datase
 $('limits').onclick=()=>$('dlg').showModal();
 // cursor-following specular highlight on glass panels
 document.addEventListener('pointermove',e=>{const el=e.target.closest&&e.target.closest('.card,.kpi,.gapcard,.hcard');if(!el)return;const r=el.getBoundingClientRect();el.style.setProperty('--mx',(e.clientX-r.left)+'px');el.style.setProperty('--my',(e.clientY-r.top)+'px');},{passive:true});
-function countTo(el,t,f=x=>Math.round(x).toLocaleString(),ms=1200){let s=null;const from=+el.dataset.v||0;el.dataset.v=t;const st=ts=>{s=s||ts;const p=Math.min(1,(ts-s)/ms),e=1-Math.pow(1-p,3);el.textContent=f(from+(t-from)*e);if(p<1)requestAnimationFrame(st)};requestAnimationFrame(st);}
+function countTo(el,t,f=x=>Math.round(x).toLocaleString(),ms=1200){let s=null;setTimeout(()=>{if(+el.dataset.v===t)el.textContent=f(t)},ms+150);const from=+el.dataset.v||0;el.dataset.v=t;const st=ts=>{s=s||ts;const p=Math.min(1,(ts-s)/ms),e=1-Math.pow(1-p,3);el.textContent=f(from+(t-from)*e);if(p<1)requestAnimationFrame(st)};requestAnimationFrame(st);}
 document.querySelectorAll('[data-count]').forEach(el=>countTo(el,+el.dataset.count));
-$('mfgShare').textContent=Math.round(7426882/TOTAL_CREDIT*100)+"%";
+$('mfgShare').textContent=Math.round(17885813/TOTAL_CREDIT*100)+"%";
 function hb(rows,cls,fmtv,max){const mx=max||Math.max(...rows.map(r=>r[1]),1);return rows.map(r=>`<div class="hbar ${cls}"><span title="${esc(r[0])}">${esc(r[0])}</span><div class="t"><i style="width:${r[1]/mx*100}%"></i></div><b>${fmtv(r[1])}</b></div>`).join('');}
 
 // hero gap + startup gap view
 const CL=CACHE.size.claimants,CRD=CACHE.size.credit,T1=CL[0][1],T2=CRD[0][1],sumR=(a,i,j)=>a.slice(i,j+1).reduce((s,r)=>s+r[1],0);
 const GAP={claim:sumR(CL,1,7)/T1*100,credit:sumR(CRD,1,7)/T2*100,big:CRD[12][1]/T2*100};
-setTimeout(()=>{countTo($('hClaim'),GAP.claim,x=>Math.round(x)+"%");countTo($('hCredit'),GAP.credit,x=>x.toFixed(1)+"%");countTo($('hBig'),GAP.big,x=>Math.round(x)+"%");
-  $('hClaimBar').style.width=GAP.claim+"%";$('hCreditBar').style.width=Math.max(GAP.credit,1.2)+"%";$('hBigBar').style.width=GAP.big+"%";},250);
+setTimeout(()=>{countTo($('hClaim'),75,x=>"+"+Math.round(x)+"%");countTo($('hCredit'),42608554/14356819,x=>x.toFixed(1)+"\u00d7");countTo($('hBig'),6715/2264,x=>x.toFixed(1)+"\u00d7");
+  $('hClaimBar').style.width=(19701/34414*100)+"%";$('hCreditBar').style.width=(14356819/42608554*100)+"%";$('hBigBar').style.width=(2264/6715*100)+"%";},250);
 function drawGap(){
   const bands=[["Under $1M",1,5],["$1M–$5M",6,7],["$5M–$50M",8,9],["$50M–$250M",10,11],["$250M+",12,12]];
   $('sizeBars').innerHTML=bands.map(b=>{const a=sumR(CL,b[1],b[2])/T1*100,c=sumR(CRD,b[1],b[2])/T2*100;
@@ -504,7 +514,7 @@ const ESTAB=Object.fromEntries(Object.entries(CACHE.cbp).map(([s,v])=>[s,[Object
 function model(){
   const sh=+$('share').value/100,c=+$('claimants').value||0;$('shareV').textContent=$('share').value;
   const tot=Object.values(ESTAB).reduce((a,x)=>a+x[0],0),elig=tot*sh,rate=Math.min(1,c/elig),un=Math.max(0,elig-c);
-  $('rateOut').textContent=(rate*100).toFixed(0)+"%";countTo($('kUnclaimed'),un,x=>"~"+Math.round(x/1000)+"K",600);
+  $('rateOut').textContent=(rate*100).toFixed(0)+"%";
   $('rateMsg').innerHTML=`${Math.round(elig).toLocaleString()} likely eligible establishments vs ${c.toLocaleString()} claimants: roughly <b>${Math.round(un).toLocaleString()} not claiming</b>. ${Math.round(Object.values(ESTAB).reduce((a,x)=>a+x[1],0)/tot*100)}% of the pool has fewer than 20 employees.`;
   const rows=Object.entries(ESTAB).filter(e=>STATE_NAMES[e[0]]).sort((a,b)=>b[1][0]-a[1][0]).slice(0,12),mx=rows[0][1][0]*sh;
   $('eligSt').innerHTML=rows.map(([s,v])=>{const e=v[0]*sh,u=e*(1-rate);return `<div class="hbar" style="grid-template-columns:110px 1fr 120px"><span>${STATE_NAMES[s]}</span><div class="t" style="display:flex"><i style="width:${(e-u)/mx*100}%;background:var(--acc2);border-radius:99px 0 0 99px"></i><i style="width:${u/mx*100}%;background:var(--acc);border-radius:0 99px 99px 0"></i></div><b style="font-size:13px">${Math.round(e).toLocaleString()} <span style="color:var(--faint);font-weight:500">/ ${Math.round(u).toLocaleString()}</span></b></div>`;}).join('')+'<p class="sub" style="font-size:12px;margin:8px 0 0">eligible / estimated not claiming</p>';
@@ -514,22 +524,57 @@ $('share').oninput=model;$('claimants').oninput=model;model();
 // estimator
 const sorted=Object.keys(STATE_CREDITS).sort((a,b)=>STATE_CREDITS[a].name.localeCompare(STATE_CREDITS[b].name));
 $('st').innerHTML=sorted.map(k=>`<option value="${k}">${STATE_CREDITS[k].name}</option>`).join('');$('st').value='CA';
-function calc(){
-  const v=id=>+$(id).value||0,S=STATE_CREDITS[$('st').value];$('pctV').textContent=$('pct').value;
-  const wages=v('eng')*v('sal'),qre=wages*v('pct')/100+v('con')*0.65+v('sup'),prior=v('prior');
-  const fed=(prior>0?Math.max(0,qre-prior*0.5)*0.14:qre*0.06)*0.79;
-  const smallOk=v('rev')<5e6&&(new Date().getFullYear()-v('fy'))<5;
-  const payroll=smallOk?Math.min(fed,500000,wages*0.0765):0;
-  let st=0;if(S.rate){st=S.tierCap?Math.min(qre,S.tierCap)*S.rate/100+Math.max(0,qre-S.tierCap)*S.rate2/100:qre*S.rate/100;if(S.cap)st=Math.min(st,S.cap);}
-  const total=fed+st;countTo($('total'),total,fmt,500);
-  const parts=[["Usable vs payroll tax now",payroll,"#8fb3f5"],["Federal credit (carry forward)",fed-payroll,"#52e0b0"],["State credit",st,"#f5b25a"]];
-  $('stack').innerHTML=parts.map(p=>`<i style="width:${total?p[1]/total*100:0}%;background:${p[2]}"></i>`).join('');
-  $('lg').innerHTML=parts.map(p=>`<span><i style="background:${p[2]}"></i>${p[0]}: <b>${fmt(p[1])}</b></span>`).join('');
-  $('msg').innerHTML=(smallOk?`Looks like a <b style="color:#fff">qualified small business</b>: up to ${fmt(payroll)} can offset payroll taxes this year, even without profit.`:"The payroll offset needs under $5M receipts and first revenue within 5 years; otherwise the credit carries forward against income tax.")+`<br><br><b style="color:#fff">${S.name}:</b> ${S.refund}. ${S.note}<br>Estimated qualified research expenses: <b style="color:#fff">${fmt(qre)}</b>`;
-  const tests=[["Permitted purpose",true],["Technological in nature",true],["Technical uncertainty",v('pct')>0],["Process of experimentation",v('pct')>=25]];
-  $('check').innerHTML=tests.map(t=>`<span class="chip ${t[1]?'ok':'no'}">${t[1]?'&#10003;':'&#10007;'} ${t[0]}</span>`).join('');
+const PRESETS={
+  seed:{st:"CA",eng:6,sal:150000,pct:70,con:80000,sup:60000,rev:400000,fy:2024,prior:0,burn:120000},
+  bio:{st:"MA",eng:25,sal:160000,pct:80,con:600000,sup:900000,rev:50000,fy:2025,prior:2000000,burn:600000},
+  hw:{st:"MI",eng:12,sal:140000,pct:60,con:150000,sup:250000,rev:1500000,fy:2023,prior:900000,burn:350000}};
+const YEAR=new Date().getFullYear(),SS_BASE=184500;
+// pure estimate so the hero KPI and the form share one model
+function estimate(x){
+  const n=Math.max(0,x.eng),sal=Math.max(0,x.sal),pct=Math.min(100,Math.max(0,x.pct)),S=STATE_CREDITS[x.st]||{rate:0};
+  const wages=n*sal,qre=wages*pct/100+Math.max(0,x.con)*0.65+Math.max(0,x.sup),prior=Math.max(0,x.prior);
+  const gross=prior>0?Math.max(0,qre-prior*0.5)*0.14:qre*0.06,fed=x.red?gross*0.79:gross;
+  const smallOk=x.rev<5e6&&(x.fy>YEAR||YEAR-x.fy<5);
+  const elected=smallOk&&wages>0?Math.min(fed,500000):0;
+  // $250K against employer Social Security (6.2% to the wage base), the rest (up to $250K) against Medicare (1.45%)
+  const ssTax=n*Math.min(sal,SS_BASE)*0.062,medTax=wages*0.0145,ssPart=Math.min(elected,250000),medPart=elected-ssPart;
+  const quarters=elected?Math.ceil(Math.max(ssTax?ssPart/(ssTax/4):Infinity,medPart?(medTax?medPart/(medTax/4):Infinity):0)):0;
+  let st=0;
+  if(S.rate){
+    if(prior>0&&S.ascRate)st=Math.max(0,qre-prior*0.5)*S.ascRate/100;
+    else if(prior>0&&S.baseRate)st=Math.min(qre,prior)*S.baseRate/100+Math.max(0,qre-prior)*S.rate/100;
+    else st=S.tierCap?Math.min(qre,S.tierCap)*S.rate/100+Math.max(0,qre-S.tierCap)*S.rate2/100:qre*S.rate/100;
+    if(S.cap)st=Math.min(st,S.cap);
+  }
+  const stCash=st*(S.cash||0);
+  return {S,qre,fed,gross,smallOk,elected,quarters,st,stCash,cash:elected+stCash,banked:fed-elected+st-stCash,burn:Math.max(0,x.burn),sal};
 }
-document.querySelectorAll('#est input,#est select').forEach(e=>e.addEventListener('input',calc));calc();
+const qLabel=i=>{const q=1+i;return "Q"+((q%4)+1)+" "+(YEAR+1+Math.floor(q/4));}; // offsets start Q2 of next year
+let tests=new Set();
+function readForm(){const v=id=>{const n=+$(id).value;return isFinite(n)?n:0};return {st:$('st').value,eng:v('eng'),sal:v('sal'),pct:v('pct'),con:v('con'),sup:v('sup'),rev:v('rev'),fy:v('fy'),prior:v('prior'),burn:v('burn'),red:$('red280').checked};}
+function calc(){
+  const r=estimate(readForm()),S=r.S;$('pctV').textContent=$('pct').value;
+  countTo($('total'),r.cash,fmt,500);
+  const m=r.burn?r.cash/r.burn:0,eng=r.sal?Math.round(r.cash/r.sal*100):0;
+  $('runway').innerHTML=r.cash&&r.burn?`&asymp; <b style="color:#fff">${m>=1?m.toFixed(1)+" months":(w=>w+(w>1?" weeks":" week"))(Math.max(1,Math.round(m*4.33)))}</b> of runway at your burn${eng?` &middot; &asymp; ${eng}% of one engineer's salary`:""}`:"";
+  const tot=r.cash+r.banked,parts=[["Payroll-tax offset (cash)",r.elected,"#8fb3f5"],["Refundable state credit (cash)",r.stCash,"#52e0b0"],["Banked for future tax bills",r.banked,"#f5b25a"]];
+  $('stack').innerHTML=parts.map(p=>`<i style="width:${tot?p[1]/tot*100:0}%;background:${p[2]}"></i>`).join('');
+  $('lg').innerHTML=parts.map(p=>`<span><i style="background:${p[2]}"></i>${p[0]}: <b>${fmt(p[1])}</b></span>`).join('');
+  $('msg').innerHTML=(r.smallOk&&!r.elected?"The payroll offset is paid against employer payroll taxes, so it needs W-2 R&amp;D payroll. Without it the federal credit is banked for future income tax.":r.smallOk?`Looks like a <b style="color:#fff">qualified small business</b>: you can elect up to ${fmt(r.elected)} of the federal credit against payroll taxes, even without profit.`:"The payroll offset needs under $5M receipts and first revenue within 5 years; otherwise the federal credit carries forward up to 20 years against income tax.")+
+    `<br><br><b style="color:#fff">${S.name||"State"}:</b> ${S.refund||""}. ${S.note||""}<br>Federal credit: <b style="color:#fff">${fmt(r.fed)}</b>${$('red280').checked?" (reduced, 280C election)":` (full credit; ${fmt(r.gross*0.79)} if you take the 280C election)`}. Qualified research expenses: <b style="color:#fff">${fmt(r.qre)}</b>`;
+  $('timeline').innerHTML=r.elected?`<ol style="margin:0;padding-left:20px"><li>File your ${YEAR} income tax return with Form 6765 and the payroll election (due April 15, ${YEAR+1}).</li><li>From the next quarter (about <b>${qLabel(0)}</b>), claim it on each quarterly payroll return with Form 8974.</li><li>At your current payroll it takes about <b>${r.quarters} quarter${r.quarters>1?"s":""}</b> to use ${fmt(r.elected)}, through about <b>${qLabel(r.quarters-1)}</b>.</li>${r.stCash?`<li>${S.name} refunds ${fmt(r.stCash)} after you file the state return.</li>`:""}</ol>`:
+    `No payroll offset at these inputs. ${r.stCash?`${S.name} refunds ${fmt(r.stCash)} after you file the state return. `:""}The rest is banked: it only becomes cash once you owe income tax.`;
+  const T=[["Permitted purpose","New or better function, performance, reliability or quality"],["Technological in nature","Relies on engineering, computer science or the physical or biological sciences"],["Technical uncertainty","You didn't know the method or design at the start"],["Process of experimentation","You tested alternatives, not just shipped"]];
+  $('check').innerHTML=T.map((t,i)=>`<button class="chip ${tests.has(i)?'ok':''}" data-t="${i}" title="${t[1]}" style="cursor:pointer;font:inherit;font-size:13px">${tests.has(i)?'&#10003;':'&#9675;'} ${t[0]}</button>`).join('');
+  $('checkMsg').innerHTML=tests.size===4?"All four confirmed for this project. Log the evidence in the Audit trail.":`${tests.size}/4 confirmed. ${r.qre&&!+$('pct').value?"You entered 0% R&amp;D time. ":""}Hover a test to see what it means. Only count costs for projects that pass all four.`;
+}
+$('check').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(!b)return;const i=+b.dataset.t;tests.has(i)?tests.delete(i):tests.add(i);calc();});
+function applyPreset(k){const p=PRESETS[k];Object.entries(p).forEach(([id,v])=>$(id).value=v);$('red280').checked=false;
+  document.querySelectorAll('#presets .lens').forEach(b=>b.classList.toggle('on',b.dataset.p===k));calc();}
+$('presets').addEventListener('click',e=>{if(e.target.dataset.p)applyPreset(e.target.dataset.p);});
+function demo(){applyPreset('seed');show('est');}
+document.querySelectorAll('#est input,#est select').forEach(e=>e.addEventListener('input',()=>{if(e.closest('.card')&&e.id!=='red280')document.querySelectorAll('#presets .lens').forEach(b=>b.classList.remove('on'));calc();}));calc();
+countTo($('kSeed'),estimate(PRESETS.seed).cash,x=>"~$"+Math.round(x/1000)+"K",1200);
 
 // state explorer
 let sel=null,lens='opp';
@@ -568,6 +613,7 @@ function drawWho(){
   const top=[...SECTORS].sort((a,b)=>b[2]-a[2]).slice(0,8);
   $('whoCredit').innerHTML=hb(top.map(s=>[s[0],s[2]]),"",x=>money(x*1000));
   $('whoRet').innerHTML=hb([...SECTORS].sort((a,b)=>b[1]-a[1]).slice(0,8).map(s=>[s[0],s[1]]),"blue",x=>x.toLocaleString());
+  $('whoGrow').innerHTML=hb([...SECTORS].sort((a,b)=>b[1]-a[1]).slice(0,6).map(s=>[`${s[0]} (${(s[1]/s[3]).toFixed(1)}\u00d7 since 2015)`,s[1]]),"blue",x=>x.toLocaleString());
   $('whoAvg').innerHTML=hb(top.map(s=>[s[0],s[2]*1000/s[1]]).sort((a,b)=>b[1]-a[1]),"gold",money);
 }
 // hurdles
@@ -630,7 +676,7 @@ function saveP(){try{localStorage.setItem(AK,JSON.stringify(projects))}catch(e){
 function listP(){$('aList').innerHTML=projects.length?projects.map(p=>{const s=scoreP(p)[0];return `<div class="proj"><div><b>${esc(p.aName)}</b><small>${esc(p.aUnc)}</small></div><span class="pill ${s>=80?'live':'est'}">${s}% ready</span></div>`;}).join(''):'<p class="sub" style="margin:10px 0 0">No projects yet. Log one to start your audit trail.</p>';}
 AF.forEach(f=>$(f).addEventListener('input',liveScore));$('aFunded').onchange=liveScore;
 $('aSave').onclick=()=>{const p=cur();if(!p.aName)return $('aName').focus();p.date=new Date().toISOString().slice(0,10);projects.push(p);saveP();listP();AF.forEach(f=>$(f).value='');$('aFunded').checked=false;liveScore();};
-$('aClear').onclick=()=>{if(confirm("Clear all projects saved in this browser?")){projects=[];saveP();listP();}};
+$('aClear').onclick=()=>{if(confirm("Delete every project saved in this browser? This can't be undone.")){projects=[];saveP();listP();}};
 $('aExport').onclick=()=>{if(!projects.length)return;const md="# R&D credit project log\n\n"+projects.map(p=>`## ${p.aName}\n- Logged: ${p.date}\n- Purpose: ${p.aPurpose}\n- Uncertainty: ${p.aUnc}\n- Experiments: ${p.aExp}\n- People: ${p.aPeople}\n- Expenses (wages / supplies / contractors): ${p.aCost}\n- Evidence: ${p.aEv}\n- Funded by grant/customer: ${p.aFunded?'Yes':'No'}\n- Readiness: ${scoreP(p)[0]}%\n`).join("\n");
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([md],{type:'text/markdown'}));a.download="rd-project-log.md";a.click();};
 liveScore();listP();
