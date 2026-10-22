@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FounderFunds</title>
+<style>
+:root{--bg:#f7f6f2;--card:#fff;--ink:#1b1f23;--mute:#5d6670;--line:#e3e0d8;--acc:#0b6b4f;--acc2:#d97b1e;--blue:#2f5fa8;--warn:#fff4e0}
+@media (prefers-color-scheme:dark){:root{--bg:#14171a;--card:#1c2024;--ink:#eceff1;--mute:#9aa4ad;--line:#2c3238;--acc:#3fc79b;--acc2:#f0a050;--blue:#7aa6e8;--warn:#2a2418}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+header{padding:28px 0 8px}h1{margin:0;font-size:28px}h1 span{color:var(--acc)}
+.sub{color:var(--mute);margin:4px 0 0}
+nav{display:flex;gap:6px;flex-wrap:wrap;margin:16px 0;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:5}
+nav button{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 14px;border-radius:999px;cursor:pointer;font:inherit}
+nav button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin-bottom:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.stat b{display:block;font-size:30px;color:var(--acc2)}.stat small{color:var(--mute)}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}@media(max-width:760px){.grid2{grid-template-columns:1fr}}
+label{display:block;font-size:13px;color:var(--mute);margin-top:10px}
+input,select{width:100%;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
+.big{font-size:40px;font-weight:700;color:var(--acc)}
+.bar{display:flex;align-items:center;gap:8px;margin:8px 0;font-size:14px}.bar i{display:block;height:22px;border-radius:4px;min-width:2px;transition:width .4s}
+.bar span{width:150px;flex:none}
+.pill{display:inline-block;font-size:12px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--mute)}
+.pill.live{color:var(--acc);border-color:var(--acc)}
+.map{display:grid;grid-template-columns:repeat(11,1fr);gap:3px;max-width:640px}
+.tile{aspect-ratio:1;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;cursor:pointer;border:2px solid transparent;color:#102;}
+.tile.sel{border-color:var(--ink)}
+.check li{margin:4px 0}.ok{color:var(--acc)}.no{color:#c0392b}
+.warn{background:var(--warn);border:1px solid var(--acc2);border-radius:10px;padding:12px;font-size:14px}
+.opp{padding:10px 0;border-bottom:1px solid var(--line)}.opp:last-child{border:0}.opp a{color:var(--blue);font-weight:600;text-decoration:none}
+.opp small{color:var(--mute);display:block}
+.view{display:none}.view.on{display:block}
+footer{color:var(--mute);font-size:13px;padding:20px 0 40px}
+dialog{max-width:620px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Founder<span>Funds</span></h1>
+  <p class="sub">The R&amp;D tax credits, grants and state incentives startups leave unclaimed, in one place. Built on public data.</p>
+</header>
+<nav id="nav">
+  <button data-v="gap" class="on">1. The gap</button>
+  <button data-v="est">2. Estimate my money</button>
+  <button data-v="map">3. State map</button>
+  <button data-v="feed">4. Live funding</button>
+  <button id="limits" style="margin-left:auto">Data &amp; limits</button>
+</nav>
+
+<section class="view on" id="gap">
+  <div class="card">
+    <h2 style="margin-top:0">Most eligible startups never claim this money</h2>
+    <div class="stats">
+      <div class="stat"><b>$500K</b><small>per year of federal payroll-tax offset available to a qualifying startup, even with no profit</small></div>
+      <div class="stat"><b>5 yrs</b><small>window for the startup payroll offset after first revenue</small></div>
+      <div class="stat"><b>~20</b><small>states in this tool with a state credit, refund, or sale program, each with different rules</small></div>
+      <div class="stat"><b>0</b><small>single public place that puts federal credit, state credit, and live grants side by side</small></div>
+    </div>
+    <p style="color:var(--mute)">The barriers are time and confusion: a four-part IRS test, a different state rulebook, and grants scattered across agencies. Try it: enter your startup in 30 seconds.</p>
+    <button class="go" onclick="show('est')" style="padding:10px 18px;border-radius:8px;border:0;background:var(--acc);color:#fff;font:inherit;cursor:pointer">Estimate my money &rarr;</button>
+  </div>
+</section>
+
+<section class="view" id="est">
+  <div class="grid2">
+    <div class="card">
+      <h3 style="margin-top:0">Your startup</h3>
+      <label>State</label><select id="st"></select>
+      <label>Vertical</label><select id="vert"></select>
+      <label>Engineers / technical staff (W-2 headcount)</label><input id="eng" type="number" value="6" min="0">
+      <label>Average salary ($)</label><input id="sal" type="number" value="150000" step="5000">
+      <label>% of their time on R&amp;D (building/testing new tech)</label><input id="pct" type="number" value="70" min="0" max="100">
+      <label>US contractors on R&amp;D ($/yr)</label><input id="con" type="number" value="80000" step="5000">
+      <label>Cloud, compute &amp; supplies used in R&amp;D ($/yr)</label><input id="sup" type="number" value="60000" step="5000">
+      <label>Gross receipts this year ($)</label><input id="rev" type="number" value="400000" step="50000">
+      <label>First year with revenue</label><input id="fy" type="number" value="2024">
+      <label>Prior-3-year average R&amp;D spend ($; 0 if you are new)</label><input id="prior" type="number" value="0" step="10000">
+      <p class="pill live" style="margin-top:12px">Nothing leaves your browser</p>
+    </div>
+    <div>
+      <div class="card">
+        <div style="color:var(--mute)">Estimated annual value you could claim</div>
+        <div class="big" id="total">$0</div>
+        <div id="bars"></div>
+        <p id="msg" style="color:var(--mute);font-size:14px"></p>
+      </div>
+      <div class="card"><h3 style="margin-top:0">Do you pass the IRS four-part test?</h3><ul class="check" id="check" style="list-style:none;padding:0"></ul></div>
+    </div>
+  </div>
+  <div class="warn">Estimates only, using simplified rules (federal ASC method, 21% reduction election, no base period for new companies). Not tax advice. Confirm with a CPA and Form 6765.</div>
+</section>
+
+<section class="view" id="map">
+  <div class="card">
+    <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+      <b>Color states by:</b>
+      <select id="metric" style="width:auto"><option value="rate">State R&amp;D credit rate</option><option value="sbir">SBIR/STTR $ awarded (FY24-25)</option></select>
+      <span class="pill" id="sbirBadge"></span>
+    </div>
+    <div class="grid2" style="margin-top:14px">
+      <div class="map" id="tiles"></div>
+      <div id="detail" class="card" style="margin:0"><i style="color:var(--mute)">Click a state</i></div>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="feed">
+  <div class="card">
+    <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+      <b>Open federal opportunities for</b>
+      <select id="fv" style="width:auto"></select>
+      <span class="pill" id="feedBadge">loading...</span>
+    </div>
+    <p id="feedN" style="color:var(--mute);font-size:14px"></p>
+    <div id="opps"></div>
+    <p style="color:var(--mute);font-size:13px">Source: Grants.gov Search API. Federal grants are national: eligibility, not location, is what varies. Read each notice for SBIR/STTR and small-business rules.</p>
+  </div>
+</section>
+
+<footer>Built for the super{set} hackathon, Public Data APIs track. Sources: Grants.gov, USAspending.gov, IRS Form 6765 guidance, KPMG/Aprio/CLA state credit summaries.</footer>
+</div>
+
+<dialog id="dlg">
+  <h3 style="margin-top:0">Data &amp; limits</h3>
+  <ul>
+    <li><b>Grants.gov Search API</b>: live open and forecasted opportunities, keyword-matched to verticals (imperfect matching). Grants.gov does not allow direct browser calls (CORS), so the hosted demo shows a dated snapshot pulled from the live API; the badge says which you are seeing.</li>
+    <li><b>USAspending.gov API</b>: FY2024-25 award dollars whose records mention SBIR/STTR, by state of performance. A keyword proxy, not an official SBIR total.</li>
+    <li><b>State credit table</b>: hand-compiled headline rates (no public API exists). 20 states only; rules change annually. Verify before filing.</li>
+    <li><b>Fallback</b>: if an API is blocked or down, the app shows a dated cached snapshot and labels it.</li>
+    <li><b>Privacy</b>: calculator inputs never leave your browser. No accounts, cookies, or analytics.</li>
+    <li><b>Not tax advice.</b> The estimator simplifies eligibility, base periods, and state apportionment, and the 2025 federal changes to R&amp;D expensing should be confirmed with a CPA.</li>
+  </ul>
+  <form method="dialog"><button>Close</button></form>
+</dialog>
+
+<script src="data.js"></script>
+<script src="states.js"></script>
+<script>
+const $=id=>document.getElementById(id), fmt=n=>"$"+Math.round(n).toLocaleString();
+const VERTS={ai:"AI & software",bio:"Biotech & health",climate:"Climate & energy",hardware:"Hardware & manufacturing",fintech:"Fintech",ag:"Agriculture & food"};
+const KW={ai:"artificial intelligence software",bio:"biotechnology biomedical",climate:"clean energy climate",hardware:"advanced manufacturing hardware",fintech:"financial technology",ag:"agriculture food technology"};
+function show(v){document.querySelectorAll('.view').forEach(e=>e.classList.toggle('on',e.id===v));document.querySelectorAll('nav [data-v]').forEach(b=>b.classList.toggle('on',b.dataset.v===v));if(v==='feed')loadFeed();}
+$('nav').addEventListener('click',e=>{if(e.target.dataset.v)show(e.target.dataset.v)});
+$('limits').onclick=()=>$('dlg').showModal();
+// selects
+const sorted=Object.keys(STATE_CREDITS).sort((a,b)=>STATE_CREDITS[a].name.localeCompare(STATE_CREDITS[b].name));
+$('st').innerHTML=sorted.map(k=>`<option value="${k}">${STATE_CREDITS[k].name}</option>`).join('');$('st').value='CA';
+$('vert').innerHTML=$('fv').innerHTML=Object.entries(VERTS).map(([k,v])=>`<option value="${k}">${v}</option>`).join('');
+
+// estimator
+function calc(){
+  const v=id=>+$(id).value||0, S=STATE_CREDITS[$('st').value];
+  const wages=v('eng')*v('sal'), qre=wages*v('pct')/100+v('con')*0.65+v('sup');
+  const prior=v('prior');
+  let fed=prior>0?Math.max(0,qre-prior*0.5)*0.14:qre*0.06;
+  fed*=0.79;
+  const rev=v('rev'), yr=v('fy'), thisYr=new Date().getFullYear();
+  const smallOk=rev<5e6&&(thisYr-yr)<5;
+  const cap=Math.min(500000,wages*0.0765);
+  const payroll=smallOk?Math.min(fed,cap):0;
+  let st=0;
+  if(S.rate){st=S.tierCap?Math.min(qre,S.tierCap)*S.rate/100+Math.max(0,qre-S.tierCap)*S.rate2/100:qre*S.rate/100;if(S.cap)st=Math.min(st,S.cap);}
+  const parts=[["Federal credit",fed,'var(--acc)'],["  of which usable vs payroll tax now",payroll,'var(--blue)'],["State credit ("+S.name+")",st,'var(--acc2)']];
+  const total=fed+st;
+  $('total').textContent=fmt(total);
+  const max=Math.max(1,...parts.map(p=>p[1]));
+  $('bars').innerHTML=parts.map(p=>`<div class="bar"><span>${p[0].trim()}</span><i style="width:${p[1]/max*55}%;background:${p[2]}"></i><b>${fmt(p[1])}</b></div>`).join('');
+  $('msg').innerHTML=(smallOk?"You look like a <b>qualified small business</b>: up to "+fmt(payroll)+" can offset payroll taxes even without profit.":"Payroll-tax offset needs under $5M receipts and first revenue within 5 years; without it the federal credit carries forward against income tax.")+"<br>"+S.refund+". "+S.note+"<br><b>QREs estimated:</b> "+fmt(qre);
+  const tests=[["Permitted purpose: new or improved product, process or software",true],["Technological in nature: relies on engineering/computer science",true],["Uncertainty: you were unsure of capability, method or design",v('pct')>0],["Process of experimentation: you tested alternatives",v('pct')>=25]];
+  $('check').innerHTML=tests.map(t=>`<li class="${t[1]?'ok':'no'}">${t[1]?'&#10003;':'&#10007;'} ${t[0]}</li>`).join('');
+}
+document.querySelectorAll('#est input,#est select').forEach(e=>e.addEventListener('input',calc));calc();
+
+// map
+let sel=null;
+function drawMap(){
+  const m=$('metric').value, sb=CACHE.sbir.states;
+  const val=k=>m==='rate'?(STATE_CREDITS[k]?STATE_CREDITS[k].rate:null):(sb[k]||0);
+  const vals=Object.keys(TILES).map(val).filter(x=>x!=null),mx=Math.max(...vals,1);
+  $('sbirBadge').textContent="USAspending snapshot "+CACHE.sbir.fetched;
+  let h='';const cells={};
+  for(const k in TILES){const [c,r]=TILES[k],x=val(k);
+    const a=x==null?0:Math.max(.12,x/mx),bg=x==null?'var(--line)':`rgba(11,107,79,${.15+a*.8})`;
+    h+=`<div class="tile ${sel===k?'sel':''}" style="grid-column:${c+1};grid-row:${r+1};background:${bg};${a>.6?'color:#fff':''}" onclick="pick('${k}')" title="${STATE_NAMES[k]}">${k}</div>`;}
+  $('tiles').innerHTML=h;
+}
+function pick(k){sel=k;drawMap();const S=STATE_CREDITS[k],sb=CACHE.sbir.states[k]||0;
+  $('detail').innerHTML=`<h3 style="margin-top:0">${STATE_NAMES[k]}</h3>`+(S?`<p><b>${S.rate?S.rate+"% credit":"No standard state R&D credit"}</b><br>${S.refund}</p><p>${S.note}</p>`:`<p>Not yet in our curated table. Check the state revenue department.</p>`)+`<p>SBIR/STTR-related awards, FY24-25: <b>${fmt(sb)}</b></p><button onclick="$('st').value='${k}';if(STATE_CREDITS['${k}']){calc();show('est')}" style="padding:8px 14px;border-radius:8px;border:0;background:var(--acc);color:#fff;font:inherit;cursor:pointer">Use this state in estimator</button>`;}
+$('metric').onchange=drawMap;drawMap();
+// live USAspending refresh (CORS-enabled); falls back silently to the cached snapshot
+fetch("https://api.usaspending.gov/api/v2/search/spending_by_geography/",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({scope:"place_of_performance",geo_layer:"state",filters:{keywords:["SBIR","STTR"],award_type_codes:["02","03","04","05","A","B","C","D"],time_period:[{start_date:"2023-10-01",end_date:"2025-09-30"}]}})})
+ .then(r=>r.json()).then(j=>{const s={};j.results.forEach(x=>s[x.shape_code]=Math.round(x.aggregated_amount));CACHE.sbir.states=s;CACHE.sbir.fetched="LIVE";drawMap();$('sbirBadge').className="pill live";$('sbirBadge').textContent="Live from USAspending";}).catch(()=>{});
+
+// feed: live Grants.gov with cached fallback
+async function loadFeed(){
+  const v=$('fv').value;$('feedBadge').textContent="loading...";$('feedBadge').className="pill";
+  let d,live=false;
+  try{
+    const c=new AbortController();setTimeout(()=>c.abort(),8000);
+    const r=await fetch("https://api.grants.gov/v1/api/search2",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({keyword:KW[v],oppStatuses:"forecasted|posted",rows:12}),signal:c.signal});
+    const j=await r.json();d={hitCount:j.data.hitCount,hits:j.data.oppHits};live=true;
+  }catch(e){d=CACHE.grants.verticals[v];}
+  $('feedBadge').textContent=live?"Live from Grants.gov":"Cached snapshot "+CACHE.grants.fetched;$('feedBadge').className="pill"+(live?" live":"");
+  $('feedN').textContent=d.hitCount+" open or forecasted opportunities match. Showing the first "+d.hits.length+".";
+  $('opps').innerHTML=d.hits.map(o=>`<div class="opp"><a target="_blank" rel="noopener" href="https://www.grants.gov/search-results-detail/${o.id}">${o.title}</a><small>${o.agency||o.agencyCode} &middot; ${o.number} &middot; closes ${o.closeDate||"rolling/TBD"}</small></div>`).join('');
+}
+$('fv').onchange=loadFeed;
+</script>
+</body>
+</html>
