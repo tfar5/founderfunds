@@ -291,6 +291,63 @@ dialog{border:1px solid var(--line);border-radius:18px;max-width:520px;width:cal
 @media(max-width:1100px){.topin{flex-wrap:wrap}.topin nav{order:3;flex-basis:100%}.status{display:none}}
 @media(max-width:900px){.stats3,.why4,.steps,.stats4{grid-template-columns:1fr 1fr}.ctaband{padding:28px}}
 @media(max-width:560px){.stats3,.why4,.steps,.stats4{grid-template-columns:1fr}.fstep{grid-template-columns:1fr}.ev{grid-template-columns:1fr}.hero{padding-top:20px}}
+
+/* Maya walkthrough */
+.mysteps{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:18px}
+.mysteps button{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:6px;font-size:12.5px;color:var(--faint);font-weight:600}
+.mysteps button i{height:6px;border-radius:99px;background:var(--line)}.mysteps button.done i{background:var(--acc)}.mysteps button.on i{background:var(--lime);box-shadow:0 0 0 1px #c9d61c}.mysteps button.on{color:var(--ink)}
+.mycard{min-height:380px;padding:36px}
+.mytop{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-start;margin-bottom:20px}
+.mytop h3{font-family:var(--display);font-size:clamp(24px,3vw,32px);font-weight:600;letter-spacing:-.03em;margin:4px 0 0}
+.mytime{display:inline-flex;gap:8px;align-items:center;font-weight:600;font-size:14px;padding:8px 14px;border-radius:99px;background:#f4f4ef}
+.src{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:22px;padding-top:16px;border-top:1px solid var(--line);font-size:13.5px;color:var(--mute)}
+.src b{display:inline-flex;gap:6px;align-items:center;color:#0a6a4f;background:var(--acc-soft);padding:4px 10px;border-radius:99px;font-size:12.5px}
+.mynav{display:flex;justify-content:space-between;align-items:center;margin:-6px 0 28px}
+.persona{display:flex;gap:18px;align-items:center;margin-bottom:22px}.persona .av{width:64px;height:64px;font-size:26px}
+.facts{display:flex;gap:10px;flex-wrap:wrap}.facts span{border:1px solid var(--line);border-radius:99px;padding:6px 12px;font-size:14px}
+.form6765{border:1px solid #cfcfc6;border-radius:10px;background:#fdfdfa;font-size:14px;overflow:hidden}
+.form6765 .fh{display:flex;justify-content:space-between;padding:12px 16px;background:#f1f1ea;border-bottom:1px solid #cfcfc6;font-weight:700}
+.form6765 .sec{padding:8px 16px;background:#fafaf5;border-bottom:1px solid #e3e3da;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}
+.form6765 .ln{display:flex;justify-content:space-between;gap:16px;padding:9px 16px;border-bottom:1px dashed #e3e3da}.form6765 .ln b{font-variant-numeric:tabular-nums;font-family:ui-monospace,Menlo,monospace}
+.form6765 .ln.tot{background:#f3faf6}.form6765 .ln.tot b{color:#0a6a4f}
+.cal{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:6px}
+.cal div{border-left:3px solid var(--line);padding:6px 0 6px 12px}.cal div.now{border-color:var(--lime)}.cal div.cash{border-color:var(--acc)}
+.cal time{display:block;font-weight:700;font-size:13px}.cal span{font-size:13.5px;color:var(--mute)}
+@media(max-width:700px){.mysteps{grid-template-columns:repeat(7,1fr)}.mysteps button span{display:none}.mycard{padding:22px}}
+
+/* ambient color, kept soft behind translucent cards */
+.bgfx{display:block}.bgfx i{opacity:.32;filter:blur(90px)}
+.bgfx i:nth-child(1){background:#9ef0cf}.bgfx i:nth-child(2){background:#ffe0a8}.bgfx i:nth-child(3){background:#c9d4ff}.bgfx i:nth-child(4){background:#b8f0e6}
+html,body{background:transparent}html{background:#fff}
+.card,.kpi,.hcard,.stat,.why4>div,.step,.fstep,.stats4>div,.mock{background:rgba(255,255,255,.78);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%)}
+.card::before,.kpi::before,.hcard::before{display:block;background:radial-gradient(380px circle at var(--mx,50%) var(--my,-40%),rgba(47,191,143,.13),transparent 50%)}
+.step,.stat,.why4>div,.fstep,.btn,.pcard,.mysteps button{transition:box-shadow .25s,border-color .25s,transform .25s,filter .2s}
+.step:hover,.stat:hover,.why4>div:hover,.fstep:hover,.card:hover,.pcard:hover{box-shadow:0 14px 40px -18px rgba(18,163,111,.45),0 0 0 1px rgba(47,191,143,.25)}
+.btn:hover{box-shadow:0 10px 28px -10px rgba(170,190,20,.75)}.btn.glassy:hover{box-shadow:0 10px 28px -12px rgba(18,163,111,.45)}
+.hero{background-color:transparent}
+/* dropdown nav */
+nav .bar{flex-direction:row}nav .grp{overflow:visible;flex-wrap:wrap;gap:2px}
+.dd{position:relative}.car{font-size:10px;color:var(--faint);margin-left:2px}
+.ddm{display:none;position:absolute;top:calc(100% + 6px);left:0;min-width:300px;background:rgba(255,255,255,.97);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:14px;box-shadow:0 24px 50px -20px rgba(0,0,0,.25);padding:6px;z-index:80}
+.dd::after{content:"";position:absolute;left:0;right:0;top:100%;height:8px}
+.dd:hover .ddm,.dd:focus-within .ddm{display:block}
+.ddm button{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;padding:10px 12px;border-radius:10px;white-space:normal}
+.ddm button:hover{background:var(--acc-soft)}.ddm .ic{color:var(--acc);margin-top:2px}.ddm b{display:block;font-size:14px;color:var(--ink)}.ddm small{display:block;font-size:12.5px;color:var(--faint);font-weight:500}
+.steps{grid-auto-rows:1fr}
+/* estimator wizard */
+.wzbar{display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin-bottom:18px;padding:18px 22px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.78);backdrop-filter:blur(14px)}
+.wzbar b{display:block;font-family:var(--display);font-size:38px;font-weight:600;letter-spacing:-.04em;color:var(--acc);line-height:1.1}
+.wzcard{max-width:760px;margin:0 auto 24px;padding:40px;min-height:360px;display:flex;flex-direction:column}
+.wstep{display:none}.wstep.on{display:block;animation:wzIn .45s cubic-bezier(.2,.8,.2,1)}.wstep.on.back{animation-name:wzBack}
+@keyframes wzIn{from{opacity:0;transform:translateX(48px)}to{opacity:1;transform:none}}@keyframes wzBack{from{opacity:0;transform:translateX(-48px)}to{opacity:1;transform:none}}
+.wq{font-family:var(--display);font-size:clamp(26px,3.4vw,36px);font-weight:600;letter-spacing:-.035em;line-height:1.1;margin:6px 0 10px}
+.wstep select,.wstep input[type=number]{font-size:18px;padding:14px 16px}
+.wznav{display:flex;justify-content:space-between;margin-top:auto;padding-top:28px}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:8px;background:none;padding:0;border-radius:0}
+.pcard{display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:18px;border:1px solid var(--line)!important;border-radius:14px;background:#fff;text-align:left;cursor:pointer}
+.pcard .ic{width:22px;height:22px;color:var(--acc);margin-bottom:6px}.pcard b{font-size:16px;color:var(--ink)}.pcard span{font-size:13px;color:var(--mute);font-weight:500}
+.pcard.on{border-color:var(--acc)!important;box-shadow:0 0 0 2px rgba(47,191,143,.35)}
+@media(max-width:700px){.pgrid{grid-template-columns:1fr}.wzcard{padding:24px}.ddm{position:fixed;left:16px;right:16px;top:auto;min-width:0}}
 </style>
 </head>
 <body>
@@ -299,10 +356,16 @@ dialog{border:1px solid var(--line);border-radius:18px;max-width:520px;width:cal
 <header class="topbar">
   <div class="wrap topin">
     <a class="logo" href="#over" onclick="show('over');return false"><span class="mark">F</span>FounderFunds</a>
-    <nav id="nav"><div class="bar">
-      <div class="grp"><button data-v="over" class="on">Home</button><button data-v="est">Estimate</button><button data-v="gh">GitHub evidence</button><button data-v="file">File &amp; claim</button><button data-v="audit">Audit trail</button><button data-v="src">Data sources</button></div>
-      <div class="grp sec"><span>Research</span><button data-v="gapv">Startup gap</button><button data-v="who">Who claims</button><button data-v="hurdles">Hurdles</button><button data-v="state">States</button><button data-v="heat">Heatmap</button><button data-v="uni">Universities</button><button data-v="feed">Grants</button></div>
-    </div></nav>
+    <nav id="nav"><div class="bar"><div class="grp">
+      <button data-v="over" class="on">Home</button><button data-v="est">Estimate</button>
+      <div class="dd"><button class="ddb" data-v="research">Research <span class="car">&#9662;</span></button><div class="ddm">
+        <button data-v="gapv"><svg class="ic"><use href="#i-chart"/></svg><span><b>Startup gap</b><small>Who claims by company size</small></span></button><button data-v="who"><svg class="ic"><use href="#i-bank"/></svg><span><b>Who claims</b><small>IRS claims by sector, 2015 to 2022</small></span></button><button data-v="hurdles"><svg class="ic"><use href="#i-alert"/></svg><span><b>Hurdles</b><small>Why founders don't claim</small></span></button><button data-v="state"><svg class="ic"><use href="#i-pin"/></svg><span><b>States</b><small>State credit rules and rankings</small></span></button><button data-v="heat"><svg class="ic"><use href="#i-pin"/></svg><span><b>R&amp;D heatmap</b><small>Federal R&amp;D money by county</small></span></button><button data-v="uni"><svg class="ic"><use href="#i-db"/></svg><span><b>Universities</b><small>Research hubs and blind spots</small></span></button><button data-v="feed"><svg class="ic"><use href="#i-search"/></svg><span><b>Grants</b><small>Open federal grants by vertical</small></span></button>
+      </div></div>
+      <div class="dd"><button class="ddb" data-v="claim">Claiming <span class="car">&#9662;</span></button><div class="ddm">
+        <button data-v="maya"><svg class="ic"><use href="#i-users"/></svg><span><b>&#9654; Maya&rsquo;s claim</b><small>Demo: one founder, estimate to cash</small></span></button><button data-v="file"><svg class="ic"><use href="#i-file"/></svg><span><b>File &amp; claim process</b><small>Seven steps, deadlines and forms</small></span></button><button data-v="gh"><svg class="ic"><use href="#i-github"/></svg><span><b>GitHub evidence</b><small>Turn commits into dated proof</small></span></button><button data-v="audit"><svg class="ic"><use href="#i-shield"/></svg><span><b>Audit trail</b><small>Your project log, ready for a CPA</small></span></button>
+      </div></div>
+      <button data-v="src">Data sources</button>
+    </div></div></nav>
     <span class="status" title="Public data connection"><span class="dot" id="liveDot"></span><span id="liveTxt">Using cached snapshots</span></span>
     <button class="btn sm" onclick="show('est')">Estimate my credit</button>
   </div>
@@ -318,7 +381,7 @@ dialog{border:1px solid var(--line);border-radius:18px;max-width:520px;width:cal
         <div class="eyebrow"><svg class="ic"><use href="#i-rocket"/></svg> For tech founders who just raised</div>
         <h1>Every engineer you pay can earn you back <em id="perEng">~$7,400</em> a year.</h1>
         <p class="lede">The federal R&amp;D credit turns engineering payroll into cash against payroll tax, even before you're profitable. Most early-stage startups never claim it.</p>
-        <div class="cta"><button class="btn big" onclick="show('est')">Estimate my credit <svg class="ic"><use href="#i-arrow"/></svg></button><button class="btn glassy big" onclick="show('gh')"><svg class="ic"><use href="#i-github"/></svg> Analyze my GitHub</button></div>
+        <div class="cta"><button class="btn big" onclick="show('est')">Estimate my credit <svg class="ic"><use href="#i-arrow"/></svg></button><button class="btn glassy big" onclick="show('maya')"><svg class="ic"><use href="#i-users"/></svg> Watch a founder claim it</button></div>
         <div class="trust"><span><svg class="ic"><use href="#i-check"/></svg> Free</span><span><svg class="ic"><use href="#i-lock"/></svg> Runs in your browser</span><span><svg class="ic"><use href="#i-shield"/></svg> Nothing stored</span></div>
       </div>
       <div class="mock" aria-label="Example result for a seed-stage team">
@@ -368,6 +431,42 @@ dialog{border:1px solid var(--line);border-radius:18px;max-width:520px;width:cal
     <div><h2 class="h2" style="color:#fff;margin:0 0 6px">Ready to get your money back?</h2><p>Leave with a CPA-ready claim packet, or get matched with a filing partner.</p></div>
     <button class="btn big" onclick="show('file')">Start my claim <svg class="ic"><use href="#i-arrow"/></svg></button>
   </div>
+</section>
+
+
+<!-- CLAIMING HUB -->
+<section class="view" id="claim">
+  <div class="vhead"><div><div class="kicker">Claiming</div><h2>Get the money, and keep the proof.</h2><p>Everything between "I'm owed a credit" and cash in the bank. Start with Maya's walkthrough to see the whole path.</p></div></div>
+  <div class="steps">
+    <button class="step" onclick="show('maya')"><span class="sn">1</span><svg class="ic big"><use href="#i-users"/></svg><b>Maya's claim</b><span>Demo: follow one founder from estimate to cash, with her time per step.</span><i>Watch it <svg class="ic"><use href="#i-arrow"/></svg></i></button>
+    <button class="step" onclick="show('file')"><span class="sn">2</span><svg class="ic big"><use href="#i-file"/></svg><b>File &amp; claim process</b><span>Seven steps, the April 15 deadline and the forms you need.</span><i>Open guide <svg class="ic"><use href="#i-arrow"/></svg></i></button>
+    <button class="step" onclick="show('gh')"><span class="sn">3</span><svg class="ic big"><use href="#i-github"/></svg><b>GitHub evidence</b><span>Turn commit history into dated, linkable proof of R&amp;D.</span><i>Analyze a repo <svg class="ic"><use href="#i-arrow"/></svg></i></button>
+    <button class="step" onclick="show('audit')"><span class="sn">4</span><svg class="ic big"><use href="#i-shield"/></svg><b>Audit trail</b><span>A project log in the shape the IRS asks for.</span><i>Open log <svg class="ic"><use href="#i-arrow"/></svg></i></button>
+  </div>
+</section>
+
+<!-- RESEARCH HUB -->
+<section class="view" id="research">
+  <div class="vhead"><div><div class="kicker">Research</div><h2>The public data behind the credit.</h2><p>Who claims, where R&amp;D money flows, and the rules that change the value.</p></div></div>
+  <div class="steps">
+    <button class="step" onclick="show('gapv')"><svg class="ic big"><use href="#i-chart"/></svg><b>Startup gap</b><span>Claims and dollars by company size (IRS).</span></button>
+    <button class="step" onclick="show('who')"><svg class="ic big"><use href="#i-bank"/></svg><b>Who claims</b><span>Sectors, 2015 to 2022 (IRS).</span></button>
+    <button class="step" onclick="show('hurdles')"><svg class="ic big"><use href="#i-alert"/></svg><b>Hurdles</b><span>Ten reasons founders don't claim, and the fixes.</span></button>
+    <button class="step" onclick="show('state')"><svg class="ic big"><use href="#i-pin"/></svg><b>States</b><span>Credit rules and rankings for 21 states.</span></button>
+    <button class="step" onclick="show('heat')"><svg class="ic big"><use href="#i-dollar"/></svg><b>R&amp;D heatmap</b><span>Federal R&amp;D money by county (USAspending).</span></button>
+    <button class="step" onclick="show('uni')"><svg class="ic big"><use href="#i-db"/></svg><b>Universities</b><span>Research hubs and blind spots (NSF, NIH).</span></button>
+    <button class="step" onclick="show('feed')"><svg class="ic big"><use href="#i-search"/></svg><b>Grants</b><span>Open federal opportunities (Grants.gov).</span></button>
+  </div>
+</section>
+
+<!-- MAYA WALKTHROUGH -->
+<section class="view" id="maya">
+  <div class="vhead"><div><div class="kicker">Demo &middot; a founder's claim, start to finish</div><h2>Follow Maya from estimate to cash.</h2><p>Maya is CTO of Lumen Labs, a fictional seed-stage AI startup. Every step shows what she does, how long it takes her, and which public data powers it.</p></div>
+    <div class="takeaway"><b>Maya's time so far</b><span id="myTime" style="font-family:var(--display);font-size:30px;font-weight:600;letter-spacing:-.03em">0 min</span></div></div>
+  <div class="mysteps" id="myDots"></div>
+  <div class="card mycard" id="myBody"></div>
+  <div class="mynav"><button class="btn glassy" id="myBack">&larr; Back</button><span class="sub" id="myPos" style="margin:0"></span><button class="btn" id="myNext">Next &rarr;</button></div>
+  <div class="card"><h3><svg class="ic"><use href="#i-cal"/></svg> Maya's calendar</h3><p class="sub">Real dates for a calendar-year C-corp filing on April 15.</p><div class="cal" id="myCal"></div></div>
 </section>
 
 <!-- GITHUB EVIDENCE -->
@@ -571,21 +670,28 @@ dialog{border:1px solid var(--line);border-radius:18px;max-width:520px;width:cal
 
 <!-- ESTIMATOR -->
 <section class="view" id="est">
-  <div class="vhead"><div><div class="kicker">Act &middot; Estimate</div><h2>What could your startup claim?</h2><p>Pick a sample company, or enter your own numbers.</p></div>
+  <div class="vhead"><div><div class="kicker">Act &middot; Estimate</div><h2>What could your startup claim?</h2><p>Seven quick questions. Your estimate updates as you answer.</p></div>
     <div class="takeaway"><b>Privacy</b>Everything is calculated in your browser. Nothing is sent or stored.</div></div>
-  <div class="lensbar" id="presets" style="margin-bottom:16px"><button class="lens on" data-p="seed">Seed SaaS &middot; 6 eng &middot; CA</button><button class="lens" data-p="bio">Series A biotech &middot; 25 staff &middot; MA</button><button class="lens" data-p="hw">Hardware &middot; 12 eng &middot; MI</button></div>
-  <div class="split">
-    <div class="card">
-      <h3>Your startup</h3>
-      <label>State</label><select id="st"></select>
-      <div class="row2"><div><label>Technical headcount (W-2)</label><input id="eng" type="number" value="6" min="0"></div><div><label>Average salary ($)</label><input id="sal" type="number" value="150000" step="5000" min="0"></div></div>
-      <label>% of their time on R&amp;D: <b id="pctV">70</b>%</label><input id="pct" type="range" value="70" min="0" max="100">
-      <div class="row2"><div><label>US contractors on R&amp;D ($/yr)</label><input id="con" type="number" value="80000" step="5000" min="0"></div><div><label>Cloud &amp; supplies ($/yr)</label><input id="sup" type="number" value="60000" step="5000" min="0"></div></div>
-      <div class="row2"><div><label>Gross receipts this year ($)</label><input id="rev" type="number" value="400000" step="50000" min="0"></div><div><label>First year with revenue</label><input id="fy" type="number" value="2024" min="1990" max="2100"></div></div>
-      <div class="row2"><div><label>Prior 3-year avg R&amp;D spend ($, 0 if new)</label><input id="prior" type="number" value="0" step="10000" min="0"></div><div><label>Monthly burn ($)</label><input id="burn" type="number" value="120000" step="10000" min="0"></div></div>
-      <label style="display:flex;gap:8px;align-items:center;font-size:14px;color:var(--ink)"><input type="checkbox" id="red280"> Take the reduced credit (Section 280C election)</label>
-      <details class="more"><summary>Full or reduced credit?</summary><p class="sub" style="font-size:13px;margin:6px 0 0">Since 2025 you can take the full credit and shrink your R&amp;D deduction instead. For a startup with losses, the full credit is usually worth more. Ask your CPA.</p></details>
+  <div id="wz">
+    <div class="wzbar"><div><span class="sub" style="margin:0">Your estimated cash back</span><b id="wzCash">$0</b></div><div style="flex:1;min-width:160px"><div class="track"><i id="wzProg" style="background:var(--acc);width:0"></i></div><span class="sub" id="wzPos" style="font-size:13px;margin:6px 0 0;display:block"></span></div></div>
+    <div class="card wzcard">
+      <div class="wstep" data-s="0"><div class="kicker">Let's start</div><h3 class="wq">Which company is most like yours?</h3><p class="sub">Pick the closest match. You can change every number next.</p>
+        <div class="pgrid" id="presets"><button class="lens pcard on" data-p="seed"><svg class="ic"><use href="#i-rocket"/></svg><b>Seed SaaS</b><span>6 engineers &middot; California</span></button><button class="lens pcard" data-p="bio"><svg class="ic"><use href="#i-zap"/></svg><b>Series A biotech</b><span>25 R&amp;D staff &middot; Massachusetts</span></button><button class="lens pcard" data-p="hw"><svg class="ic"><use href="#i-bank"/></svg><b>Hardware startup</b><span>12 engineers &middot; Michigan</span></button></div></div>
+      <div class="wstep" data-s="1"><div class="kicker">Location</div><h3 class="wq">Where is your company based?</h3><p class="sub">State credits range from nothing to cash refunds.</p><select id="st"></select></div>
+      <div class="wstep" data-s="2"><div class="kicker">Team</div><h3 class="wq">Who is building your product?</h3><p class="sub">Count W-2 engineers, data scientists and technical product people.</p>
+        <div class="row2"><div><label>Technical headcount</label><input id="eng" type="number" value="6" min="0"></div><div><label>Average salary ($)</label><input id="sal" type="number" value="150000" step="5000" min="0"></div></div></div>
+      <div class="wstep" data-s="3"><div class="kicker">R&amp;D time</div><h3 class="wq">How much of their time goes to R&amp;D?</h3><p class="sub">Building new or better technology where the answer wasn't known. Not routine maintenance or support.</p>
+        <label>Share of time on R&amp;D: <b id="pctV">70</b>%</label><input id="pct" type="range" value="70" min="0" max="100"></div>
+      <div class="wstep" data-s="4"><div class="kicker">Other costs</div><h3 class="wq">What else do you spend on R&amp;D?</h3><p class="sub">Only US-based contractors count, at 65% of what you pay them.</p>
+        <div class="row2"><div><label>US contractors on R&amp;D ($/yr)</label><input id="con" type="number" value="80000" step="5000" min="0"></div><div><label>Cloud &amp; supplies ($/yr)</label><input id="sup" type="number" value="60000" step="5000" min="0"></div></div></div>
+      <div class="wstep" data-s="5"><div class="kicker">Revenue</div><h3 class="wq">Tell us about revenue.</h3><p class="sub">Under $5M, with first revenue in the last 5 years, unlocks the payroll-tax offset.</p>
+        <div class="row2"><div><label>Gross receipts this year ($)</label><input id="rev" type="number" value="400000" step="50000" min="0"></div><div><label>First year with revenue</label><input id="fy" type="number" value="2024" min="1990" max="2100"></div></div></div>
+      <div class="wstep" data-s="6"><div class="kicker">Last question</div><h3 class="wq">History and burn.</h3><p class="sub">Past R&amp;D spend changes your rate. Burn turns the result into runway.</p>
+        <div class="row2"><div><label>Prior 3-year avg R&amp;D spend ($, 0 if new)</label><input id="prior" type="number" value="0" step="10000" min="0"></div><div><label>Monthly burn ($)</label><input id="burn" type="number" value="120000" step="10000" min="0"></div></div></div>
+      <div class="wznav"><button class="btn glassy" id="wzBack">&larr; Back</button><button class="btn big" id="wzNext">Next &rarr;</button></div>
     </div>
+  </div>
+  <div class="split" id="wzRes" style="display:none">
     <div>
       <div class="card result">
         <div class="sub" style="margin:0">Cash you could get from the payroll offset and refundable state credits</div>
@@ -595,9 +701,17 @@ dialog{border:1px solid var(--line);border-radius:18px;max-width:520px;width:cal
         <div class="lg" id="lg"></div>
         <p id="msg" class="sub" style="margin:16px 0 0;font-size:14px"></p>
       </div>
+      <div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><div><b>See it end to end</b><div class="sub" style="margin:0">Follow Maya, a seed-stage CTO, from estimate to cash.</div></div><button class="btn" onclick="show('maya')">Walk through Maya&rsquo;s claim &rarr;</button></div>
       <div class="card"><h3>When the cash arrives</h3><div id="timeline" class="sub" style="margin-top:4px;font-size:14px"></div></div>
       <div class="card"><h3>IRS four-part test</h3><p class="sub">Click each one your main project passes.</p><div class="chips" id="check"></div><p class="sub" id="checkMsg" style="margin:10px 0 0;font-size:14px"></p></div>
       <div class="note" style="margin:0">Estimates only: federal alternative simplified credit (6% with no prior R&amp;D spend, otherwise 14% above half the 3-year average). Payroll offset uses technical payroll only, so it is a lower bound. State figures are headline rates. Not tax advice. Confirm with a CPA and Form 6765.</div>
+    </div>
+    <div>
+      <div class="card"><h3><svg class="ic"><use href="#i-check"/></svg> Your answers</h3><p class="sub">Change anything and every number updates.</p><button class="btn glassy" id="wzEdit">&larr; Edit my answers</button></div>
+      <div class="card"><h3>Fine-tune</h3>
+        <label style="display:flex;gap:8px;align-items:center;font-size:14px;color:var(--ink)"><input type="checkbox" id="red280"> Take the reduced credit (Section 280C election)</label>
+        <details class="more"><summary>Full or reduced credit?</summary><p class="sub" style="font-size:13px;margin:6px 0 0">Since 2025 you can take the full credit and shrink your R&amp;D deduction instead. For a startup with losses, the full credit is usually worth more. Ask your CPA.</p></details></div>
+
     </div>
   </div>
 </section>
@@ -696,12 +810,13 @@ const CHALLENGES=[
 function show(v){
   document.querySelectorAll('.view').forEach(e=>e.classList.toggle('on',e.id===v));
   document.querySelectorAll('nav [data-v]').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
-  scrollTo({top:0,behavior:'smooth'});if(v==='file')drawFile();if(v==='src')drawSrc();
+  document.querySelectorAll('nav .dd').forEach(d=>d.querySelector('.ddb').classList.toggle('on',!!d.querySelector('.ddm [data-v="'+v+'"]')||d.querySelector('.ddb').dataset.v===v));
+  scrollTo({top:0,behavior:'smooth'});if(v==='maya')drawMaya();if(v==='file')drawFile();if(v==='src')drawSrc();
   const ab=document.querySelector('nav [data-v="'+v+'"]'),bar=document.querySelector('nav .bar');if(ab&&bar)bar.scrollTo({left:ab.offsetLeft-bar.clientWidth/2+ab.offsetWidth/2,behavior:'smooth'});
   if(v==='feed')loadFeed();if(v==='who')drawWho();if(v==='heat')drawHeat();if(v==='gapv')drawGap();
   try{history.replaceState(null,"","#"+v)}catch(e){}
 }
-$('nav').addEventListener('click',e=>{if(e.target.dataset.v)show(e.target.dataset.v)});
+$('nav').addEventListener('click',e=>{const b=e.target.closest('[data-v]');if(b){show(b.dataset.v);if(document.activeElement)document.activeElement.blur();}});
 $('limits').onclick=()=>$('dlg').showModal();
 // cursor-following specular highlight on glass panels
 document.addEventListener('pointermove',e=>{const el=e.target.closest&&e.target.closest('.card,.kpi,.gapcard,.hcard');if(!el)return;const r=el.getBoundingClientRect();el.style.setProperty('--mx',(e.clientX-r.left)+'px');el.style.setProperty('--my',(e.clientY-r.top)+'px');},{passive:true});
@@ -759,12 +874,12 @@ function estimate(x){
   const stCash=st*(S.cash||0);
   return {S,qre,fed,gross,smallOk,elected,quarters,st,stCash,ssTax,medTax,ssPart,medPart,cash:elected+stCash,banked:fed-elected+st-stCash,burn:Math.max(0,x.burn),sal};
 }
-const qLabel=i=>{const q=1+i;return "Q"+((q%4)+1)+" "+(YEAR+1+Math.floor(q/4));}; // offsets start Q2 of next year
+const qLabel=i=>{const q=2+i;return "Q"+((q%4)+1)+" "+(YEAR+1+Math.floor(q/4));}; // filed by April 15, so offsets start in Q3 of next year
 let tests=new Set(),lastSig='';
 function readForm(){const v=id=>{const n=+$(id).value;return isFinite(n)?n:0};return {st:$('st').value,eng:v('eng'),sal:v('sal'),pct:v('pct'),con:v('con'),sup:v('sup'),rev:v('rev'),fy:v('fy'),prior:v('prior'),burn:v('burn'),red:$('red280').checked};}
 function calc(){
   const r=estimate(readForm()),S=r.S;$('pctV').textContent=$('pct').value;
-  countTo($('total'),r.cash,fmt,500);
+  countTo($('total'),r.cash,fmt,500);countTo($('wzCash'),r.cash,fmt,400);
   const m=r.burn?r.cash/r.burn:0,eng=r.sal?Math.round(r.cash/r.sal*100):0;
   $('runway').innerHTML=r.cash&&r.burn?`&asymp; <b style="color:#fff">${m>=1?m.toFixed(1)+" months":(w=>w+(w>1?" weeks":" week"))(Math.max(1,Math.round(m*4.33)))}</b> of runway at your burn${eng?` &middot; &asymp; ${eng}% of one engineer's salary`:""}`:"";
   const tot=r.cash+r.banked,parts=[["Payroll-tax offset (cash)",r.elected,"#8fb3f5"],["Refundable state credit (cash)",r.stCash,"#52e0b0"],["Banked for future tax bills",r.banked,"#f5b25a"]];
@@ -793,13 +908,13 @@ function calc(){
 $('check').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(!b)return;const i=+b.dataset.t;tests.has(i)?tests.delete(i):tests.add(i);calc();});
 function applyPreset(k){const p=PRESETS[k];Object.entries(p).forEach(([id,v])=>$(id).value=v);$('red280').checked=false;
   document.querySelectorAll('#presets .lens').forEach(b=>b.classList.toggle('on',b.dataset.p===k));calc();}
-$('presets').addEventListener('click',e=>{if(e.target.dataset.p)applyPreset(e.target.dataset.p);});
+$('presets').addEventListener('click',e=>{const b=e.target.closest('[data-p]');if(b)applyPreset(b.dataset.p);});
 function demo(){applyPreset('seed');show('est');}
 document.querySelectorAll('#est input,#est select').forEach(e=>e.addEventListener('input',()=>{if(e.closest('.card')&&e.id!=='red280')document.querySelectorAll('#presets .lens').forEach(b=>b.classList.remove('on'));calc();}));calc();
 // hero example card uses the same model as the estimator
 (()=>{const r=estimate(PRESETS.seed);$('perEng').textContent="~$"+(Math.round(r.cash/PRESETS.seed.eng/100)*100).toLocaleString();
   countTo($('mockCash'),r.cash,fmt,1200);
-  $('mockQ').innerHTML=Array.from({length:r.quarters},(_,k)=>`<div class="q" style="--d:${(0.4+k*0.12).toFixed(2)}s"><span>${qLabel(k)}</span><b>${money(Math.min(r.elected-k*(r.ssTax+r.medTax)/4,(r.ssTax+r.medTax)/4))}</b></div>`).join('');})();
+  $('mockQ').innerHTML=(()=>{let ss=r.ssPart,md=r.medPart;const out=[];for(let k=0;k<r.quarters&&k<4;k++){const a=Math.min(ss,r.ssTax/4),b=Math.min(md,r.medTax/4);ss-=a;md-=b;out.push(`<div class="q" style="--d:${(0.4+k*0.12).toFixed(2)}s"><span>${qLabel(k)}</span><b>${money(a+b)}</b></div>`);}return out.join('');})();})();
 
 // state explorer
 let sel=null,lens='opp';
@@ -972,7 +1087,7 @@ async function ghFetch(repo){
 $('ghGo').onclick=()=>ghFetch($('ghRepo').value.trim());
 $('ghRepo').addEventListener('keydown',e=>{if(e.key==='Enter')ghFetch($('ghRepo').value.trim());});
 $('ghSample').onclick=()=>{$('ghRepo').value=GH_SAMPLE.repo;ghAnalyze(GH_SAMPLE.repo,GH_SAMPLE.commits,false);};
-$('ghToEst').onclick=()=>{if(!ghLast)return;$('pct').value=Math.max(10,Math.min(90,Math.round(ghLast.share*100/5)*5));calc();show('est');};
+$('ghToEst').onclick=()=>{if(!ghLast)return;$('pct').value=Math.max(10,Math.min(90,Math.round(ghLast.share*100/5)*5));calc();show('est');wzGo(WZ_N);};
 $('ghToAudit').onclick=()=>{if(!ghLast)return;const g=ghLast,top=g.themes[0]?g.themes[0][0]:"R&D work";
   projects.push({aName:`${g.repo}: ${top}`,aPurpose:`Improve ${top.toLowerCase()} (${g.themes.slice(0,3).map(t=>t[0]).join(", ")})`,
     aUnc:`Whether approaches in ${g.themes.slice(0,2).map(t=>t[0].toLowerCase()).join(" and ")} would meet targets; see experiments below`,
@@ -1010,6 +1125,100 @@ $('pSend').onclick=()=>{const parts=[$('pEst').checked&&"your estimate",$('pProj
 
 // ---------- Data sources live status ----------
 function drawSrc(){$('srcLive').innerHTML=`USAspending: <b>${CACHE.sbir.fetched==="LIVE"?"live":"snapshot "+CACHE.sbir.fetched}</b><br>Grants.gov: snapshot ${CACHE.grants.fetched}<br>GitHub: on request`;}
+
+
+// ---------- Maya's claim: a guided, single-founder walkthrough ----------
+const MAYA={...PRESETS.seed};let myIdx=0,myDone=new Set();
+const badge=(src,limit)=>`<div class="src"><b><svg class="ic"><use href="#i-db"/></svg> ${src}</b>${limit?`<span>${limit}</span>`:""}</div>`;
+const tile=(v,l)=>`<div><b>${v}</b><span>${l}</span></div>`;
+function mayaSteps(){
+  const r=estimate(MAYA),g=ghLast,cty=CACHE.county["06085"],ai=CACHE.grants.verticals.ai;
+  const sbLive=CACHE.sbir.fetched==="LIVE"?"live":"snapshot";
+  const themes=g?g.themes.slice(0,3):[];
+  return [
+  {t:"Meet Maya",min:0,h:`<div class="persona"><span class="av">M</span><div><b style="font-size:20px">Maya, CTO of Lumen Labs</b><div class="sub" style="margin:0">Just closed a $3M seed. Building AI infrastructure.</div></div></div>
+    <div class="facts"><span>&#128101; 6 engineers, $150K average</span><span>&#128205; California</span><span>&#128176; $400K revenue, first sales in 2024</span><span>&#9201; Tax return due April 15, ${YEAR+1}</span></div>
+    <div class="stats4" style="margin-top:24px">${tile("~2 in 3","R&amp;D businesses like hers don't claim (our model)")}${tile(money(cty[1]+cty[2]),"federal R&amp;D awards in her county, Santa Clara, FY24&ndash;25")}${tile("34,414","companies did claim in 2022")}${tile("0","hours Maya has budgeted for tax credits")}</div>
+    <p class="sub" style="margin-top:6px">Her question: <b style="color:var(--ink)">"Is this worth my time, and what do I actually have to do?"</b></p>`,
+    src:badge("IRS SOI &middot; Census CBP &middot; USAspending API ("+sbLive+")","The claim rate is modeled; county totals are award dollars, not credits.")},
+  {t:"Estimate",min:2,h:`<div class="stats4">${tile(fmt(r.cash),"cash back against payroll tax")}${tile(fmt(r.qre),"qualified research expenses")}${tile("~"+fmt(Math.round(r.cash/MAYA.eng/100)*100),"per engineer, per year")}${tile(fmt(r.banked),"California credit, banked for later")}</div>
+    <p>Maya enters 8 numbers she already knows. She qualifies as a small business, so the federal credit becomes <b>cash against payroll tax</b>, even with no profit.</p>
+    <button class="btn glassy sm" onclick="show('est')">Open the full estimator</button>`,
+    src:badge("IRC &sect;41 rules &middot; California SB 711","Federal ASC at 6% with no prior R&amp;D. Not tax advice.")},
+  {t:"Connect GitHub",min:5,h:g?`<div class="stats4">${tile(g.rows.length,"commits scanned")}${tile(Math.round(g.share*100)+"%","show an R&amp;D signal")}${tile(Object.keys(g.people).length,"contributors")}${tile(g.rd.length,"dated pieces of evidence")}</div>
+      <p>Her commit history already proves experimentation, with dates. Top themes: ${themes.map(t=>`<b>${t[0]}</b> (${t[1]})`).join(", ")||"none found"}.</p>
+      <button class="btn glassy sm" onclick="show('gh')">See the full evidence log</button>`
+    :`<p>Maya points FounderFunds at her repo. It reads public commit history and flags experiments, performance work and new capabilities.</p>
+      <label class="consent"><input type="checkbox" id="myConsent"> Send the repo name to api.github.com to read public commits</label>
+      <div class="cta" style="margin-top:14px"><button class="btn" id="myGh">Analyze Maya&rsquo;s repo</button><span class="sub" style="margin:0;align-self:center">We use the public repo karpathy/nanoGPT as her stand-in.</span></div><p class="sub" id="myGhMsg" style="margin-top:10px"></p>`,
+    src:badge("GitHub REST API (live, with consent)","Commit messages only; a heuristic, not a tax ruling.")},
+  {t:"Document projects",min:30,h:`<p>FounderFunds drafts one project per theme, in the shape the IRS asks for. Maya reviews and edits them: about 10 minutes each, instead of rebuilding records months later.</p>
+    <div class="grid3">${(themes.length?themes:[["Core R&D work",0]]).map(t=>`<div class="why4" style="display:block"><div><svg class="ic big"><use href="#i-shield"/></svg><b>${t[0]}</b><span>${t[1]} dated commits as evidence &middot; four-part test drafted &middot; people and time shares filled in</span></div></div>`).join("")}</div>
+    <div class="cta" style="margin-top:18px"><button class="btn" id="mySave">Save to audit trail</button><span class="sub" id="mySaved" style="margin:0;align-self:center"></span></div>`,
+    src:badge("GitHub REST API &middot; IRS Form 6765 Section G fields","Section G is optional for small businesses taking the payroll offset; Maya keeps it anyway.")},
+  {t:"Draft Form 6765",min:15,h:`<div class="grid2" style="align-items:start"><div class="form6765"><div class="fh"><span>Form 6765 &middot; preview</span><span>Lumen Labs &middot; ${YEAR}</span></div>
+      <div class="sec">Section B &middot; Alternative simplified credit</div>
+      <div class="ln"><span>Wages for qualified services</span><b>${fmt(MAYA.eng*MAYA.sal*MAYA.pct/100)}</b></div>
+      <div class="ln"><span>Supplies and cloud</span><b>${fmt(MAYA.sup)}</b></div>
+      <div class="ln"><span>Contract research (65%)</span><b>${fmt(MAYA.con*0.65)}</b></div>
+      <div class="ln"><span>Total qualified research expenses</span><b>${fmt(r.qre)}</b></div>
+      <div class="ln"><span>Prior 3-year average</span><b>$0</b></div>
+      <div class="ln tot"><span>Credit (6% of QREs)</span><b>${fmt(r.fed)}</b></div>
+      <div class="sec">Section D &middot; Qualified small business</div>
+      <div class="ln"><span>Payroll tax credit elected</span><b>${fmt(r.elected)}</b></div>
+      <div class="sec">Section G &middot; Business components</div>
+      <div class="ln"><span>Projects documented</span><b>${Math.max(1,themes.length)}</b></div></div>
+    <div><p>Every number traces back to her estimate and her GitHub evidence. Maya checks it in 15 minutes; her CPA signs off.</p><p class="sub">The payroll election only counts on a return filed on time, so this goes in with her April 15 return.</p></div></div>`,
+    src:badge("IRS Form 6765 &middot; IRC &sect;41(h)","A preview with plain-English labels, not the official form.")},
+  {t:"Hand off & file",min:15,h:`<div class="grid2"><div class="why4" style="display:block"><div><svg class="ic big"><use href="#i-download"/></svg><b>Option A: her own CPA</b><span>Maya downloads the claim packet (estimate, checklist, projects, evidence links) and emails it. 5 minutes.</span><div style="margin-top:12px"><button class="btn sm" onclick="$('packet').click()">Download packet</button></div></div></div>
+      <div class="why4" style="display:block"><div><svg class="ic big"><use href="#i-users"/></svg><b>Option B: a filing partner</b><span>She ticks what to share and gets one intro. This is where FounderFunds earns a referral fee.</span><div style="margin-top:12px"><button class="btn glassy sm" onclick="$('partner').click()">Get matched</button></div></div></div></div>
+    <p style="margin-top:16px">Her CPA files Form 1120 with Form 6765 by <b>April 15, ${YEAR+1}</b>.</p>`,
+    src:badge("IRS filing rules","Consent-based: nothing is shared unless Maya ticks it. Demo sends nothing.")},
+  {t:"Get paid",min:5,h:`<p>From the first quarter after filing, her payroll provider attaches Form 8974 to each quarterly Form 941. The credit lowers the payroll tax she would have paid.</p>
+    <div class="qrow">${(()=>{let ss=r.ssPart,md=r.medPart;const out=[];for(let k=0;k<r.quarters&&k<8;k++){const a=Math.min(ss,r.ssTax/4),b=Math.min(md,r.medTax/4);ss-=a;md-=b;out.push(`<div class="q" style="--d:${(k*0.12).toFixed(2)}s"><span>${qLabel(k)}</span><b>${money(a+b)}</b></div>`);}return out.join("");})()}</div>
+    <div class="stats4" style="margin-top:18px">${tile(fmt(r.cash),"cash back in total")}${tile("~1 hr 12 min","of Maya's time")}${tile(r.quarters+" quarters","to use it all")}${tile(ai?ai.hitCount:"&ndash;","open AI &amp; software grants she could also apply for")}</div>
+    <div class="cta" style="margin-top:18px"><button class="btn" onclick="show('est')">Estimate my own &rarr;</button><button class="btn glassy" onclick="show('file')">Start my claim</button></div>`,
+    src:badge("Form 8974 rules &middot; Grants.gov API (snapshot "+CACHE.grants.fetched+")","Grant-funded work can't also count toward the credit.")}];
+}
+function drawMaya(){
+  const S=mayaSteps(),s=S[myIdx],used=S.slice(0,myIdx+1).reduce((a,x)=>a+x.min,0);
+  $('myDots').innerHTML=S.map((x,k)=>`<button class="${k===myIdx?'on':''} ${k<myIdx?'done':''}" data-k="${k}"><i></i><span>${k+1}. ${x.t}</span></button>`).join('');
+  $('myBody').innerHTML=`<div class="mytop"><div><div class="kicker">Step ${myIdx+1} of ${S.length}</div><h3>${s.t}</h3></div><span class="mytime"><svg class="ic"><use href="#i-clock"/></svg> Maya's time: ${s.min?s.min+" min":"none"}</span></div>${s.h}${s.src}`;
+  countTo($('myTime'),used,x=>{x=Math.round(x);return x>=60?Math.floor(x/60)+" hr "+(x%60)+" min":x+" min"},500);
+  $('myPos').textContent=`${myIdx+1} / ${S.length}`;$('myBack').disabled=myIdx===0;$('myNext').textContent=myIdx===S.length-1?"Start over":"Next →";
+  const r=estimate(MAYA),endQ=qLabel(Math.max(0,r.quarters-1));
+  $('myCal').innerHTML=[["now",`Today, ${new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}`,"Estimate, GitHub evidence, projects (~40 min)"],
+    ["",`Monthly`,"Log new experiments as they happen (~5 min)"],["",`March ${YEAR+1}`,"Send the claim packet to her CPA (~15 min)"],
+    ["",`April 15, ${YEAR+1}`,"CPA files Form 1120 + 6765 with the payroll election"],["cash",`October 31, ${YEAR+1}`,"First Form 941 with Form 8974 (Q3): cash starts"],
+    ["cash",endQ,`Credit fully used: ${fmt(r.cash)} back`]].map(c=>`<div class="${c[0]}"><time>${c[1]}</time><span>${c[2]}</span></div>`).join('');
+  const go=$('myGh');if(go)go.onclick=async()=>{if(!$('myConsent').checked){$('myGhMsg').textContent="Tick the consent box first.";return;}
+    $('ghConsent').checked=true;$('ghRepo').value=GH_SAMPLE.repo;$('myGhMsg').textContent="Reading public commits from GitHub…";await ghFetch(GH_SAMPLE.repo);if(!ghLast)ghAnalyze(GH_SAMPLE.repo,GH_SAMPLE.commits,false);drawMaya();};
+  const sv=$('mySave');if(sv)sv.onclick=()=>{if(!ghLast)ghAnalyze(GH_SAMPLE.repo,GH_SAMPLE.commits,false);const g=ghLast;
+    g.themes.slice(0,3).forEach(([name])=>{const ev=g.rd.filter(x=>THEMES.find(t=>t[0]===name)[1].test(x.first)).slice(0,5);
+      projects.push({aName:`Lumen Labs: ${name}`,aPurpose:`Improve ${name.toLowerCase()}`,aUnc:`Whether new approaches to ${name.toLowerCase()} would meet targets`,aExp:ev.map(x=>x.first).join("; "),
+        aPeople:Object.keys(g.people).slice(0,3).join("; "),aCost:"",aEv:ev.map(x=>`${x.first.slice(0,60)} (${x.date}) https://github.com/${g.repo}/commit/${x.sha}`).join(", "),aFunded:false,date:new Date().toISOString().slice(0,10)});});
+    saveP();listP();$('mySaved').textContent=`Saved ${Math.min(3,g.themes.length)} projects to the audit trail.`;};
+}
+$('myNext').onclick=()=>{const n=mayaSteps().length;myIdx=myIdx===n-1?0:myIdx+1;drawMaya();};
+$('myBack').onclick=()=>{if(myIdx>0){myIdx--;drawMaya();}};
+$('myDots').addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(b){myIdx=+b.dataset.k;drawMaya();}});
+addEventListener('keydown',e=>{if(!$('maya').classList.contains('on')||/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName))return;
+  if(e.key==='ArrowRight')$('myNext').click();if(e.key==='ArrowLeft')$('myBack').click();});
+
+
+// ---------- estimator wizard: one question at a time ----------
+const WZ=[...document.querySelectorAll('.wstep')],WZ_N=WZ.length;let wzI=0;
+function wzGo(n){const back=n<wzI;wzI=Math.max(0,Math.min(WZ_N,n));
+  if(wzI===WZ_N){$('wz').style.display='none';$('wzRes').style.display='';scrollTo({top:0,behavior:'smooth'});return;}
+  $('wz').style.display='';$('wzRes').style.display='none';
+  WZ.forEach((s,k)=>{s.classList.toggle('on',k===wzI);s.classList.toggle('back',k===wzI&&back);});
+  $('wzBack').style.visibility=wzI?'visible':'hidden';$('wzNext').innerHTML=wzI===WZ_N-1?'See my estimate &rarr;':'Next &rarr;';
+  $('wzPos').textContent=`Question ${wzI+1} of ${WZ_N}`;$('wzProg').style.width=((wzI+1)/(WZ_N+1)*100)+'%';
+  const f=WZ[wzI].querySelector('input:not([type=range]),select');if(f&&wzI)setTimeout(()=>f.focus({preventScroll:true}),350);}
+$('wzNext').onclick=()=>wzGo(wzI+1);$('wzBack').onclick=()=>wzGo(wzI-1);$('wzEdit').onclick=()=>wzGo(1);
+$('wz').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.tagName!=='BUTTON'){e.preventDefault();wzGo(wzI+1);}});
+$('presets').addEventListener('click',e=>{if(e.target.closest('[data-p]'))setTimeout(()=>wzGo(1),280);});
+wzGo(0);
 
 // deep link (e.g. #heat)
 const h=location.hash.slice(1);if(h&&$(h)&&$(h).classList.contains('view'))show(h);
