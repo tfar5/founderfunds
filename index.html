@@ -326,7 +326,8 @@ html,body{background:transparent}html{background:#fff}
 .btn:hover{box-shadow:0 10px 28px -10px rgba(170,190,20,.75)}.btn.glassy:hover{box-shadow:0 10px 28px -12px rgba(18,163,111,.45)}
 .hero{background-color:transparent}
 /* dropdown nav */
-nav .bar{flex-direction:row}nav .grp{overflow:visible;flex-wrap:wrap;gap:2px}
+nav .bar{flex-direction:row;overflow:visible}.topbar,.topin{overflow:visible}
+.dd.open .ddm{display:block}nav .grp{overflow:visible;flex-wrap:wrap;gap:2px}
 .dd{position:relative}.car{font-size:10px;color:var(--faint);margin-left:2px}
 .ddm{display:none;position:absolute;top:calc(100% + 6px);left:0;min-width:300px;background:rgba(255,255,255,.97);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:14px;box-shadow:0 24px 50px -20px rgba(0,0,0,.25);padding:6px;z-index:80}
 .dd::after{content:"";position:absolute;left:0;right:0;top:100%;height:8px}
@@ -1206,6 +1207,9 @@ addEventListener('keydown',e=>{if(!$('maya').classList.contains('on')||/INPUT|SE
   if(e.key==='ArrowRight')$('myNext').click();if(e.key==='ArrowLeft')$('myBack').click();});
 
 
+// dropdowns open on hover (CSS :hover plus a class, so it works even if a parent clips or a browser is slow)
+document.querySelectorAll('nav .dd').forEach(d=>{let t;d.addEventListener('mouseenter',()=>{clearTimeout(t);document.querySelectorAll('nav .dd.open').forEach(o=>o!==d&&o.classList.remove('open'));d.classList.add('open');});
+  d.addEventListener('mouseleave',()=>{t=setTimeout(()=>d.classList.remove('open'),180);});d.querySelector('.ddm').addEventListener('click',()=>d.classList.remove('open'));});
 // ---------- estimator wizard: one question at a time ----------
 const WZ=[...document.querySelectorAll('.wstep')],WZ_N=WZ.length;let wzI=0;
 function wzGo(n){const back=n<wzI;wzI=Math.max(0,Math.min(WZ_N,n));
