@@ -1127,7 +1127,14 @@ function drawSrc(){$('srcLive').innerHTML=`USAspending: <b>${CACHE.sbir.fetched=
 
 
 // ---------- Maya's claim: a guided, single-founder walkthrough ----------
-const MAYA={...PRESETS.seed};let myIdx=0,myDone=new Set();
+const MAYA={...PRESETS.seed};let myIdx=0,myDone=new Set(),myQ=0,myQback=false;
+const myIn=(k,label,attrs="")=>`<div><label>${label}</label><input type="number" data-mk="${k}" value="${MAYA[k]}" min="0" ${attrs}></div>`;
+const MYQ=[["Where is her company based?","State credits range from nothing to cash refunds.",()=>`<select data-mk="st">${$('st').innerHTML.replace(' selected','')}</select>`],
+  ["Who is building the product?","W-2 engineers, data scientists and technical product people.",()=>`<div class="row2">${myIn("eng","Technical headcount")}${myIn("sal","Average salary ($)",'step="5000"')}</div>`],
+  ["How much of their time goes to R&amp;D?","New or better technology where the answer wasn't known.",()=>`<label>Share of time on R&amp;D: <b id="myPctV">${MAYA.pct}</b>%</label><input type="range" data-mk="pct" min="0" max="100" value="${MAYA.pct}">`],
+  ["What else does she spend on R&amp;D?","US contractors count at 65%.",()=>`<div class="row2">${myIn("con","US contractors ($/yr)",'step="5000"')}${myIn("sup","Cloud &amp; supplies ($/yr)",'step="5000"')}</div>`],
+  ["Revenue","Under $5M, with first revenue in the last 5 years, unlocks the payroll offset.",()=>`<div class="row2">${myIn("rev","Gross receipts this year ($)",'step="50000"')}${myIn("fy","First year with revenue")}</div>`],
+  ["History and burn","Past R&amp;D spend changes the rate. Burn turns cash into runway.",()=>`<div class="row2">${myIn("prior","Prior 3-year avg R&amp;D ($)",'step="10000"')}${myIn("burn","Monthly burn ($)",'step="10000"')}</div>`]];
 const badge=(src,limit)=>`<div class="src"><b><svg class="ic"><use href="#i-db"/></svg> ${src}</b>${limit?`<span>${limit}</span>`:""}</div>`;
 const tile=(v,l)=>`<div><b>${v}</b><span>${l}</span></div>`;
 function mayaSteps(){
@@ -1136,18 +1143,27 @@ function mayaSteps(){
   const themes=g?g.themes.slice(0,3):[];
   return [
   {t:"Meet Maya",min:0,h:`<div class="persona"><span class="av">M</span><div><b style="font-size:20px">Maya, CEO of Lumen Labs</b><div class="sub" style="margin:0">Just closed a $5M seed. Building AI infrastructure.</div></div></div>
-    <div class="facts"><span>&#128101; 6 engineers, $150K average</span><span>&#128205; California</span><span>&#128176; $400K revenue, first sales in 2024</span><span>&#9201; Tax return due April 15, ${YEAR+1}</span></div>
+    <div class="facts"><span>&#128101; 6 engineers, $150K average</span><span>&#128205; ${(STATE_CREDITS[MAYA.st]||{}).name||"California"}</span><span>&#128176; $400K revenue, first sales in 2024</span><span>&#9201; Tax return due April 15, ${YEAR+1}</span></div>
     <div class="stats4" style="margin-top:24px">${tile("~2 in 3","R&amp;D businesses like hers don't claim (our model)")}${tile(money(cty[1]+cty[2]),"federal R&amp;D awards in her county, Santa Clara, FY24&ndash;25")}${tile("34,414","companies did claim in 2022")}${tile("0","hours Maya has budgeted for tax credits")}</div>
     <p class="sub" style="margin-top:6px">Her question: <b style="color:var(--ink)">"Is this worth my time, and what do I actually have to do?"</b></p>`,
     src:badge("IRS SOI &middot; Census CBP &middot; USAspending API ("+sbLive+")","The claim rate is modeled; county totals are award dollars, not credits.")},
-  {t:"Estimate",min:2,h:`<div class="stats4">${tile(fmt(r.cash),"cash back against payroll tax")}${tile(fmt(r.qre),"qualified research expenses")}${tile("~"+fmt(Math.round(r.cash/MAYA.eng/100)*100),"per engineer, per year")}${tile(fmt(r.banked),"California credit, banked for later")}</div>
-    <p>Maya enters 8 numbers she already knows. She qualifies as a small business, so the federal credit becomes <b>cash against payroll tax</b>, even with no profit.</p>
-    <button class="btn glassy sm" onclick="show('est')">Open the full estimator</button>`,
-    src:badge("IRC &sect;41 rules &middot; California SB 711","Federal ASC at 6% with no prior R&amp;D. Not tax advice.")},
-  {t:"Connect GitHub",min:5,h:g?`<div class="stats4">${tile(g.rows.length,"commits scanned")}${tile(Math.round(g.share*100)+"%","show an R&amp;D signal")}${tile(Object.keys(g.people).length,"contributors")}${tile(g.rd.length,"dated pieces of evidence")}</div>
-      <p>Her commit history already proves experimentation, with dates. Top themes: ${themes.map(t=>`<b>${t[0]}</b> (${t[1]})`).join(", ")||"none found"}.</p>
-      <button class="btn glassy sm" onclick="show('gh')">See the full evidence log</button>`
+  {t:"Estimate",min:2,h:myQ<MYQ.length?`<div class="wzbar" style="margin-bottom:16px"><div><span class="sub" style="margin:0">Maya's estimated cash back</span><b id="myMeter">${fmt(r.cash)}</b></div><div style="flex:1;min-width:160px"><div class="track"><i style="background:var(--acc);width:${(myQ+1)/(MYQ.length+1)*100}%"></i></div><span class="sub" style="font-size:13px;margin:6px 0 0;display:block">Question ${myQ+1} of ${MYQ.length} &middot; prefilled with Maya's answers, change anything</span></div></div>
+      <div class="wstep on ${myQback?'back':''}"><h3 class="wq" style="font-size:26px">${MYQ[myQ][0]}</h3><p class="sub">${MYQ[myQ][1]}</p>${MYQ[myQ][2]()}</div>
+      <div class="cta" style="margin-top:18px">${myQ?`<button class="btn glassy" id="myQBack">&larr; Previous question</button>`:""}<button class="btn" id="myQNext">${myQ===MYQ.length-1?"See her estimate":"Next question"} &rarr;</button></div>`
+    :`<div class="stats4">${tile(fmt(r.cash),"cash back against payroll tax")}${tile(fmt(r.qre),"qualified research expenses")}${tile(MAYA.eng?"~"+fmt(Math.round(r.cash/MAYA.eng/100)*100):"&ndash;","per engineer, per year")}${tile(fmt(r.banked),(r.S.name||"State")+" credit, banked for later")}</div>
+    <p>${r.smallOk?`Maya qualifies as a small business, so the federal credit becomes <b>cash against payroll tax</b>, even with no profit.`:`At these answers the payroll offset doesn't apply, so the credit is banked for future tax bills.`}</p>
+    <p class="sub"><a href="#" id="myQEdit">Change Maya's answers</a></p>`,
+    src:badge("IRC &sect;41 rules &middot; state credit law","Federal ASC at 6% with no prior R&amp;D. Not tax advice.")},
+    {t:"Connect GitHub",min:5,h:g?`<div class="stats4">${tile(g.rows.length,"commits scanned")}${tile(Math.round(g.share*100)+"%","show an R&amp;D signal")}${tile(Object.keys(g.people).length,"contributors")}${tile(g.rd.length,"dated pieces of evidence")}</div>
+      <div class="grid2" style="margin-top:4px">
+        <div><b>Candidate projects</b><p class="sub" style="font-size:13.5px;margin:2px 0 8px">Themes in her R&amp;D commits</p>${hb(themes.length?g.themes.slice(0,4):[["None found",0]],"",x=>x+(x===1?" commit":" commits"),Math.max(1,...g.themes.map(t=>t[1])))}</div>
+        <div><b>Who did the R&amp;D</b><p class="sub" style="font-size:13.5px;margin:2px 0 0">Share of each person's commits with an R&amp;D signal</p>${Object.entries(g.people).sort((a,b)=>b[1].n-a[1].n).slice(0,4).map(([w,p])=>`<div class="person"><span class="av">${esc(w.slice(0,1).toUpperCase())}</span><div class="t"><b>${esc(w)}</b><small>${p.n} commits</small></div><span class="pill ${p.rd/p.n>=.5?'live':'est'}">${Math.round(p.rd/p.n*100)}% R&amp;D</span></div>`).join('')}</div>
+      </div>
+      <div style="margin-top:18px"><b>Evidence log</b><p class="sub" style="font-size:13.5px;margin:2px 0 0">Dated commits that show R&amp;D work. Each opens on GitHub in a new tab.</p>
+        ${g.rd.slice(0,6).map(r=>`<div class="ev"><time>${esc(r.date)}</time><div>${esc(r.first)}<div class="tags">${r.tags.map(t=>`<span>${t}</span>`).join('')}</div></div><a href="https://github.com/${esc(g.repo)}/commit/${esc(r.sha)}" target="_blank" rel="noopener">View &#8599;</a></div>`).join('')}</div>
+      <p class="sub" style="margin-top:14px">Analyzed <b>${esc(g.repo)}</b>. <a href="#" id="myRedo">Try a different repo</a></p>`
     :`<p>Maya points FounderFunds at her repo. It reads public commit history and flags experiments, performance work and new capabilities.</p>
+      <div class="ghform" style="margin-top:6px"><div style="flex:1;min-width:220px"><label for="myRepo">Public GitHub repo</label><input id="myRepo" value="${GH_SAMPLE.repo}"></div></div>
       <label class="consent"><input type="checkbox" id="myConsent"> Send the repo name to api.github.com to read public commits</label>
       <div class="cta" style="margin-top:14px"><button class="btn" id="myGh">Analyze Maya&rsquo;s repo</button><span class="sub" style="margin:0;align-self:center">We use the public repo karpathy/nanoGPT as her stand-in.</span></div><p class="sub" id="myGhMsg" style="margin-top:10px"></p>`,
     src:badge("GitHub REST API (live, with consent)","Commit messages only; a heuristic, not a tax ruling.")},
@@ -1190,8 +1206,15 @@ function drawMaya(){
     ["",`Monthly`,"Log new experiments as they happen (~5 min)"],["",`March ${YEAR+1}`,"Send the claim packet to her CPA (~15 min)"],
     ["",`April 15, ${YEAR+1}`,"CPA files Form 1120 + 6765 with the payroll election"],["cash",`October 31, ${YEAR+1}`,"First Form 941 with Form 8974 (Q3): cash starts"],
     ["cash",endQ,`Credit fully used: ${fmt(r.cash)} back`]].map(c=>`<div class="${c[0]}"><time>${c[1]}</time><span>${c[2]}</span></div>`).join('');
+  document.querySelectorAll('#myBody [data-mk]').forEach(f=>{if(f.tagName==='SELECT')f.value=MAYA.st;f.addEventListener('input',()=>{const k=f.dataset.mk;MAYA[k]=k==='st'?f.value:(+f.value||0);
+    if(k==='pct')$('myPctV').textContent=f.value;const m=$('myMeter');if(m)m.textContent=fmt(estimate(MAYA).cash);});});
+  const qn=$('myQNext');if(qn)qn.onclick=()=>{myQback=false;myQ++;drawMaya();};
+  const qb=$('myQBack');if(qb)qb.onclick=()=>{myQback=true;myQ--;drawMaya();};
+  const qe=$('myQEdit');if(qe)qe.onclick=e=>{e.preventDefault();myQback=false;myQ=0;drawMaya();};
   const go=$('myGh');if(go)go.onclick=async()=>{if(!$('myConsent').checked){$('myGhMsg').textContent="Tick the consent box first.";return;}
-    $('ghConsent').checked=true;$('ghRepo').value=GH_SAMPLE.repo;$('myGhMsg').textContent="Reading public commits from GitHub…";await ghFetch(GH_SAMPLE.repo);if(!ghLast)ghAnalyze(GH_SAMPLE.repo,GH_SAMPLE.commits,false);drawMaya();};
+    const repo=($('myRepo').value||GH_SAMPLE.repo).trim();$('ghConsent').checked=true;$('ghRepo').value=repo;$('myGhMsg').textContent="Reading public commits from GitHub…";ghLast=null;
+    await ghFetch(repo);if(!ghLast){$('myGhMsg').textContent=$('ghMsg').textContent+" Using the sample.";ghAnalyze(GH_SAMPLE.repo,GH_SAMPLE.commits,false);}drawMaya();};
+  const redo=$('myRedo');if(redo)redo.onclick=e=>{e.preventDefault();ghLast=null;drawMaya();};
   const sv=$('mySave');if(sv)sv.onclick=()=>{if(!ghLast)ghAnalyze(GH_SAMPLE.repo,GH_SAMPLE.commits,false);const g=ghLast;
     g.themes.slice(0,3).forEach(([name])=>{const ev=g.rd.filter(x=>THEMES.find(t=>t[0]===name)[1].test(x.first)).slice(0,5);
       projects.push({aName:`Lumen Labs: ${name}`,aPurpose:`Improve ${name.toLowerCase()}`,aUnc:`Whether new approaches to ${name.toLowerCase()} would meet targets`,aExp:ev.map(x=>x.first).join("; "),
@@ -1201,7 +1224,8 @@ function drawMaya(){
 $('myNext').onclick=()=>{const n=mayaSteps().length;myIdx=myIdx===n-1?0:myIdx+1;drawMaya();};
 $('myBack').onclick=()=>{if(myIdx>0){myIdx--;drawMaya();}};
 $('myDots').addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(b){myIdx=+b.dataset.k;drawMaya();}});
-addEventListener('keydown',e=>{if(!$('maya').classList.contains('on')||/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName))return;
+addEventListener('keydown',e=>{if($('maya').classList.contains('on')&&e.key==='Enter'&&e.target.dataset&&e.target.dataset.mk&&$('myQNext')){e.preventDefault();$('myQNext').click();return;}
+  if(!$('maya').classList.contains('on')||/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName))return;
   if(e.key==='ArrowRight')$('myNext').click();if(e.key==='ArrowLeft')$('myBack').click();});
 
 
