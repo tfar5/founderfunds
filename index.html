@@ -53,7 +53,7 @@ a{color:var(--blue)}
 .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:44px;align-items:center;padding:34px 0 40px}
 .eyebrow{display:inline-flex;gap:8px;align-items:center;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--acc);padding:6px 12px;border-radius:999px}
 h1{font-family:var(--display);font-size:clamp(40px,6vw,72px);line-height:.98;margin:18px 0 18px;letter-spacing:-.045em;font-weight:800}
-h1 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.02em;background:linear-gradient(100deg,var(--acc),var(--acc2) 45%,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.08em}
+h1 em{font-style:normal;font-weight:800;background:linear-gradient(100deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.08em}
 .lede{font-size:19px;color:var(--mute);max-width:560px;margin:0 0 28px}
 .cta{display:flex;gap:12px;flex-wrap:wrap}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:999px;border:0;font:inherit;font-weight:600;cursor:pointer;text-decoration:none;color:#fff;
@@ -173,7 +173,27 @@ details summary{cursor:pointer;font-weight:600}
 @media(max-width:1320px){.grp>span{display:none}}
 @media(max-width:900px){.hero-grid,.grid2,.split,.hgrid{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}.grid3,.why{grid-template-columns:1fr}.vhead{grid-template-columns:1fr}.takeaway{max-width:none}nav .bar{border-radius:22px}}
 @media(max-width:520px){.kpis{grid-template-columns:1fr}.hbar{grid-template-columns:100px 1fr auto;font-size:13px}.status span:last-child{display:none}.row2{grid-template-columns:1fr}.bgfx i{filter:blur(60px)}}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* live data ticker */
+.ticker{overflow:hidden;margin-top:22px;border-radius:999px;background:var(--glass-tint);border:1px solid var(--glass-edge);-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.tk{display:flex;width:max-content;animation:tick 70s linear infinite}.ticker:hover .tk{animation-play-state:paused}
+.tk span{white-space:nowrap;padding:11px 26px;font-size:14px;color:var(--mute);display:inline-flex;gap:8px;align-items:center}.tk b{color:var(--ink);font-weight:700}
+.tk em{font-style:normal;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);padding:2px 7px;border-radius:99px;background:var(--acc-soft)}
+@keyframes tick{to{transform:translateX(-50%)}}
+/* quarter-by-quarter cash timeline */
+.qrow{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0 10px}
+.q{flex:1 0 70px;max-width:120px;border-radius:12px;padding:9px 9px 8px;border:1px solid rgba(47,191,143,.3);position:relative;overflow:hidden;font-size:12px;color:var(--mute);background:var(--line)}
+.q::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(82,224,176,.4),rgba(82,224,176,.14));transform-origin:left;transform:scaleX(var(--f,1));animation:fill .55s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d,0s)}
+.q>*{position:relative}.q b{display:block;font-size:15px;color:var(--ink);font-family:var(--display);letter-spacing:-.02em}
+.q.file{border-style:dashed;border-color:var(--glass-edge)}.q.file::before{display:none}.q.st::before{background:linear-gradient(180deg,rgba(245,178,90,.45),rgba(245,178,90,.15))}.q.st{border-color:rgba(217,131,24,.35)}
+@keyframes fill{from{transform:scaleX(0)}}
+/* scroll reveal */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.2,1)}.reveal.in{opacity:1;transform:none}
+/* click-to-expand cards and data notes */
+.hcard p,.hcard .fix,.blind span{display:none}.hcard.open p,.hcard.open .fix,.blind div.open span{display:block}
+.hcard,.blind div{cursor:pointer}.hcard b::after,.blind b::after{content:" +";color:var(--faint);font-weight:500}.hcard.open b::after,.blind div.open b::after{content:" \2212"}
+.note summary{cursor:pointer;font-weight:600;font-size:13px;color:var(--mute)}.note details[open] summary{margin-bottom:6px}
+.more summary{cursor:pointer;font-size:13px;margin-top:10px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.ticker{overflow-x:auto}}
 </style>
 </head>
 <body>
@@ -187,7 +207,7 @@ details summary{cursor:pointer;font-weight:600}
     <div>
       <div class="eyebrow glass">Public data &middot; R&amp;D credits &middot; grants</div>
       <h1>Your R&amp;D can pay you back. <em>See how much, and when.</em></h1>
-      <p class="lede">The federal R&amp;D credit is turning into a software credit: companies in the IRS Information sector tripled their claims from 2015 to 2022. Startups with under $5M in revenue can use it against payroll tax even with no profit. FounderFunds turns IRS, Census, state and federal-award data into a 30-second estimate of the cash you could get, when it arrives, and the records that make it stick.</p>
+      <p class="lede">Public IRS, Census and federal-award data, turned into one answer: the R&amp;D-credit cash your startup could get, and when.</p>
       <div class="cta"><button class="btn" onclick="demo()">Run the 2-minute demo &rarr;</button><button class="btn glassy" onclick="show('est')">Estimate my own</button></div>
     </div>
     <div class="gapcard">
@@ -195,7 +215,7 @@ details summary{cursor:pointer;font-weight:600}
       <div class="gaprow"><div class="lbl"><span>Companies claiming: 19,701 &rarr; 34,414</span><b id="hClaim">0</b></div><div class="track"><i id="hClaimBar" style="background:linear-gradient(90deg,#3767c4,#8fb3f5)"></i></div></div>
       <div class="gaprow"><div class="lbl"><span>Credit claimed: $14.4B &rarr; $42.6B</span><b id="hCredit">0</b></div><div class="track"><i id="hCreditBar" style="background:linear-gradient(90deg,#c9711a,#f5b25a)"></i></div></div>
       <div class="gaprow"><div class="lbl"><span>Information-sector claimants: 2,264 &rarr; 6,715</span><b id="hBig">0</b></div><div class="track"><i id="hBigBar" style="background:linear-gradient(90deg,#0a7a5a,#2fbf8f)"></i></div></div>
-      <small>Bars show the 2015 level as a share of 2022. Source: IRS SOI Publication 16, Table 14 (Form 6765), tax years 2015 and 2022. C-corporations only.</small>
+      <small>Bar = 2015 as a share of 2022 &middot; IRS SOI Pub 16, Table 14 &middot; C-corps</small>
     </div>
   </div>
   <div class="kpis">
@@ -204,6 +224,7 @@ details summary{cursor:pointer;font-weight:600}
     <div class="kpi"><span class="tag">Estimate</span><b id="kSeed">$0</b><small>cash a 6-engineer seed team could get against payroll tax (see Estimate)</small></div>
     <div class="kpi g"><span class="tag">IRC &sect;41(h)</span><b>Up to $500K</b><small>a year against payroll tax, for companies under $5M revenue and within 5 years of first revenue</small></div>
   </div>
+  <div class="ticker" aria-label="Public data highlights"><div class="tk" id="tk"></div></div>
 </header>
 
 <nav id="nav"><div class="wrap"><div class="bar">
@@ -288,7 +309,7 @@ details summary{cursor:pointer;font-weight:600}
 
 <!-- HURDLES -->
 <section class="view" id="hurdles">
-  <div class="vhead"><div><div class="kicker">Understand &middot; Top 10 hurdles</div><h2>Founders don't fail on eligibility. They fail on paperwork.</h2><p>Synthesized from practitioner guidance (Leyton, Baker Tilly, TriNet, Boast, Built In) and IRS audit themes. Practitioner-reported, not survey-measured.</p></div>
+  <div class="vhead"><div><div class="kicker">Understand &middot; Top 10 hurdles</div><h2>Founders don't fail on eligibility. They fail on paperwork.</h2><p>Click a hurdle for the fix. From practitioner guidance and IRS audit themes, not a survey.</p></div>
     <div class="takeaway"><b>Takeaway</b>Most hurdles disappear if you log projects as you go. That's what the Audit trail builder is for.</div></div>
   <div class="hgrid" id="chal"></div>
   <p style="margin-top:18px"><button class="btn" onclick="show('audit')">Start an audit trail &rarr;</button></p>
@@ -341,7 +362,7 @@ details summary{cursor:pointer;font-weight:600}
     <div class="card"><h3>Top 10 states</h3><div id="topUniSt" style="margin-top:12px"></div></div>
   </div>
   <div class="card">
-    <h3>Blind spots founders miss</h3><p class="sub">Rules that quietly shrink or delay the money.</p>
+    <h3>Blind spots founders miss</h3><p class="sub">Rules that quietly shrink or delay the money. Click to open.</p>
     <div class="blind">
       <div><b>University partnerships</b><span>Payments to qualified universities for basic research can earn a separate credit under the regular method.</span></div>
       <div><b>Grant-funded work doesn't count</b><span>SBIR or customer-funded research can fall under the funded-research exclusion. Grants and credits don't always stack.</span></div>
@@ -369,7 +390,7 @@ details summary{cursor:pointer;font-weight:600}
 
 <!-- ESTIMATOR -->
 <section class="view" id="est">
-  <div class="vhead"><div><div class="kicker">Act &middot; Estimate</div><h2>What could your startup claim?</h2><p>Pick a sample company or enter your own numbers. Results update instantly.</p></div>
+  <div class="vhead"><div><div class="kicker">Act &middot; Estimate</div><h2>What could your startup claim?</h2><p>Pick a sample company, or enter your own numbers.</p></div>
     <div class="takeaway"><b>Privacy</b>Everything is calculated in your browser. Nothing is sent or stored.</div></div>
   <div class="lensbar" id="presets" style="margin-bottom:16px"><button class="lens on" data-p="seed">Seed SaaS &middot; 6 eng &middot; CA</button><button class="lens" data-p="bio">Series A biotech &middot; 25 staff &middot; MA</button><button class="lens" data-p="hw">Hardware &middot; 12 eng &middot; MI</button></div>
   <div class="split">
@@ -382,7 +403,7 @@ details summary{cursor:pointer;font-weight:600}
       <div class="row2"><div><label>Gross receipts this year ($)</label><input id="rev" type="number" value="400000" step="50000" min="0"></div><div><label>First year with revenue</label><input id="fy" type="number" value="2024" min="1990" max="2100"></div></div>
       <div class="row2"><div><label>Prior 3-year avg R&amp;D spend ($, 0 if new)</label><input id="prior" type="number" value="0" step="10000" min="0"></div><div><label>Monthly burn ($)</label><input id="burn" type="number" value="120000" step="10000" min="0"></div></div>
       <label style="display:flex;gap:8px;align-items:center;font-size:14px;color:var(--ink)"><input type="checkbox" id="red280"> Take the reduced credit (Section 280C election)</label>
-      <p class="sub" style="font-size:13px;margin:6px 0 0">Since 2025 you can take the full credit and shrink your R&amp;D deduction instead. For a startup with losses, the full credit is usually worth more. Ask your CPA.</p>
+      <details class="more"><summary>Full or reduced credit?</summary><p class="sub" style="font-size:13px;margin:6px 0 0">Since 2025 you can take the full credit and shrink your R&amp;D deduction instead. For a startup with losses, the full credit is usually worth more. Ask your CPA.</p></details>
     </div>
     <div>
       <div class="card result">
@@ -393,8 +414,8 @@ details summary{cursor:pointer;font-weight:600}
         <div class="lg" id="lg"></div>
         <p id="msg" class="sub" style="margin:16px 0 0;font-size:14px"></p>
       </div>
-      <div class="card"><h3>When the cash arrives</h3><div id="timeline" class="sub" style="margin-top:8px"></div></div>
-      <div class="card"><h3>IRS four-part test</h3><p class="sub">Every project must pass all four. Click each one you can show for your main project.</p><div class="chips" id="check"></div><p class="sub" id="checkMsg" style="margin:10px 0 0;font-size:14px"></p></div>
+      <div class="card"><h3>When the cash arrives</h3><div id="timeline" class="sub" style="margin-top:4px;font-size:14px"></div></div>
+      <div class="card"><h3>IRS four-part test</h3><p class="sub">Click each one your main project passes.</p><div class="chips" id="check"></div><p class="sub" id="checkMsg" style="margin:10px 0 0;font-size:14px"></p></div>
       <div class="note" style="margin:0">Estimates only: federal alternative simplified credit (6% with no prior R&amp;D spend, otherwise 14% above half the 3-year average). Payroll offset uses technical payroll only, so it is a lower bound. State figures are headline rates. Not tax advice. Confirm with a CPA and Form 6765.</div>
     </div>
   </div>
@@ -402,7 +423,7 @@ details summary{cursor:pointer;font-weight:600}
 
 <!-- AUDIT -->
 <section class="view" id="audit">
-  <div class="vhead"><div><div class="kicker">Act &middot; Audit trail</div><h2>Build the record before anyone asks for it</h2><p>Since 2022 the IRS requires refund claims to identify each business component, the research activities, who did them, what they sought to discover, and the expenses. From tax year 2026, Form 6765 Section G asks for this project by project. Small businesses taking the payroll offset, and original returns with QREs of $1.5M or less and receipts of $50M or less, may skip Section G, but these records are still your audit defense. Log each project as you go.</p></div>
+  <div class="vhead"><div><div class="kicker">Act &middot; Audit trail</div><h2>Build the record before anyone asks for it</h2><p>Log each project as you go, in the shape the IRS asks for.</p><details class="more"><summary>Why this matters in 2026</summary><p class="sub" style="font-size:14px;margin-top:6px">Refund claims must name each business component, the research, who did it, what they sought to learn, and the costs. From tax year 2026, Form 6765 Section G asks for this project by project. Small businesses taking the payroll offset, and original returns with QREs of $1.5M or less and receipts of $50M or less, may skip Section G, but these records are still your audit defense.</p></details></div>
     <div class="takeaway"><b>Privacy</b>Saved only in this browser, never uploaded. Exported only when you click Export. Delete it all any time.</div></div>
   <div class="split">
     <div class="card">
@@ -547,10 +568,10 @@ function estimate(x){
     if(S.cap)st=Math.min(st,S.cap);
   }
   const stCash=st*(S.cash||0);
-  return {S,qre,fed,gross,smallOk,elected,quarters,st,stCash,cash:elected+stCash,banked:fed-elected+st-stCash,burn:Math.max(0,x.burn),sal};
+  return {S,qre,fed,gross,smallOk,elected,quarters,st,stCash,ssTax,medTax,ssPart,medPart,cash:elected+stCash,banked:fed-elected+st-stCash,burn:Math.max(0,x.burn),sal};
 }
 const qLabel=i=>{const q=1+i;return "Q"+((q%4)+1)+" "+(YEAR+1+Math.floor(q/4));}; // offsets start Q2 of next year
-let tests=new Set();
+let tests=new Set(),lastSig='';
 function readForm(){const v=id=>{const n=+$(id).value;return isFinite(n)?n:0};return {st:$('st').value,eng:v('eng'),sal:v('sal'),pct:v('pct'),con:v('con'),sup:v('sup'),rev:v('rev'),fy:v('fy'),prior:v('prior'),burn:v('burn'),red:$('red280').checked};}
 function calc(){
   const r=estimate(readForm()),S=r.S;$('pctV').textContent=$('pct').value;
@@ -561,9 +582,21 @@ function calc(){
   $('stack').innerHTML=parts.map(p=>`<i style="width:${tot?p[1]/tot*100:0}%;background:${p[2]}"></i>`).join('');
   $('lg').innerHTML=parts.map(p=>`<span><i style="background:${p[2]}"></i>${p[0]}: <b>${fmt(p[1])}</b></span>`).join('');
   $('msg').innerHTML=(r.smallOk&&!r.elected?"The payroll offset is paid against employer payroll taxes, so it needs W-2 R&amp;D payroll. Without it the federal credit is banked for future income tax.":r.smallOk?`Looks like a <b style="color:#fff">qualified small business</b>: you can elect up to ${fmt(r.elected)} of the federal credit against payroll taxes, even without profit.`:"The payroll offset needs under $5M receipts and first revenue within 5 years; otherwise the federal credit carries forward up to 20 years against income tax.")+
-    `<br><br><b style="color:#fff">${S.name||"State"}:</b> ${S.refund||""}. ${S.note||""}<br>Federal credit: <b style="color:#fff">${fmt(r.fed)}</b>${$('red280').checked?" (reduced, 280C election)":` (full credit; ${fmt(r.gross*0.79)} if you take the 280C election)`}. Qualified research expenses: <b style="color:#fff">${fmt(r.qre)}</b>`;
-  $('timeline').innerHTML=r.elected?`<ol style="margin:0;padding-left:20px"><li>File your ${YEAR} income tax return with Form 6765 and the payroll election (due April 15, ${YEAR+1}).</li><li>From the next quarter (about <b>${qLabel(0)}</b>), claim it on each quarterly payroll return with Form 8974.</li><li>At your current payroll it takes about <b>${r.quarters} quarter${r.quarters>1?"s":""}</b> to use ${fmt(r.elected)}, through about <b>${qLabel(r.quarters-1)}</b>.</li>${r.stCash?`<li>${S.name} refunds ${fmt(r.stCash)} after you file the state return.</li>`:""}</ol>`:
-    `No payroll offset at these inputs. ${r.stCash?`${S.name} refunds ${fmt(r.stCash)} after you file the state return. `:""}The rest is banked: it only becomes cash once you owe income tax.`;
+    `<details class="more"><summary>How we got this</summary><b style="color:#fff">${S.name||"State"}:</b> ${S.refund||""}. ${S.note||""}<br>Federal credit: <b style="color:#fff">${fmt(r.fed)}</b>${$('red280').checked?" (reduced, 280C election)":` (full credit; ${fmt(r.gross*0.79)} if you take the 280C election)`}. Qualified research expenses: <b style="color:#fff">${fmt(r.qre)}</b></details>`;
+  const sig=[r.elected,r.quarters,r.stCash,r.ssTax,r.medTax].join('|');
+  if(sig!==lastSig){lastSig=sig;
+    if(r.elected){
+      // spread the elected amount across quarterly payroll returns: Social Security part first, Medicare part alongside
+      let ss=r.ssPart,md=r.medPart;const qs=[];
+      while((ss>0.5||md>0.5)&&qs.length<40){const a=Math.min(ss,r.ssTax/4),b=Math.min(md,r.medTax/4);ss-=a;md-=b;qs.push(a+b);}
+      const full=(r.ssTax+r.medTax)/4,show=qs.slice(0,11);
+      $('timeline').innerHTML=`<div class="qrow"><div class="q file"><span>Apr ${YEAR+1}</span><b>File</b></div>`+
+        show.map((v,k)=>`<div class="q" style="--d:${(k*0.09).toFixed(2)}s;--f:${Math.min(1,v/full).toFixed(2)}"><span>${qLabel(k)}</span><b>${money(v)}</b></div>`).join('')+
+        (qs.length>show.length?`<div class="q file"><span>then</span><b>+${qs.length-show.length} qtrs</b></div>`:"")+
+        (r.stCash?`<div class="q st" style="--d:${(show.length*0.09).toFixed(2)}s"><span>${S.name}</span><b>${money(r.stCash)}</b></div>`:"")+
+        `</div><span>File your ${YEAR} return with the payroll election, then claim it on each quarterly payroll return (Form 8974). Used up by about <b>${qLabel(qs.length-1)}</b>.</span>`;
+    }else $('timeline').innerHTML=`No payroll offset at these inputs. ${r.stCash?`${S.name} refunds ${fmt(r.stCash)} after you file the state return. `:""}The rest is banked: it only becomes cash once you owe income tax.`;
+  }
   const T=[["Permitted purpose","New or better function, performance, reliability or quality"],["Technological in nature","Relies on engineering, computer science or the physical or biological sciences"],["Technical uncertainty","You didn't know the method or design at the start"],["Process of experimentation","You tested alternatives, not just shipped"]];
   $('check').innerHTML=T.map((t,i)=>`<button class="chip ${tests.has(i)?'ok':''}" data-t="${i}" title="${t[1]}" style="cursor:pointer;font:inherit;font-size:13px">${tests.has(i)?'&#10003;':'&#9675;'} ${t[0]}</button>`).join('');
   $('checkMsg').innerHTML=tests.size===4?"All four confirmed for this project. Log the evidence in the Audit trail.":`${tests.size}/4 confirmed. ${r.qre&&!+$('pct').value?"You entered 0% R&amp;D time. ":""}Hover a test to see what it means. Only count costs for projects that pass all four.`;
@@ -606,7 +639,7 @@ $('lenses').addEventListener('click',e=>{if(!e.target.dataset.m)return;lens=e.ta
 drawMap();
 fetch("https://api.usaspending.gov/api/v2/search/spending_by_geography/",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({scope:"place_of_performance",geo_layer:"state",filters:{keywords:["SBIR","STTR"],award_type_codes:["02","03","04","05","A","B","C","D"],time_period:[{start_date:"2023-10-01",end_date:"2025-09-30"}]}})})
  .then(r=>r.json()).then(j=>{const s={};j.results.forEach(x=>s[x.shape_code]=Math.round(x.aggregated_amount));CACHE.sbir.states=s;CACHE.sbir.fetched="LIVE";
-   $('liveDot').classList.add('live');$('liveTxt').textContent="Live: USAspending connected";drawMap();if(sel)pick(sel);}).catch(()=>{});
+   $('liveDot').classList.add('live');$('liveTxt').textContent="Live: USAspending connected";drawMap();if(sel)pick(sel);buildTicker();}).catch(()=>{});
 
 // who claims
 function drawWho(){
@@ -681,6 +714,30 @@ $('aExport').onclick=()=>{if(!projects.length)return;const md="# R&D credit proj
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([md],{type:'text/markdown'}));a.download="rd-project-log.md";a.click();};
 liveScore();listP();
 
+// live data ticker: real figures from the public-data snapshots (SBIR updates when USAspending answers)
+function buildTicker(){
+  const it=[["IRS 2022","<b>34,414</b> companies claimed the R&amp;D credit"],["IRS 2022","<b>$42.6B</b> in credits claimed"],["IRS","software-sector claimants <b>tripled</b> since 2015"]];
+  Object.values(CACHE.county).sort((a,b)=>b[1]+b[2]-a[1]-a[2]).slice(0,4).forEach(c=>it.push(["USAspending",`<b>${esc(c[0])}</b>: ${money(c[1]+c[2])} in federal R&amp;D awards`]));
+  Object.entries(SB()).filter(e=>STATE_NAMES[e[0]]).sort((a,b)=>b[1]-a[1]).slice(0,3).forEach(([k,v])=>it.push([CACHE.sbir.fetched==="LIVE"?"Live":"USAspending",`<b>${STATE_NAMES[k]}</b>: ${money(v)} SBIR/STTR`]));
+  CACHE.uni.top.slice(0,3).forEach(t=>it.push(["NSF + NIH",`<b>${esc(cleanU(t[0]))}</b>: ${money(t[1])}`]));
+  Object.entries(CACHE.grants.verticals).forEach(([k,v])=>it.push(["Grants.gov",`<b>${v.hitCount.toLocaleString()}</b> open grants in ${esc(VERTS[k]||k)}`]));
+  const row=it.map(x=>`<span><em>${x[0]}</em>${x[1]}</span>`).join('');
+  $('tk').innerHTML=row+row.replace(/<span>/g,'<span aria-hidden="true">');
+}
+try{buildTicker()}catch(e){document.querySelector('.ticker').style.display='none'}
+// caveats collapse behind a toggle; hurdle and blind-spot cards expand on click
+document.querySelectorAll('.note').forEach(n=>{if(!n.querySelector('details'))n.innerHTML=`<details><summary>About this data</summary>${n.innerHTML}</details>`;});
+document.addEventListener('click',e=>{const c=e.target.closest('.hcard,.blind div');if(c&&!e.target.closest('a,button'))c.classList.toggle('open');});
+// fade cards in as they scroll into view (skipped when the viewer prefers reduced motion)
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  let pending=[...document.querySelectorAll('main .card,.kpi,.hcard,.why div,.blind div')];
+  pending.forEach(el=>el.classList.add('reveal'));
+  // layout check rather than IntersectionObserver, so content can never get stuck invisible
+  const reveal=()=>{let n=0;pending=pending.filter(el=>{if(!el.offsetParent||el.getBoundingClientRect().top>innerHeight-30)return true;
+    el.style.transitionDelay=Math.min(n++*70,350)+'ms';el.classList.add('in');setTimeout(()=>{el.classList.remove('reveal','in');el.style.transitionDelay='';},1100);return false;});
+    if(!pending.length)clearInterval(t);};
+  const t=setInterval(reveal,300);addEventListener('scroll',reveal,{passive:true});reveal();
+}
 // deep link (e.g. #heat)
 const h=location.hash.slice(1);if(h&&$(h)&&$(h).classList.contains('view'))show(h);
 </script>
