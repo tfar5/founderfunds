@@ -462,7 +462,7 @@ nav .bar{flex-direction:row;overflow:visible}.topbar,.topin{overflow:visible}
 
 <!-- MAYA WALKTHROUGH -->
 <section class="view" id="maya">
-  <div class="vhead"><div><div class="kicker">Demo &middot; a founder's claim, start to finish</div><h2>Follow Maya from estimate to cash.</h2><p>Maya is CTO of Lumen Labs, a fictional seed-stage AI startup. Every step shows what she does, how long it takes her, and which public data powers it.</p></div>
+  <div class="vhead"><div><div class="kicker">Demo &middot; a founder's claim, start to finish</div><h2>Follow Maya from estimate to cash.</h2><p>Maya is CEO of Lumen Labs, a fictional AI startup that just raised a $5M seed round. Every step shows what she does, how long it takes her, and which public data powers it.</p></div>
     <div class="takeaway"><b>Maya's time so far</b><span id="myTime" style="font-family:var(--display);font-size:30px;font-weight:600;letter-spacing:-.03em">0 min</span></div></div>
   <div class="mysteps" id="myDots"></div>
   <div class="card mycard" id="myBody"></div>
@@ -700,7 +700,7 @@ nav .bar{flex-direction:row;overflow:visible}.topbar,.topin{overflow:visible}
         <div class="lg" id="lg"></div>
         <p id="msg" class="sub" style="margin:16px 0 0;font-size:14px"></p>
       </div>
-      <div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><div><b>See it end to end</b><div class="sub" style="margin:0">Follow Maya, a seed-stage CTO, from estimate to cash.</div></div><button class="btn" onclick="show('maya')">Walk through Maya&rsquo;s claim &rarr;</button></div>
+      <div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><div><b>See it end to end</b><div class="sub" style="margin:0">Follow Maya, a seed-stage CEO, from estimate to cash.</div></div><button class="btn" onclick="show('maya')">Walk through Maya&rsquo;s claim &rarr;</button></div>
       <div class="card"><h3>When the cash arrives</h3><div id="timeline" class="sub" style="margin-top:4px;font-size:14px"></div></div>
       <div class="card"><h3>IRS four-part test</h3><p class="sub">Click each one your main project passes.</p><div class="chips" id="check"></div><p class="sub" id="checkMsg" style="margin:10px 0 0;font-size:14px"></p></div>
       <div class="note" style="margin:0">Estimates only: federal alternative simplified credit (6% with no prior R&amp;D spend, otherwise 14% above half the 3-year average). Payroll offset uses technical payroll only, so it is a lower bound. State figures are headline rates. Not tax advice. Confirm with a CPA and Form 6765.</div>
@@ -1135,7 +1135,7 @@ function mayaSteps(){
   const sbLive=CACHE.sbir.fetched==="LIVE"?"live":"snapshot";
   const themes=g?g.themes.slice(0,3):[];
   return [
-  {t:"Meet Maya",min:0,h:`<div class="persona"><span class="av">M</span><div><b style="font-size:20px">Maya, CTO of Lumen Labs</b><div class="sub" style="margin:0">Just closed a $3M seed. Building AI infrastructure.</div></div></div>
+  {t:"Meet Maya",min:0,h:`<div class="persona"><span class="av">M</span><div><b style="font-size:20px">Maya, CEO of Lumen Labs</b><div class="sub" style="margin:0">Just closed a $5M seed. Building AI infrastructure.</div></div></div>
     <div class="facts"><span>&#128101; 6 engineers, $150K average</span><span>&#128205; California</span><span>&#128176; $400K revenue, first sales in 2024</span><span>&#9201; Tax return due April 15, ${YEAR+1}</span></div>
     <div class="stats4" style="margin-top:24px">${tile("~2 in 3","R&amp;D businesses like hers don't claim (our model)")}${tile(money(cty[1]+cty[2]),"federal R&amp;D awards in her county, Santa Clara, FY24&ndash;25")}${tile("34,414","companies did claim in 2022")}${tile("0","hours Maya has budgeted for tax credits")}</div>
     <p class="sub" style="margin-top:6px">Her question: <b style="color:var(--ink)">"Is this worth my time, and what do I actually have to do?"</b></p>`,
